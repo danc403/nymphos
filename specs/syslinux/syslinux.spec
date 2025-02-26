@@ -30,6 +30,14 @@ cp %{buildroot}/usr/lib/syslinux/libcom32.c32 %{buildroot}/boot/extlinux/
 cp %{buildroot}/usr/lib/syslinux/libpci.c32 %{buildroot}/boot/extlinux/
 cp %{buildroot}/usr/lib/syslinux/libmenu.c32 %{buildroot}/boot/extlinux/
 
+# Create extlinux.conf
+cat <<EOF > %{buildroot}/boot/extlinux/extlinux.conf
+DEFAULT linux
+LABEL linux
+KERNEL /vmlinuz
+APPEND initrd=/initramfs.img root=/dev/sda1 rw # Adjust root partition as needed.
+EOF
+
 %files
 /usr/lib/syslinux/* # Adjust as needed
 /boot/extlinux/*
