@@ -1,7 +1,7 @@
 Name: dracut
 Version: <version> # Replace with actual version
 Release: 1%{?dist} # For RPM-based systems
-Summary: Event-driven initramfs infrastructure
+Summary: Event-driven initramfs infrastructure with accessibility features.
 License: GPLv2+
 URL: https://github.com/dracutdevs/dracut
 Source0: dracut-<version>.tar.gz # Replace with source tarball
@@ -38,32 +38,59 @@ fi
 EOF
 chmod +x %{buildroot}/usr/local/bin/speakup_boot.sh
 
-# Example dracut module script (conceptual)
+# Dracut module for Speakup messages
 mkdir -p %{buildroot}/usr/lib/dracut/modules.d/99speakup
 cat <<EOF > %{buildroot}/usr/lib/dracut/modules.d/99speakup/module-setup.sh
 #!/bin/bash
 check() {
   return 0
 }
-
 depends() {
   return 0
 }
-
 install() {
   inst_hook pre-trigger 00\$hookdir/speakup_pre_trigger.sh
+  inst_hook pre-udev 10\$hookdir/speakup_pre_udev.sh
+  inst_hook pre-mount 20\$hookdir/speakup_pre_mount.sh
+  inst_hook pre-pivot 30\$hookdir/speakup_pre_pivot.sh
+  inst_hook pre-shutdown 40\$hookdir/speakup_pre_shutdown.sh
 }
 EOF
 chmod +x %{buildroot}/usr/lib/dracut/modules.d/99speakup/module-setup.sh
 
 cat <<EOF > %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_trigger.sh
 #!/bin/bash
-/usr/local/bin/speakup_boot.sh "Loading Kernel"
+/usr/local/bin/speakup_boot.sh "Starting Dracut"
+/usr/local/bin/speakup_boot.sh "Detecting hardware"
 EOF
 chmod +x %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_trigger.sh
 
+cat <<EOF > %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_udev.sh
+#!/bin/bash
+/usr/local/bin/speakup_boot.sh "Starting device detection"
+EOF
+chmod +x %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_udev.sh
+
+cat <<EOF > %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_mount.sh
+#!/bin/bash
+/usr/local/bin/speakup_boot.sh "Mounting root filesystem"
+EOF
+chmod +x %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_mount.sh
+
+cat <<EOF > %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_pivot.sh
+#!/bin/bash
+/usr/local/bin/speakup_boot.sh "Switching to main system"
+EOF
+chmod +x %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_pivot.sh
+
+cat <<EOF > %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_shutdown.sh
+#!/bin/bash
+/usr/local/bin/speakup_boot.sh "System shutting down"
+EOF
+chmod +x %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_shutdown.sh
+
 %files
-/usr/lib/dracut/* # Adjust as needed
+/usr/lib/dracut/*
 /usr/bin/dracut
 /etc/dracut.conf.d/*
 /usr/local/bin/speakup_boot.sh
@@ -71,4 +98,4 @@ chmod +x %{buildroot}/usr/lib/dracut/modules.d/99speakup/speakup_pre_trigger.sh
 
 %changelog
 * <date> <your name> <email> - <version>-1
-- Initial build with Speakup integration.
+- Initial build with Speakup messages.
