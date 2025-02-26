@@ -16,6 +16,8 @@ jobs:
       - name: Install build dependencies
         run: |
           dnf update -y
+          dnf install -y epel-release -y
+          dnf update -y
           dnf install -y rpm-build gcc make ccache patch tar xz bzip2 gzip \
             binutils elfutils-libelf-devel openssl-devel zlib-devel \
             ncurses-devel perl python3 python3-devel bc bison flex \
@@ -25,7 +27,7 @@ jobs:
             e2fsprogs-devel libblkid-devel device-mapper-devel libnl3-devel \
             libudev-devel glibc-devel libcap-devel libtirpc-devel \
             audit-libs-devel libseccomp-devel libbpf-devel \
-            dracut syslinux openrc
+            dracut syslinux
 
       - name: Build Linux Kernel RPM
         run: |
@@ -93,11 +95,11 @@ jobs:
         with:
           name: rpms
           path: rpms/
-          retention-days: 7
+          retention-days: 1
 
       - name: Upload SRPMs
         uses: actions/upload-artifact@v4
         with:
           name: srpms
           path: srpms/
-          retention-days: 7
+          retention-days: 1
