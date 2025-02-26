@@ -1,0 +1,100 @@
+name: Build NymphOS Packages (Manual)
+
+on:
+  workflow_dispatch: # Manual trigger only
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: rockylinux:9 # Or rockylinux:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install build dependencies
+        run: |
+          dnf update -y
+          dnf install -y rpm-build gcc make ccache patch tar xz bzip2 gzip \
+            binutils elfutils-libelf-devel openssl-devel zlib-devel \
+            ncurses-devel perl python3 python3-devel bc bison flex \
+            libtool autoconf automake pkgconfig git dwarves libmnl-devel \
+            libcap-ng-devel libselinux-devel kmod-devel audit-libs-devel \
+            pciutils-devel util-linux-devel systemd-devel libmount-devel \
+            e2fsprogs-devel libblkid-devel device-mapper-devel libnl3-devel \
+            libudev-devel glibc-devel libcap-devel libtirpc-devel \
+            audit-libs-devel libseccomp-devel libbpf-devel \
+            dracut syslinux openrc
+
+      - name: Build Linux Kernel RPM
+        run: |
+          mkdir tmp-kernel
+          cp tarballs/linux/linux-*.tar.xz tmp-kernel/
+          cd tmp-kernel
+          tar xf linux-*.tar.xz
+          cd linux-*
+          cp ../../../specs/linux/.config .config
+          rpmbuild -ba ../../../specs/linux/*.spec
+          mkdir -p ../../../srpms/linux
+          mkdir -p ../../../rpms/linux
+          mv ../../../rpmbuild/SRPMS/*.src.rpm ../../../srpms/linux/
+          mv ../../../rpmbuild/RPMS/x86_64/*.rpm ../../../rpms/linux/
+          cd ../..
+          rm -rf tmp-kernel
+
+      - name: Build Dracut RPM
+        run: |
+          mkdir tmp-dracut
+          cp tarballs/dracut/dracut-*.tar.gz tmp-dracut/
+          cd tmp-dracut
+          tar xf dracut-*.tar.gz
+          cd dracut-*
+          rpmbuild -ba ../../../specs/dracut/*.spec
+          mkdir -p ../../../srpms/dracut
+          mkdir -p ../../../rpms/dracut
+          mv ../../../rpmbuild/SRPMS/*.src.rpm ../../../srpms/dracut/
+          mv ../../../rpmbuild/RPMS/x86_64/*.rpm ../../../rpms/dracut/
+          cd ../..
+          rm -rf tmp-dracut
+
+      - name: Build Syslinux RPM
+        run: |
+          mkdir tmp-syslinux
+          cp tarballs/syslinux/syslinux-*.tar.bz2 tmp-syslinux/
+          cd tmp-syslinux
+          tar xf syslinux-*.tar.bz2
+          cd syslinux-*
+          rpmbuild -ba ../../../specs/syslinux/*.spec
+          mkdir -p ../../../srpms/syslinux
+          mkdir -p ../../../rpms/syslinux
+          mv ../../../rpmbuild/SRPMS/*.src.rpm ../../../srpms/syslinux/
+          mv ../../../rpmbuild/RPMS/x86_64/*.rpm ../../../rpms/syslinux/
+          cd ../..
+          rm -rf tmp-syslinux
+
+      - name: Build OpenRC RPM
+        run: |
+          mkdir tmp-openrc
+          cp tarballs/openrc/openrc-*.tar.bz2 tmp-openrc/
+          cd tmp-openrc
+          tar xf openrc-*.tar.bz2
+          cd openrc-*
+          rpmbuild -ba ../../../specs/openrc/*.spec
+          mkdir -p ../../../srpms/openrc
+          mkdir -p ../../../rpms/openrc
+          mv ../../../rpmbuild/SRPMS/*.src.rpm ../../../srpms/openrc/
+          mv ../../../rpmbuild/RPMS/x86_64/*.rpm ../../../rpms/openrc/
+          cd ../..
+          rm -rf tmp-openrc
+
+      - name: Upload RPMs
+        uses: actions/upload-artifact@v3
+        with:
+          name: rpms
+          path: rpms/
+      - name: Upload SRPMs
+        uses: actions/upload-artifact@v3
+        with:
+          name: srpms
+          path: srpms/
