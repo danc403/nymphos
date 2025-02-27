@@ -1,0 +1,27 @@
+name: Build NymphOS SRPMs (Ubuntu)
+
+on:
+  workflow_dispatch: # Manual trigger only
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # You can still use it to build the docker image
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker Image
+        run: |
+          docker build -t nymphos-srpm-builder -f Dockerfile .
+
+      - name: Run Build in Docker Container
+        run: |
+          docker run --rm -v "$(pwd):/app" nymphos-srpm-builder /app/build_srpms.sh
+
+      - name: Upload SRPMs
+        uses: actions/upload-artifact@v4
+        with:
+          name: srpms
+          path: srpms/
+          retention-days: 7
