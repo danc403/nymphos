@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 # Or your desired Ubuntu version
+FROM ubuntu:22.04
 
 RUN apt-get update && apt-get install -y \
     rpm rpm-build gcc make patch tar xz bzip2 gzip \
