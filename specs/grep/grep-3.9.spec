@@ -2,19 +2,19 @@
 Name:           grep
 Version:        3.9
 Release:        1%{?dist}
-Summary:        <short_description>
+Summary:        Basic grep utilities for Nymph Linux.
 
-License:        <license>
+License:        GPLv3+
 URL:            <upstream_url>
 Source0:        tarballs/grep/grep-3.9.tar.xz
 
 BuildArch:      x86_64
 
-BuildRequires:  <build_time_dependencies>
-Requires:       <runtime_dependencies>
+BuildRequires:  glibc
+Requires:       glibc
 
 %description
-<full_description>
+This package provides the core grep utilities for the Nymph Linux distribution.
 
 %prep
 %setup -q
@@ -29,11 +29,9 @@ make DESTDIR=%{buildroot} install
 %files
 %license COPYING
 %doc README
-%{_bindir}/<binary_name>
-%{_libdir}/lib<library_name>.so
-%{_includedir}/<header_files>
-%{_mandir}/man1/<man_page>.1*
+%{_bindir}/*
+%{_mandir}/man1/*
 
 %changelog
 * <date> Your Name <your.email@example.com> - 3.9-1
-- Initial package
+- Initial package for Nymph Linux.
