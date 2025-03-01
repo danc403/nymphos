@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>Git Resource Not Found</title>
+<link rel="stylesheet" href="/assets/errors-8dbd470efccfb0eb408eec6e3502b736afb95679a164babe63a3ee7ce0729388.css" />
+<link rel="stylesheet" href="/assets/application-182846f5d03243644eeff8074a2e7a731654615c4445f6d1134b9d422825e3ce.css" />
+<link rel="stylesheet" href="/assets/fonts-fae5d3f79948bd85f18b6513a025f863b19636e85b09a1492907eb4b1bb0557b.css" />
+<link rel="stylesheet" href="/assets/tailwind-469e8cf29ca81e21f824ad683201a6a63c135a4ef89f152be2954d9af0217517.css" />
+</head>
+<body>
+<div class="page-container">
+<div class="error-container">
+<img alt="404" src="/assets/illustrations/error/error-404-lg-758e47cf647e5086c998f017256cd8870c24a8c0e5d4a7542d613bd5fc8ffa21.svg" />
+<h1>
+404: Git resource not found
+</h1>
+<p>
+Application cannot get access to a branch or commit in your repository. It might have been moved
+</p>
+</div>
+
+</div>
+<script>
+//<![CDATA[
+(function(){
+  var goBackElement = document.querySelector('.js-go-back');
+
+  if (goBackElement && history.length > 1) {
+    goBackElement.removeAttribute('hidden');
+
+    goBackElement.querySelector('button').addEventListener('click', function() {
+      history.back();
+    });
+  }
+
+  // We do not have rails_ujs here, so we're manually making a link trigger a form submit.
+  document.querySelector('.js-sign-out-link')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelector('.js-sign-out-form')?.submit();
+  });
+}());
+
+//]]>
+</script></body>
+</html>
