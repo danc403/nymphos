@@ -1,0 +1,14 @@
+
+rxvt-unicode (urxvt)
+
+• fontconfig:
+• https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.15.0.tar.xz
+• fonts (You'll need at least one font package):
+• For example, a common font set is DejaVu:
+• https://downloads.sourceforge.net/project/dejavu/dejavu/2.37/dejavu-fonts-ttf-2.37.tar.bz2
+• lightdm (or another display manager):
+• lightdm: https://github.com/canonical/lightdm/releases/download/1.32.0/lightdm-1.32.0.tar.xz
+• polkit:
+• https://gitlab.freedesktop.org/polkit/polkit/-/archive/1.23/polkit-1.23.tar.bz2
+• alsa-utils:
+• https://www.alsa-project.org/files/pub/utils/alsa-utils-1.2.10.tar.bz2
