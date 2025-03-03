@@ -1,0 +1,28 @@
+content:
+  - Name:           make-devel
+  - Version:        4.4.1
+  - Release:        1%{?dist}
+  - Summary:        Development files for make
+  - 
+  - License:        GPLv3+
+  - URL:            https://www.gnu.org/software/make/
+  - 
+  - Requires:       make = %{version}-%{release}
+  - 
+  - %description
+  - This package contains the development files for make.
+  - 
+  - %prep
+  - echo No prep needed
+  - 
+  - %build
+  - echo No build needed
+  - 
+  - %install
+  - echo No install needed
+  - 
+  - %files
+  - 
+  - %changelog
+  - * %{date} Dan Carpenter <DanC403@gmail.com> - 4.4.1-1
+  - - Initial package build

@@ -1,0 +1,28 @@
+content:
+  - Name:           autoconf-devel
+  - Version:        2.71
+  - Release:        1%{?dist}
+  - Summary:        Development files for autoconf
+  - License:        GPLv3+
+  - URL:            https://www.gnu.org/software/autoconf/
+  - 
+  - Requires:       autoconf = %{version}-%{release}
+  - 
+  - %description
+  - This package contains the development files for autoconf.
+  - 
+  - %prep
+  - # No prep needed
+  - 
+  - %build
+  - # No build needed
+  - 
+  - %install
+  - # No install needed
+  - 
+  - %files
+  - %{_datadir}/aclocal
+  - 
+  - %changelog
+  - * %{date} Dan Carpenter DanC403@gmail.com - 2.71-1
+  - - Initial package build

@@ -1,0 +1,20 @@
+content:
+  - Name:           gawk-devel
+  - Version:        5.2.1
+  - Release:        1%{?dist}
+  - Summary:        Development files for gawk
+  - 
+  - License:        GPLv3+
+  - URL:            https://www.gnu.org/software/gawk/
+  - 
+  - Requires:       gawk = %{version}-%{release}
+  - 
+  - %description
+  - This package contains the development files for gawk.
+  - 
+  - %files
+  - %{_includedir}/awk.h
+  - 
+  - %changelog
+  - * %{date} Dan Carpenter <DanC403@gmail.com> - 5.2.1-1
+  - - Initial package build

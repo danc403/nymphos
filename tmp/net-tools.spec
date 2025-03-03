@@ -1,0 +1,50 @@
+content:
+  - Name:           net-tools
+  - Version:        2.10
+  - Release:        1%{?dist}
+  - Summary:        Basic networking tools (ifconfig, netstat, etc.)
+  - 
+  - License:        GPL-2.0-or-later
+  - URL:            https://sourceforge.net/projects/net-tools/
+  - 
+  - Source0:        %{name}-%{version}.tar.xz
+  - 
+  - BuildRequires:  autoconf
+  - BuildRequires:  automake
+  - BuildRequires:  libtool
+  - BuildRequires:  gettext
+  - 
+  - Requires:       bash
+  - Requires:       coreutils
+  - Requires:       iproute2
+  - Requires:       procps
+  - 
+  - %description
+  - Net-tools includes the basic networking utilities such as ifconfig, netstat,
+  - arp, rdisc, nameif, and route.
+  - 
+  - %prep
+  - %setup -q
+  - 
+  - autoreconf -fvi
+  - 
+  - %build
+  - %configure
+  - make %{?_smp_mflags}
+  - 
+  - %install
+  - make install DESTDIR=%{buildroot}
+  - 
+  - rm -f %{buildroot}%{_mandir}/man8/net-tools.8
+  - 
+  - %files
+  - %license COPYING
+  - %doc README ChangeLog
+  - %{_sbindir}/*
+  - %{_bindir}/*
+  - %{_mandir}/man1/*
+  - %{_mandir}/man8/*
+  - 
+  - %changelog
+  - * %{date} Dan Carpenter DanC403@gmail.com - 2.10-1
+  - - Initial package build

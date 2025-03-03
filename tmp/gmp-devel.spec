@@ -1,0 +1,38 @@
+spec_content:
+  - Name:           gmp-devel
+  - Version:        6.3.0
+  - Release:        1%{?dist}
+  - Summary:        Development files for the GNU Multiple Precision Arithmetic Library
+  - 
+  - License:        LGPLv3+
+  - URL:            https://gmplib.org/
+  - 
+  - Source0:        %{name:gmp}-%{version}.tar.xz
+  - BuildRequires:  gmp = %{version}
+  - Requires:       gmp = %{version}
+  - 
+  - %description
+  - The gmp-devel package contains the header files and libraries needed to
+  - develop programs that use the GNU Multiple Precision Arithmetic Library.
+  - 
+  - %prep
+  - %autosetup -n gmp-%{version}
+  - 
+  - %build
+  - ./configure --prefix=%{_prefix}
+  - make %{?_smp_mflags}
+  - 
+  - %install
+  - make install DESTDIR=%{buildroot}
+  - 
+  - rm -f %{buildroot}%{_libdir}/*.la
+  - 
+  - %files
+  - %{_includedir}/gmp.h
+  - %{_libdir}/libgmp.so
+  - %{_libdir}/libgmp.a
+  - %{_libdir}/pkgconfig/gmp.pc
+  - 
+  - %changelog
+  - * %{_isodate} Dan Carpenter <DanC403@gmail.com> - %{version}-%{release}
+  - - Initial package build

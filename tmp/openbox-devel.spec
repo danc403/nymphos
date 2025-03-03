@@ -1,0 +1,36 @@
+spec_content:
+  - Name:           openbox-devel
+  - Version:        3.6.1
+  - Release:        1%{?dist}
+  - Summary:        Development files for openbox
+  - License:        GPLv2+
+  - URL:            http://openbox.org/
+  - Source0:        %{name}-%{version}.tar.xz
+  - 
+  - BuildRequires: openbox = %{version}-%{release}
+  - Requires:       openbox = %{version}-%{release}
+  - 
+  - %description
+  - This package contains the header files and libraries needed to develop
+  - applications that use openbox.
+  - 
+  - %prep
+  - %autosetup -n openbox-%{version}
+  - 
+  - %build
+  - sh autogen.sh
+  - %configure
+  - make %{?_smp_mflags}
+  - 
+  - %install
+  - make install DESTDIR=%{buildroot}
+  - 
+  - %files
+  - %{_includedir}/openbox/
+  - %{_libdir}/libobrender.so
+  - %{_libdir}/libobparser.so
+  - %{_libdir}/pkgconfig/openbox.pc
+  - 
+  - %changelog
+  - * %{date} Dan Carpenter <DanC403@gmail.com> - 3.6.1-1
+  - - Initial package build.

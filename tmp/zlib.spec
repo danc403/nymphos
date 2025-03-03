@@ -1,0 +1,41 @@
+content:
+  - Name:           zlib
+  - Version:        1.3.1
+  - Release:        1%{?dist}
+  - Summary:        A general purpose data compression library (License zlib)
+  - 
+  - License:        zlib
+  - URL:            https://zlib.net/
+  - 
+  - Source0:        %{name}-%{version}.tar.gz
+  - 
+  - BuildRequires:  gcc
+  - BuildRequires:  make
+  - 
+  - %description
+  - zlib is a general purpose data compression library. The zlib data
+  - format is itself portable across platforms. Unlike the Lempel-Ziv
+  - algorithm used in the Unix compress program, zlib does not expand
+  - the file when the expansion ratio is less than optimal.
+  - 
+  - %prep
+  - %autosetup
+  - 
+  - %build
+  - %configure
+  - %make_build
+  - 
+  - %install
+  - %make_install
+  - rm -f %{buildroot}%{_libdir}/*.la
+  - 
+  - %files
+  - %license zlib.h
+  - %doc README ChangeLog FAQ
+  - %{_bindir}/zlib-flate
+  - %{_libdir}/libz.so.*
+  - %{_mandir}/man1/zlib-flate.1*
+  - 
+  - %changelog
+  - * Tue Oct 24 2023 Dan Carpenter DanC403@gmail.com - 1.3.1-1
+  - - Initial package build

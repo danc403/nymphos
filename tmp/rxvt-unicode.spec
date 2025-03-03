@@ -1,0 +1,41 @@
+name: rxvt-unicode
+version: 9.31
+release: 1%{?dist}
+summary: A VT102 terminal emulator for the X Window System
+license: GPLv3+
+url: http://rxvt.perltk.org/
+source0: rxvt-unicode-%{version}.tar.bz2
+buildrequires:
+  - pkgconfig(x11)
+  - pkgconfig(fontconfig)
+  - pkgconfig(freetype2)
+  - pkgconfig(xft)
+  - pkgconfig(xrender)
+  - pkgconfig(xext)
+requires:
+  - fontconfig
+  - dejavu-fonts-ttf
+description: rxvt-unicode is a terminal emulator for the X Window System. It supports multiple character sets through Unicode, international keyboard input, embedded Perl scripting, transparent backgrounds, and other features.
+prep:
+  - %setup -q -n rxvt-unicode-%{version}
+build:
+  - %configure
+  - %make_build
+install:
+  - %make_install
+files:
+  - %license COPYING
+  - %doc README ChangeLog
+  - %{_bindir}/urxvt
+  - %{_bindir}/urxvtc
+  - %{_mandir}/man1/urxvt.1*
+  - %{_mandir}/man1/urxvtc.1*
+  - %{_datadir}/applications/rxvt-unicode.desktop
+  - %{_datadir}/pixmaps/rxvt-unicode.png
+  - %{_datadir}/rxvt-unicode/*
+changelog:
+  -
+    date: 2023-10-27
+    name: Dan Carpenter
+    email: DanC403@gmail.com
+    changes: - Initial package build

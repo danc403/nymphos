@@ -1,0 +1,36 @@
+name: iproute2
+version: 6.1.0
+release: 1%{?dist}
+summary: Networking utilities for Linux (iproute2) - GPLv2+
+license: GPLv2+
+url: https://www.kernel.org/pub/linux/utils/net/iproute2/
+source0: %{name}-%{version}.tar.xz
+buildrequires:
+  - autoconf
+  - automake
+  - bison
+  - flex
+  - libcap-devel
+  - libmnl-devel
+  - pkgconfig(libelf)
+  - pkgconfig(libxtables)
+  - pkgconfig(json-c)
+requires:
+  - libcap
+  - libmnl
+  - json-c
+description: The iproute2 package contains utilities for controlling TCP/IP networking and traffic management in Linux.
+prep:
+  - %setup -q
+build:
+  - ./configure --prefix=%{_prefix} --sbindir=%{_sbindir} --sysconfdir=%{_sysconfdir} --with-readline=readline
+  - %{__make} -j%{?_smp_num_cpus}
+install:
+  - %{__make} install DESTDIR=%{buildroot}
+files:
+  - %{_sbindir}/*
+  - %{_mandir}/man8/*
+  - %{_sysconfdir}/iproute2/*
+changelog:
+  - * %{date} Dan Carpenter DanC403@gmail.com - 6.1.0-1
+  - - Initial build

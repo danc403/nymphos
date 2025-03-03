@@ -1,0 +1,19 @@
+content:
+  - Name:           bison-devel
+  - Version:        3.8
+  - Release:        1%{?dist}
+  - Summary:        Development files for bison
+  - 
+  - License:        GPLv3+
+  - URL:            https://www.gnu.org/software/bison/
+  - 
+  - Requires:       bison = %{version}-%{release}
+  - 
+  - %description
+  - This package contains the header files and other development files
+  - needed to develop programs that use the bison library.
+  - 
+  - %files
+  - %{_includedir}/bison
+  - %{_mandir}/man1/yacc.1*
+  - %{_bindir}/yacc

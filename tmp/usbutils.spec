@@ -1,0 +1,48 @@
+content:
+  - Name:           usbutils
+  - Version:        017
+  - Release:        1%{?dist}
+  - Summary:        USB utilities - lsusb and usb-devices
+  - 
+  - License:        GPLv2+
+  - URL:            https://www.kernel.org/pub/linux/utils/usb/usbutils/
+  - 
+  - Source0:        %{name}-%{version}.tar.xz
+  - 
+  - BuildRequires:  autoconf
+  - BuildRequires:  automake
+  - BuildRequires:  libtool
+  - BuildRequires:  util-linux-devel
+  - 
+  - Requires:       bash
+  - Requires:       coreutils
+  - Requires:       util-linux
+  - 
+  - %description
+  - The usbutils package contains utilities for inspecting and working with USB devices.
+  - It includes the 'lsusb' program, which displays information about USB buses and devices,
+  - and 'usb-devices', which shows detailed device descriptors.
+  - 
+  - %prep
+  - %setup -q
+  - 
+  - autoreconf -fiv
+  - 
+  - %build
+  - ./configure --disable-static
+  - make %{?_smp_mflags}
+  - 
+  - %install
+  - make install DESTDIR=%{buildroot}
+  - 
+  - %files
+  - %license COPYING
+  - %doc README
+  - /usr/bin/lsusb
+  - /usr/bin/usb-devices
+  - /usr/share/man/man1/lsusb.1*
+  - /usr/share/man/man1/usb-devices.1*
+  - 
+  - %changelog
+  - * %{today} Dan Carpenter <DanC403@gmail.com> - 017-1
+  - - Initial package build

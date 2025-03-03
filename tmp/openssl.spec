@@ -1,0 +1,32 @@
+name: openssl
+version: 3.1.1
+release: 1%{?dist}
+summary: A general purpose cryptography library. (Apache License)
+license: Apache License
+url: https://www.openssl.org/
+source0: %{name}-%{version}.tar.gz
+buildrequires:
+  - perl
+  - zlib-devel
+  - krb5-devel
+requires:
+  - zlib
+  - krb5-libs
+description: The OpenSSL Project is a collaborative effort to develop a robust, commercial-grade, full-featured, and Open Source toolkit implementing the Secure Sockets Layer (SSL v3) and Transport Layer Security (TLS v1) protocols as well as a full-strength general purpose cryptography library.
+prep:
+  - %setup -q
+build:
+  - ./config --prefix=%{_prefix} --openssldir=%{_sysconfdir}/ssl shared zlib
+  - make
+install:
+  - make install
+files:
+  - %{_bindir}/openssl
+  - %{_sysconfdir}/ssl
+  - %{_libdir}/libssl.so.*
+  - %{_libdir}/libcrypto.so.*
+  - %{_mandir}/man1/openssl.1*
+  - %license LICENSE.txt
+changelog:
+  - * %{date} Dan Carpenter <DanC403@gmail.com> 3.1.1-1
+  - - Initial package build
