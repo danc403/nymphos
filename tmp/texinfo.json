@@ -1,0 +1,10 @@
+{
+  "texinfo.spec": {
+    "content": "Name:           texinfo\nVersion:        7.0\nRelease:        1%{?dist}\nSummary:        GNU documentation system for on-line information and printed output\nLicense:        GPLv3+\nURL:            https://www.gnu.org/software/texinfo/\n\nSource0:        %{name}-%{version}.tar.xz\n\nBuildRequires:  make\nBuildRequires:  gettext\nBuildRequires:  perl\n\nRequires:       coreutils\nRequires:       gawk\nRequires:       perl\nRequires:       xz\n\n\n%description\nTexinfo is a documentation system that uses a single source file\nto produce both on-line information and printed output.\n\n%prep\n%setup -q\n\n%build\n%configure\nmake %{?_smp_mflags}\n\n%install\nmake install DESTDIR=%{buildroot}\n\n# Remove libtool archives\nfind %{buildroot} -name \\*.la -delete\n\n%files\n%{_bindir}/*\n%{_infodir}/*\n%{_mandir}/man1/*\n%{_datadir}/texinfo/*\n%{_datadir}/gettext/*\n%{_libexecdir}/texinfo/*\n%license COPYING\n\n%changelog\n* %{date} Dan Carpenter DanC403@gmail.com - 7.0-1\n- Initial package build.\n",
+    "filename": "texinfo.spec"
+  },
+  "texinfo-devel.spec": {
+    "content": "Name:           texinfo-devel\nVersion:        7.0\nRelease:        1%{?dist}\nSummary:        Development files for texinfo\nLicense:        GPLv3+\nURL:            https://www.gnu.org/software/texinfo/\n\nSource0:        %{name:texinfo}-%{version}.tar.xz\n\nBuildRequires:  texinfo = %{version}-%{release}\n\nRequires:       texinfo = %{version}-%{release}\n\n%description\nThis package contains the development files for texinfo.\n\n%prep\n# No prep needed\n\n%build\n# No build needed\n\n%install\n# No install needed. Already handled by main package.\n\n%files\n%{_includedir}/*\n%{_libdir}/lib*.so\n%{_libdir}/pkgconfig/*\n\n%changelog\n* %{date} Dan Carpenter DanC403@gmail.com - 7.0-1\n- Initial package build.\n",
+    "filename": "texinfo-devel.spec"
+  }
+}

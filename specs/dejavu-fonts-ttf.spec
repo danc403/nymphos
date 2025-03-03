@@ -28,5 +28,5 @@ cp -r ttf/* %{buildroot}%{_datadir}/fonts/ttf/dejavu
 %{_datadir}/fonts/ttf/dejavu/
 
 %changelog
-* Mon Nov 20 2023 Your Name <your.email@example.com> - 2.37-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 2.37-1
 - Initial build for x86_64 and OpenRC.

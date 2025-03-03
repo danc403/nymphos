@@ -1,0 +1,10 @@
+{
+  "xz.spec": {
+    "content": "Name:           xz\nVersion:        5.4.1\nRelease:        1%{?dist}\nSummary:        XZ Utils - Tools for compressing and decompressing .xz files\nLicense:        LGPLv2+ and GPLv2+\nURL:            https://tukaani.org/xz/\n\nSource0:        %{name}-%{version}.tar.xz\n\nBuildRequires:  gettext\n\n# No OpenRC-specific configuration needed, handles systemd internally.\n# No LightDM-specific configuration needed.\n\n%description\nXZ Utils are the tools to compress and decompress .xz files, which\nare useful for smaller downloads.\n\n%prep\n%autosetup\n\n%build\n%configure\n%make_build\n\n%install\n%make_install\n\n%files\n%license COPYING COPYING.GPLv2 COPYING.LGPLv2\n%{_bindir}/xz\n%{_bindir}/xzcat\n%{_bindir}/xzdec\n%{_bindir}/lzma\n%{_bindir}/unxz\n%{_mandir}/man1/xz.1*\n%{_mandir}/man1/xzcat.1*\n%{_mandir}/man1/xzdec.1*\n%{_mandir}/man1/lzma.1*\n%{_mandir}/man1/unxz.1*\n%{_libdir}/liblzma.so*\n%{_libdir}/liblzma.*.dylib*\n\n%changelog\n* %{today} Dan Carpenter DanC403@gmail.com - 5.4.1-1\n- Initial package build\n",
+    "filename": "xz.spec"
+  },
+  "xz-devel.spec": {
+    "content": "Name:           xz-devel\nVersion:        5.4.1\nRelease:        1%{?dist}\nSummary:        Development files for xz\nLicense:        LGPLv2+ and GPLv2+\nURL:            https://tukaani.org/xz/\n\nSource0:        %{name:xz}-%{version}.tar.xz\n\nRequires:       xz = %{version}-%{release}\nBuildRequires:  gettext\n\n%description\nThis package contains the header files and libraries needed to develop\napplications that use xz.\n\n%prep\n%autosetup -n xz-%{version}\n\n%build\n%configure\n%make_build\n\n%install\n%make_install\n\n%files\n%{_includedir}/lzma.h\n%{_libdir}/liblzma.a\n%{_libdir}/pkgconfig/liblzma.pc\n\n%changelog\n* %{today} Dan Carpenter DanC403@gmail.com - 5.4.1-1\n- Initial package build\n",
+    "filename": "xz-devel.spec"
+  }
+}

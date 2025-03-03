@@ -1,0 +1,10 @@
+{
+  "nano.spec": {
+    "spec_content": "Name:           nano\nVersion:        6.4\nRelease:        1%{?dist}\nSummary:        Small, easy to use editor - License: GPLv3+\n\nLicense:        GPLv3+\nURL:            https://www.nano-editor.org/\n\nSource0:        %{name}-%{version}.tar.xz\n\nBuildRequires:  ncurses-devel\nBuildRequires:  gettext\nRequires:       ncurses\n\n%description\nGNU nano is a small, easy to use editor for Linux.\n\n%prep\n%autosetup\n\n%build\n%configure\n%make_build\n\n%install\n%make_install\n\n%files\n%license COPYING\n%{_bindir}/nano\n%{_mandir}/man1/nano.1.*\n%{_datadir}/nano/\n\n%changelog\n* %{date} Dan Carpenter DanC403@gmail.com - 6.4-1\n- Initial package build",
+    "package_name": "nano"
+  },
+  "nano-devel.spec": {
+    "spec_content": "Name:           nano-devel\nVersion:        6.4\nRelease:        1%{?dist}\nSummary:        Development files for nano - License: GPLv3+\n\nLicense:        GPLv3+\nURL:            https://www.nano-editor.org/\n\nSource0:        %{name:nano}-%{version}.tar.xz\n\nBuildRequires:  ncurses-devel\nBuildRequires:  gettext\nRequires:       nano = %{version}-%{release}\nRequires:       pkgconfig\n\n%description\nThis package contains the header files and libraries needed to develop\napplications that use nano.\n\n%prep\n%autosetup -n nano-%{version}\n\n%build\n%configure\n%make_build\n\n%install\n%make_install\n\n%files\n%{_includedir}/nano/\n%{_libdir}/libnano.so\n%{_libdir}/pkgconfig/nano.pc\n\n%changelog\n* %{date} Dan Carpenter DanC403@gmail.com - 6.4-1\n- Initial package build",
+    "package_name": "nano-devel"
+  }
+}

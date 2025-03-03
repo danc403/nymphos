@@ -33,5 +33,5 @@ make DESTDIR=%{buildroot} install
 %{_mandir}/man1/*
 
 %changelog
-* <date> Your Name <your.email@example.com> - 4.9.0-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 4.9.0-1
 - Initial package for Nymph Linux.

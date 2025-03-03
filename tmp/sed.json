@@ -1,0 +1,8 @@
+{
+  "sed.spec": {
+    "spec_content": "Name:           sed\nVersion:        4.9\nRelease:        1%{?dist}\nSummary:        The GNU Stream EDitor - a line-oriented text editor.\nLicense:        GPLv3+\nURL:            https://www.gnu.org/software/sed/\n\nSource0:        %{name}-%{version}.tar.xz\n\nBuildRequires:  gettext\nBuildRequires:  texinfo\n\n%description\nSed is a stream editor.  A stream editor is used to perform basic\ntext transformations on an input stream (a file or input from a\npipeline).\n\n%prep\n%autosetup\n\n%build\n%configure\nmake %{?_smp_mflags}\n\n%install\nmake install DESTDIR=%{buildroot}\n\n# Remove libtool archives\nfind %{buildroot} -name '*.la' -delete\n\n%files\n%{_bindir}/sed\n%{_infodir}/sed.info*\n%{_mandir}/man1/sed.1.*\n%{_datadir}/locale/*/LC_MESSAGES/sed.mo\n%{_datadir}/doc/%{name}/\n%{_mandir}/man7/regex.7*\n\n%changelog\n* %{date} Dan Carpenter <DanC403@gmail.com> - 4.9-1\n- Initial package build.\n"
+  },
+  "sed-devel.spec": {
+    "spec_content": "Name:           sed-devel\nVersion:        4.9\nRelease:        1%{?dist}\nSummary:        Development files for sed.\nLicense:        GPLv3+\nURL:            https://www.gnu.org/software/sed/\n\nRequires:       sed = %{version}-%{release}\n\n%description\nThis package contains the development files for sed.\n\n%package -n sed-devel\nSummary: Development files for sed.\n\n%description -n sed-devel\nThis package contains the development files for sed.\n\n\n%files -n sed-devel\n%{_includedir}/*\n%{_libdir}/lib*.so\n%{_libdir}/pkgconfig/*.pc\n\n\n%changelog\n* %{date} Dan Carpenter <DanC403@gmail.com> - 4.9-1\n- Initial package build.\n"
+  }
+}

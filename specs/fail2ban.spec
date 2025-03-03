@@ -49,5 +49,5 @@ install -Dm 644 files/action.d/nftables-multiport.conf %{buildroot}%{_sysconfdir
 /sbin/rc-update del fail2ban default
 
 %changelog
-* Fri Nov 24 2023 User <user@example.com> - 1.1.0-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 1.1.0-1
 - Initial package.

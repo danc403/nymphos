@@ -36,5 +36,5 @@ ninja -C build install DESTDIR=%{buildroot}
 %{_mandir}/man1/gtk4-print-editor.1*
 
 %changelog
-* Fri Nov 24 2023 User <user@example.com> - 4.9.4-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 4.9.4-1
 - Initial package.

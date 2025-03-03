@@ -1,0 +1,44 @@
+{
+  "patch.spec": {
+    "name": "patch",
+    "version": "2.7.6",
+    "release": "1%{?dist}",
+    "summary": "Apply a diff file to an original file",
+    "license": "GPLv3+",
+    "url": "https://savannah.gnu.org/projects/patch",
+    "source0": "%{name}-%{version}.tar.xz",
+
+    "buildrequires": [
+      "autoconf",
+      "automake",
+      "gcc",
+      "make"
+    ],
+
+    "description": "The patch utility applies diff files to originals.  Diff files\n(also known as patches) contain instructions for changing a file, and\npatch changes the file according to the instructions.",
+
+    "prep": "None",
+    "build": "
+%configure
+%make_build
+",
+    "install": "
+%make_install
+",
+
+    "files": [
+      "/usr/bin/patch",
+      "/usr/share/man/man1/patch.1*",
+      "/usr/share/info/patch.info*",
+      "%license COPYING"
+    ],
+    "changelog": [
+      {
+        "date": "* %{?epoch:%epoch:}%(date '+%%a %%b %%d %%Y')",
+        "author": "Dan Carpenter DanC403@gmail.com",
+        "comment": "Initial build"
+      }
+    ]
+  },
+  "patch-devel.spec": {}
+}

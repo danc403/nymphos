@@ -49,5 +49,5 @@ make install DESTDIR=%{buildroot}
 %{_mandir}/man1/geany.1*
 
 %changelog
-* Mon Nov 20 2023 Your Name <your.email@example.com> - 2.0-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 2.0-1
 - Initial build for x86_64 and OpenRC.

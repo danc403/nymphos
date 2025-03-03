@@ -78,6 +78,6 @@ find %{buildroot}/lib/modules/%{version} -type f -name "*.mod.o" -exec rm -f {} 
 /lib/modules/%{version}
 
 %changelog
-* Sun Oct 01 2023 Your Name <your.email@example.com> - 6.5.0-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 6.5.0-1
 - Initial build of Linux Kernel 6.5.0 for x86_64 with OpenRC and extlinux support
 - Added isolinux support for DVD images

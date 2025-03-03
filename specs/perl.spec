@@ -53,5 +53,5 @@ make DESTDIR=%{buildroot} install
 %{_mandir}/man5/*
 
 %changelog
-* Fri Nov 24 2023 User <user@example.com> - 5.40.1-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 5.40.1-1
 - Initial package.

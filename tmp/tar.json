@@ -1,0 +1,6 @@
+{
+  "tar.spec": {
+    "content": "Name:           tar\nVersion:        1.34\nRelease:        1%{?dist}\nSummary:        GNU tar (tape archiver) - archiving utility [GPLv3+]\n\nLicense:        GPLv3+\nURL:            https://www.gnu.org/software/tar/\n\nSource0:        %{name}-%{version}.tar.xz\n\nBuildRequires:  xz\n\n#No longer needed on modern systems\n#Requires:       gzip\n#Requires:       bzip2\n#Requires:       xz\n\n\n%description\nThe GNU tar program saves many files together into a single archive,\nand can restore individual files from the archive.\n\n%prep\n%setup -q\n\n%build\n%configure\nmake %{?_smp_mflags}\n\n%install\nmake install DESTDIR=%{buildroot}\n\n# Move the info files to the correct location.\nmkdir -p %{buildroot}%{_infodir}\ninstall -m 644 doc/tar.info %{buildroot}%{_infodir}/\n\n%files\n%{_bindir}/tar\n%{_mandir}/man1/tar.1*\n%{_infodir}/tar.info*\n%{_libexecdir}/tar\n%license COPYING\n\n%changelog\n* %{ Fri Nov 3 2023 } Dan Carpenter DanC403@gmail.com - 1.34-1\n- Initial package build.\n"
+  },
+  "tar-devel.spec": {}
+}

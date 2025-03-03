@@ -1,0 +1,34 @@
+{
+  "sysstat.spec": {
+    "name": "sysstat",
+    "version": "12.6.1",
+    "release": "1%{?dist}",
+    "summary": "System Performance Tools",
+    "license": "GPLv2+",
+    "url": "https://github.com/sysstat/sysstat",
+    "Source0": "%{name}-%{version}.tar.gz",
+    "BuildRequires": [
+      "autoconf",
+      "automake",
+      "libtool",
+      "gettext",
+      "perl"
+    ],
+    "Requires": [
+      "coreutils",
+      "procps",
+      "cronie"
+    ],
+    "BuildArch": "x86_64",
+    "Autoreqprov": 0,
+    "Description": "The sysstat utilities are a collection of performance monitoring tools for Linux. These tools include sar, iostat, mpstat, pidstat, and sadf.",
+    "Provides": "config(sysstat)",
+    "Conflicts": "procps < 3.2.7",
+    "Obsoletes": "sysstat-oem",
+    "%prep": " %setup -q",
+    "%build": " %autoreconf -fvi\n %configure --disable-static\n make %{?_smp_mflags}",
+    "%install": " make install DESTDIR=%{buildroot}",
+    "%files": " %license COPYING\n %config(noreplace) %{_sysconfdir}/sysstat\n %{_sbindir}/*\n %{_bindir}/*\n %{_mandir}/man1/*\n %{_mandir}/man5/*\n %{_mandir}/man8/*\n %{_datadir}/sysstat/*",
+    "%changelog": "* %{date} Dan Carpenter DanC403@gmail.com - 12.6.1-1\n - Initial build."
+  }
+}

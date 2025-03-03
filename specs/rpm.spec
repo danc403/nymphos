@@ -54,5 +54,5 @@ make install DESTDIR=%{buildroot}
 %{_sysconfdir}/rpm/rpmrc
 
 %changelog
-* Mon Nov 20 2023 Your Name <your.email@example.com> - 4.20.1-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 4.20.1-1
 - Initial build for MicroRC and Microdnf.

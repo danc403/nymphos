@@ -1,0 +1,95 @@
+{
+  "shadow.spec": {
+    "name": "shadow",
+    "version": "4.17.2",
+    "release": "1%{?dist}",
+    "summary": "Shadow password suite",
+    "license": "BSD-3-Clause",
+    "url": "https://github.com/shadow-maint/shadow",
+    "source0": "shadow-%{version}.tar.xz",
+    "requires": [
+      "bash",
+      "coreutils",
+      "cracklib",
+      "grep",
+      "libcap-ng",
+      "perl",
+      "util-linux"
+    ],
+    "buildrequires": [
+      "autoconf",
+      "automake",
+      "bzip2",
+      "gettext",
+      "libtool",
+      "make",
+      "pkg-config"
+    ],
+    "description": "The shadow package contains the shadow utilities which include\npasswd, su, groups, shadowconfig, pwck, grpck, usermod, groupmod,\nuseradd, groupadd, userdel, groupdel, newusers, newgrp, chfn, chsh, id,\nlastlog, and vigr.",
+    "prep": [
+      "%setup -q"
+    ],
+    "build": [
+      "./configure --disable-static",
+      "make"
+    ],
+    "install": [
+      "make install DESTDIR=%{buildroot} SBINDIR=/usr/bin MANDIR=/usr/share/man",
+      "rm -f %{buildroot}/usr/bin/su %{buildroot}/usr/bin/chsh %{buildroot}/usr/bin/chfn"
+    ],
+    "files": [
+      "/usr/bin/*",
+      "/etc/*",
+      "/usr/share/man/*",
+      "/usr/share/doc/shadow-%{version}/*",
+      "%license COPYING"
+    ],
+    "changelog": [
+      "* Tue Oct 24 2023 Dan Carpenter DanC403@gmail.com - 4.17.2-1",
+      "- Initial build"
+    ]
+  },
+  "shadow-devel.spec": {
+    "name": "shadow-devel",
+    "version": "4.17.2",
+    "release": "1%{?dist}",
+    "summary": "Development files for shadow password suite",
+    "license": "BSD-3-Clause",
+    "url": "https://github.com/shadow-maint/shadow",
+    "source0": "shadow-%{version}.tar.xz",
+    "requires": [
+      "shadow = %{version}-%{release}"
+    ],
+    "buildrequires": [
+      "autoconf",
+      "automake",
+      "bzip2",
+      "gettext",
+      "libtool",
+      "make",
+      "pkg-config"
+    ],
+    "description": "Development files for shadow password suite",
+    "prep": [
+      "%setup -q"
+    ],
+    "build": [
+      "./configure --disable-static",
+      "make"
+    ],
+    "install": [
+      "make install DESTDIR=%{buildroot} SBINDIR=/usr/bin MANDIR=/usr/share/man",
+      "rm -f %{buildroot}/usr/bin/su %{buildroot}/usr/bin/chsh %{buildroot}/usr/bin/chfn",
+      "mkdir -p %{buildroot}/usr/include",
+      "mkdir -p %{buildroot}/usr/lib64/pkgconfig",
+    ],
+    "files": [
+      "/usr/include/*",
+      "/usr/lib64/pkgconfig/*"
+    ],
+    "changelog": [
+      "* Tue Oct 24 2023 Dan Carpenter DanC403@gmail.com - 4.17.2-1",
+      "- Initial build"
+    ]
+  }
+}

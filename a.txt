@@ -1,5 +1,0 @@
-#!/bin/bash
-
-git rm tarballs/firefox/firefox-136.0b9.source.tar.xz
-#firefox-136.0b9.en_US.tar.xz
-

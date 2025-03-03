@@ -47,5 +47,5 @@ rm -rf %{buildroot}%{_libdir}/systemd
 %{_mandir}/man1/python3-config.1*
 
 %changelog
-* Fri Nov 24 2023 User <user@example.com> - 3.13.2-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 3.13.2-1
 - Initial package.

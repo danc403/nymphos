@@ -39,5 +39,5 @@ make DESTDIR=%{buildroot} install
 %{_mandir}/man1/g++.1*
 
 %changelog
-* Thu Jan 19 2023 Your Name <your.email@example.com> - 13.2.0-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 13.2.0-1
 - Initial package

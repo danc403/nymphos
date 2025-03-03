@@ -32,5 +32,5 @@ make install DESTDIR=%{buildroot}
 %{_mandir}/man1/openbox-config-tools.1*
 
 %changelog
-* Fri Nov 24 2023 User <user@example.com> - 3.6.1-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 3.6.1-1
 - Initial package.

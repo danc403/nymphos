@@ -41,5 +41,5 @@ make install DESTDIR=%{buildroot}
 %{_mandir}/man5/*
 
 %changelog
-* Mon Nov 20 2023 Your Name <your.email@example.com> - 1.23-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 1.23-1
 - Initial build for x86_64 and OpenRC.

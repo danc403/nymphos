@@ -43,5 +43,5 @@ rm -rf %{buildroot}%{_libdir}/systemd
 %{_mandir}/man4/nouveau.4*
 
 %changelog
-* Fri Nov 24 2023 User <user@example.com> - 21.1.16-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 21.1.16-1
 - Initial package.

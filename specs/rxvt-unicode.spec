@@ -30,5 +30,5 @@ make DESTDIR=%{buildroot} install
 %{_mandir}/man1/urxvtc.1*
 
 %changelog
-* Fri Nov 24 2023 User <user@example.com> - 9.31-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 9.31-1
 - Initial package.

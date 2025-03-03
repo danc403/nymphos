@@ -37,5 +37,5 @@ functionality for installing, updating, and removing packages.
 %{_mandir}/man8/microdnf.8*
 
 %changelog
-* Mon Nov 20 2023 Your Name <your.email@example.com> - 3.10.1-1
+* Sat Mar 01 2025 Dan Carpenter <danc403@gmail.com> - 3.10.1-1
 - Initial build for OpenRC.
