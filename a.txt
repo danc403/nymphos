@@ -1,0 +1,11 @@
+README.md
+a.txt
+docs/
+rpms/
+setup/
+spec.list
+specs/
+src/
+srpms/
+tarballs/
+tmp/

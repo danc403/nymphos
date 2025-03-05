@@ -1,7 +1,0 @@
-# Missing .spec files:
-#libcap
-#bc
-#cronie
-patch
-pciutils
-shadow

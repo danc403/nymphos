@@ -1,8 +1,0 @@
-{
-  "mpfr.spec": {
-    "content": "Name:           mpfr\nVersion:        4.2.0\nRelease:        1%{?dist}\nSummary:        C library for multiple-precision floating-point computations with correct rounding - LGPL License\n\nLicense:        LGPLv3+\nURL:            https://www.mpfr.org/\n\nSource0:        %{name}-%{version}.tar.xz\n\nBuildRequires:  gmp-devel\n\n%description\nThe MPFR library is a C library for multiple-precision floating-point\ncomputations with correct rounding.\n\n%prep\n%setup -q\n\n%build\n%configure\nmake %{?_smp_mflags}\n\n%install\nmake install DESTDIR=%{buildroot}\n\n%files\n%{_libdir}/libmpfr.so.*\n%{_includedir}/mpfr.h\n%{_datadir}/aclocal/mpfr.m4\n%{_mandir}/man3/mpfr.3*\n%{_infodir}/mpfr.info*\n%{_libdir}/libmpfr.la\n%{_datadir}/mpfr/mpfr.info\n%{_docdir}/%{name}/COPYING.LESSER\n\n%changelog\n* %{date} Dan Carpenter DanC403@gmail.com - 4.2.0-1\n- Initial package build\n"
-  },
-  "mpfr-devel.spec": {
-    "content": "Name:           mpfr-devel\nVersion:        4.2.0\nRelease:        1%{?dist}\nSummary:        Development files for mpfr\n\nLicense:        LGPLv3+\nURL:            https://www.mpfr.org/\n\nSource0:        %{name:mpfr}-%{version}.tar.xz\n\nRequires:       mpfr = %{version}-%{release}\nRequires:       gmp-devel\n\n%description\nThis package contains the development files for mpfr.\n\n%prep\n%setup -q -n mpfr-%{version}\n\n%build\n%configure\nmake %{?_smp_mflags}\n\n%install\nmake install DESTDIR=%{buildroot}\n\n%files\n%{_includedir}/mpfr.h\n%{_libdir}/libmpfr.la\n%{_libdir}/pkgconfig/mpfr.pc\n%{_datadir}/aclocal/mpfr.m4\n\n%changelog\n* %{date} Dan Carpenter DanC403@gmail.com - 4.2.0-1\n- Initial package build\n"
-  }
-}

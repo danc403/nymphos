@@ -1,0 +1,33 @@
+Project Goals:
+• Accessibility First: Building a Linux distribution with a strong focus on accessibility for users with disabilities.
+• Systemd-Free: Using OpenRC as the init system, avoiding systemd.
+• SELinux-Free: Not incorporating SELinux.
+• Syslinux Bootloader: Using Syslinux as the bootloader.
+• Minimalist and Stable: Aiming for a clean, stable, and efficient system.
+• Core Functionality: Building the essential system components first.
+Packages Configured So Far:
+1. Linux Kernel and Headers: Configured for accessibility.
+2. linux-firmware: For hardware device support.
+3. dracut (and dracut-devel): For initramfs creation, configured for OpenRC.
+4. eudev (and eudev-devel): For device management, integrated with OpenRC.
+5. libkmod (and libkmod-devel): For kernel module management.
+6. OpenRC (and openrc-devel): The init system.
+7. Syslinux: The bootloader.
+8. coreutils: Essential command-line utilities.
+9. bash: The shell.
+10. readline (and readline-devel): Command-line editing.
+11. ncurses (and ncurses-devel): Terminal manipulation.
+12. gettext (and gettext-devel): Localization.
+13. glibc (and glibc-devel): Core C library.
+14. alsa-utils (and alsa-utils-devel): ALSA sound utilities.
+15. alsa-lib (and alsa-lib-devel): Core ALSA library.
+16. zlib (and zlib-devel): Compression.
+17. speech-dispatcher (and speech-dispatcher-devel): System-wide speech synthesis.
+18. glib2 (and glib2-devel): Core utility library.
+19. libffi (and libffi-devel): Foreign Function Interface library.
+20. pcre2 (and pcre2-devel): Perl Compatible Regular Expressions.
+21. python3 (and python3-devel): Python interpreter.
+22. xz and xz.devel: XZ compression utilities.
+23. libxcrypt and libxcrypt-devel: cryptographic library.
+24. espeak-ng and espeak-ng-devel: software speech synthesizer.
+25. brltty and brltty-devel: braille display driver.

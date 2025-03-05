@@ -1,8 +1,0 @@
-{
-  "less.spec": {
-    "spec": "Name:           less\nVersion:        608\nRelease:        1%{?dist}\nSummary:        A program similar to more (1) but which allows backward movement in the file - GPL License\n\nLicense:        GPLv3\nURL:            http://www.greenwoodsoftware.com/less/\n\nSource0:        %{name}-%{version}.tar.gz\n\nBuildRequires:  ncurses-devel\nBuildRequires:  groff\n\nRequires:       ncurses\nRequires:       bash\n\n%description\nless is a program similar to more (1), but which allows backward\nmovement in the file as well as forward movement.  Also, less does\nnot have to read the entire input file before starting, so with large\ninput files it starts up faster than text editors like vi.\n\n%prep\n%setup -q\n\n%build\n%configure\nmake %{?_smp_mflags}\n\n%install\nmake install DESTDIR=%{buildroot}\n\n%files\n%{_bindir}/less\n%{_bindir}/lessecho\n%{_mandir}/man1/less.1*\n%{_mandir}/man1/lessecho.1*\n%{_datadir}/less/*\n%{_infodir}/less.info*\n%license LICENSE\n\n%changelog\n* %{date} Dan Carpenter DanC403@gmail.com - 608-1\n- Initial package build.\n"
-  },
-  "less-devel.spec": {
-    "spec": ""
-  }
-}

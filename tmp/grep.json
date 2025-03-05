@@ -1,8 +1,0 @@
-{
-  "grep.spec": {
-    "content": "Name:           grep\nVersion:        3.9\nRelease:        1%{?dist}\nSummary:        A GNU utility to search files for character patterns. GPL\n\nLicense:        GPLv3+\nURL:            https://www.gnu.org/software/grep/\n\nSource0:        %{name}-%{version}.tar.xz\n\nBuildRequires:  gettext\n\n#Runtime Dependencies\nRequires:       glibc\n\n\n%description\nThe grep program searches the named input FILEs (or standard input if no files are named,\nor the file name - is given) for lines containing a match to the given PATTERN.\nBy default, grep prints the matching lines.\n\n%prep\n%autosetup\n\n%build\n%configure\n%make_build\n\n%install\n%make_install\n\n%files\n%license COPYING\n%{_bindir}/grep\n%{_mandir}/man1/grep.1*\n%{_infodir}/grep.info*\n\n%changelog\n* %{DATE} Dan Carpenter DanC403@gmail.com - 3.9-1\n- Initial package build.\n"
-  },
-  "grep-devel.spec": {
-    "content": ""
-  }
-}
