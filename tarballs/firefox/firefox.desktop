@@ -1,0 +1,33 @@
+[Desktop Entry]
+# The user-friendly name of the application.
+Name=Firefox Web Browser
+
+# A more general name for the application type.
+GenericName=Web Browser
+
+# A short description of the application.
+Comment=Browse the Web
+
+# The command to execute when the application is launched.
+# This line calls the 'firefox-wrapper.sh' script, which handles locale detection.
+Exec=/usr/bin/firefox-wrapper.sh %u
+
+# The name of the icon file (without the extension).
+Icon=firefox-256
+
+# Indicates whether the application should be launched in a terminal.
+Terminal=false
+
+# The type of desktop entry (Application, Link, Directory).
+Type=Application
+
+# The categories in which the application should appear in menus.
+Categories=Network;WebBrowser;
+
+# The MIME types that the application can handle.
+MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vnd.mozilla.xul+xml;application/rss+xml;application/rdf+xml;image/gif;image/jpeg;image/png;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp;x-scheme-handler/chrome;video/webm;application/x-xpinstall;
+
+# Explanation:
+# - The 'Exec' line points to the wrapper script, ensuring that the correct locale is used.
+# - The 'Icon' line specifies the base name of the icon file.
+# - The 'Categories' and 'MimeType' lines define how the application is integrated into the desktop environment.
