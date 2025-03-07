@@ -1,0 +1,15 @@
+# Have these but need to finish or work on spec file:
+whitesur-theme
+nymph-accessibility
+sound-theme-freedesktop
+
+# Need these tarballs and to build spec files.
+
+Lxappearance  # gui configuration tool for gtk applications
+Obconf  # Gui to configure openbox
+the pipe menu scripts from:
+https://openbox.org/pipemenus
+vlc and the vlc-cli for audio
+brassero for image burning to disk and dvd
+
+

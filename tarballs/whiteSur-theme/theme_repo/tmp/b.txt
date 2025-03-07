@@ -1,0 +1,7 @@
+
+mkdir my_theme/dark/xfwm4
+mkdir my_theme/light/xfwm4
+
+cp whitesur-light/xfwm4/*  my_theme/light/xfwm4/
+cp whitesur-dark/xfwm4/* my_theme/dark/xfwm4/
+

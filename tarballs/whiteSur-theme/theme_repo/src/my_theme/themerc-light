@@ -1,0 +1,52 @@
+# Settings from themerc-light
+button_offset=10
+button_spacing=0
+show_app_icon=false
+full_width_title=true
+title_shadow_active=false
+title_shadow_inactive=false
+title_horizontal_offset=3
+active_text_color=#707070
+active_text_shadow_color=#e7e7e7
+inactive_text_color=#979797
+inactive_text_shadow_color=#e7e7e7
+shadow_delta_height=2
+shadow_delta_width=0
+shadow_delta_x=0
+shadow_delta_y=-5
+shadow_opacity=40
+
+#----------------------------------------------------------------------------------------------------
+
+# Settings from original themerc (gtk.gresource.xml)
+button.close.image.active: assets/gtk/windows-assets/titlebutton-close-active.png
+button.close.image.inactive: assets/gtk/windows-assets/titlebutton-close-backdrop.png
+button.close.image.prelight: assets/gtk/windows-assets/titlebutton-close-hover.png
+button.maximize.image.active: assets/gtk/windows-assets/titlebutton-maximize-active.png
+button.maximize.image.inactive: assets/gtk/windows-assets/titlebutton-maximize-backdrop.png
+button.maximize.image.prelight: assets/gtk/windows-assets/titlebutton-maximize-hover.png
+button.minimize.image.active: assets/gtk/windows-assets/titlebutton-minimize-active.png
+button.minimize.image.inactive: assets/gtk/windows-assets/titlebutton-minimize-backdrop.png
+button.minimize.image.prelight: assets/gtk/windows-assets/titlebutton-minimize-hover.png
+button.unmaximize.image.active: assets/gtk/windows-assets/titlebutton-restore-active.png
+button.unmaximize.image.inactive: assets/gtk/windows-assets/titlebutton-restore-backdrop.png
+button.unmaximize.image.prelight: assets/gtk/windows-assets/titlebutton-restore-hover.png
+button.menu.image.active: assets/scalable/combobox-arrow-symbolic.svg
+button.menu.image.inactive: assets/scalable/combobox-arrow-symbolic.svg
+button.menu.image.prelight: assets/scalable/combobox-arrow-symbolic.svg
+button.shade.image.active: assets/scalable/checkbox-mixed-symbolic.svg
+button.shade.image.inactive: assets/scalable/checkbox-mixed-symbolic.svg
+button.shade.image.prelight: assets/scalable/checkbox-mixed-symbolic.svg
+button.stick.image.active: assets/scalable/radio-checked-symbolic.svg
+button.stick.image.inactive: assets/scalable/radio-checked-symbolic.svg
+button.stick.image.prelight: assets/scalable/radio-checked-symbolic.svg
+window.active.border.width: 1
+window.active.border.color: #cccccc
+window.inactive.border.width: 1
+window.inactive.border.color: #888888
+window.client.padding.width: 0
+window.client.padding.height: 0
+window.active.border.radius: 6
+window.inactive.border.radius: 6
+window.active.title.bg: #ffffff
+window.inactive.title.bg: #cccccc

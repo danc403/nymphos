@@ -1,0 +1,3 @@
+./WhiteSur-light/metacity-1/metacity-theme-1.xml
+./WhiteSur-light/metacity-1/metacity-theme-2.xml
+./WhiteSur-light/metacity-1/metacity-theme-3.xml

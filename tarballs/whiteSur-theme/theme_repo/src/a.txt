@@ -1,0 +1,15 @@
+
+find . -type f | grep 'slider-horz-scale-has-marks-below-hover.png'
+#notepad "assets/gtk/common-assets/assets.txt"
+exit
+
+ok, one of the entries in this file is slider-horz-scale-has-marks-below-hover:
+./assets/gtk/common-assets/assets.txt
+which means we are looking for slider-horz-scale-has-marks-below-hover.png
+which is found here:
+./assets/gtk/common-assets/assets/slider-horz-scale-has-marks-below-hover.png
+
+I would assume that would be the convention for all entries in each fie.
+we should also be able to infer more themerc settings while parsing the lists.
+we need every match that is possible for a setting in the gtk version  that will work in a themerc for openbox.
+

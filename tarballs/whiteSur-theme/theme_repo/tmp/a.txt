@@ -1,0 +1,23 @@
+mkdir dark
+find ./WhiteSur-Dark/ -type f | grep '.xml' > b.txt
+find ./WhiteSur-light/ -type f | grep '.xml' > c.txt
+
+exit
+
+tar -xf WhiteSur-Dark.tar.xz
+
+#WhiteSur-Light/
+#WhiteSur-Light.tar.xz
+WhiteSur-Dark/
+WhiteSur-Dark-nord.tar.xz
+WhiteSur-Dark-solid-nord.tar.xz
+WhiteSur-Dark-solid.tar.xz
+WhiteSur-Dark.tar.xz
+WhiteSur-Light/
+WhiteSur-Light-nord.tar.xz
+WhiteSur-Light-solid-nord.tar.xz
+WhiteSur-Light-solid.tar.xz
+WhiteSur-Light.tar
+WhiteSur-Light.tar.xz
+a.txt
+release-info.txt

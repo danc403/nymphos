@@ -1,0 +1,9 @@
+# Basic Openbox themerc template
+window.active.border.width: 1
+window.active.border.color: #cccccc
+window.inactive.border.width: 1
+window.inactive.border.color: #888888
+window.active.title.bg: #ffffff
+window.active.title.fg: #000000
+window.inactive.title.bg: #eeeeee
+window.inactive.title.fg: #444444

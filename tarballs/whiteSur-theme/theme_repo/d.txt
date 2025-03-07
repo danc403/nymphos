@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Create the destination directory
+mkdir -p ./my_theme/gtk-3.0
+mkdir -p ./my_theme/gtk-4.0
+mkdir -p ./my_theme/metacity-1
+mkdir -p ./my_theme/sass
+mkdir -p ./my_theme/openbox
+
+# Copy GTK 3.0 theme files
+cp ./src/main/gtk-3.0/gtk-Dark.scss ./my_theme/gtk-3.0/
+cp ./src/main/gtk-3.0/gtk-Light.scss ./my_theme/gtk-3.0/
+cp ./src/main/gtk-3.0/gtk.gresource.xml ./my_theme/gtk-3.0/
+cp ./src/main/gtk-3.0/make_gresource_xml.sh ./my_theme/gtk-3.0/
+
+# Copy GTK 4.0 theme files
+cp ./src/main/gtk-4.0/gtk-Dark.scss ./my_theme/gtk-4.0/
+cp ./src/main/gtk-4.0/gtk-Light.scss ./my_theme/gtk-4.0/
+cp ./src/main/gtk-4.0/gtk.gresource.xml ./my_theme/gtk-4.0/
+cp ./src/main/gtk-4.0/make_gresource_xml.sh ./my_theme/gtk-4.0/
+
+# Copy Metacity theme files
+cp ./src/main/metacity-1/metacity-theme-Dark.xml ./my_theme/metacity-1/
+cp ./src/main/metacity-1/metacity-theme-Light.xml ./my_theme/metacity-1/
+cp ./src/main/metacity-1/metacity-theme-3.xml ./my_theme/metacity-1/
+
+# Copy SASS files for color consistency
+cp ./src/sass/_colors-palette.scss ./my_theme/sass/
+cp ./src/sass/_colors.scss ./my_theme/sass/
+cp ./src/sass/_variables.scss ./my_theme/sass/
+
+# Create a basic Openbox themerc template
+cat <<EOF > ./my_theme/openbox/themerc
+# Basic Openbox themerc template
+window.active.border.width: 1
+window.active.border.color: #cccccc
+window.inactive.border.width: 1
+window.inactive.border.color: #888888
+window.active.title.bg: #ffffff
+window.active.title.fg: #000000
+window.inactive.title.bg: #eeeeee
+window.inactive.title.fg: #444444
+EOF
+
+echo "Theme directory 'my_theme' created."
