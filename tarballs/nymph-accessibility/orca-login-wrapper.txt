@@ -1,0 +1,4 @@
+#!/bin/bash
+
+amixer -c 0 set Master playback 50% unmute
+/usr/bin/orca &

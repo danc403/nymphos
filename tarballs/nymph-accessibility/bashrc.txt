@@ -1,0 +1,27 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# If not running interactively, don't do anything.
+# This ensures that these settings are only applied in interactive shells.
+case $- in
+    *i*) ;; # If the shell is interactive, continue.
+    *) return;; # If not interactive, exit.
+esac
+
+# Set the default editor to nano.
+# This is a user-friendly editor, especially for those who might be new to the command line.
+export EDITOR=nano
+
+# Define some aliases.
+# Aliases are shortcuts for commonly used commands.
+alias ll='ls -la' # 'll' lists files with detailed information.
+alias grep='grep --color=auto' # 'grep' highlights matching text.
+
+# Prompt customization.
+# This sets the command prompt to display the username, hostname, current directory, and a dollar sign.
+PS1='\u@\h:\w\$ '
+
+# Source global definitions.
+# This includes settings from the system-wide /etc/bashrc file.
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi

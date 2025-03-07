@@ -1,0 +1,9 @@
+# ~/.profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
+fi
+
+# Set the default editor
+export EDITOR=nano

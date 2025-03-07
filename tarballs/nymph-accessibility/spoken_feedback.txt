@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+
+name="Spoken Feedback"
+description="Provides spoken feedback for accessibility."
+command="/usr/local/bin/spoken_feedback.py"
+pidfile="/run/${RC_SVCNAME}.pid"
+command_args="&"
+depend() {
+        need net.dbus
+        after dbus
+}
