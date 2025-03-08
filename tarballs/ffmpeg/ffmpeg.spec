@@ -9,7 +9,7 @@ Source0:    ffmpeg-%{version}.tar.xz
 BuildRequires:  alsa-lib-devel amrwb-devel aom-devel bzip2-devel fontconfig-devel \
                 freetype-devel fribidi-devel gnutls-devel lame-devel libass-devel \
                 libbluray-devel libcaca-devel libcdio-paranoia-devel libdav1d-devel \
-                libfdk-aac-devel libgsm-devel libmodplug-devel libmp3lame-devel \
+                libgsm-devel libmodplug-devel libmp3lame-devel \
                 libopencore-amrnb-devel libopencore-amrwb-devel libopenh264-devel \
                 libopenjpeg2-devel libopus-devel libpulse-devel librtmp-devel \
                 libshine-devel libsnappy-devel libsoxr-devel libssh-devel libtheora-devel \
@@ -35,14 +35,14 @@ This package contains the development files for FFmpeg.
 %configure --enable-gpl --enable-version3 --enable-nonfree --enable-postproc --enable-swscale \
            --enable-avfilter --enable-pthreads --enable-shared --enable-libmp3lame \
            --enable-libx264 --enable-libx265 --enable-libvpx --enable-libopus \
-           --enable-libvorbis --enable-libtheora --enable-libass --enable-libfdk-aac \
-           --enable-libfreetype --enable-fontconfig --enable-libbluray --enable-gnutls \
-           --enable-librtmp --enable-libssh --enable-libvdpau --enable-libva \
-           --enable-libwebp --enable-libaom --enable-libdav1d --enable-libopenjpeg \
-           --enable-libmodplug --enable-libpulse --enable-alsa --enable-libcaca \
-           --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenh264 \
-           --enable-libshine --enable-libsnappy --enable-libsoxr --enable-srt \
-           --enable-speex --enable-zlib --enable-bzlib --enable-lzma --enable-fribidi
+           --enable-libvorbis --enable-libtheora --enable-libass --enable-libfreetype \
+           --enable-fontconfig --enable-libbluray --enable-gnutls --enable-librtmp \
+           --enable-libssh --enable-libvdpau --enable-libva --enable-libwebp \
+           --enable-libaom --enable-libdav1d --enable-libopenjpeg --enable-libmodplug \
+           --enable-libpulse --enable-alsa --enable-libcaca --enable-libopencore-amrnb \
+           --enable-libopencore-amrwb --enable-libopenh264 --enable-libshine \
+           --enable-libsnappy --enable-libsoxr --enable-srt --enable-speex \
+           --enable-zlib --enable-bzlib --enable-lzma --enable-fribidi
 make %{?_smp_mflags}
 
 %install
