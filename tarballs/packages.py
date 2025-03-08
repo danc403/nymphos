@@ -27,42 +27,44 @@ def analyze_build_directory(directory="."):
 
     return package_info
 
-def print_package_status(package_data):
+def write_package_status(package_data, filename="packages.txt"):
     """
-    Prints the package build status in a readable format.
+    Writes the package build status to a file.
 
     Args:
         package_data (dict): The dictionary returned by analyze_build_directory.
+        filename (str): The name of the file to write to. Defaults to "packages.txt".
     """
 
-    print("Package Build Status:")
-    print("-" * 30)
+    with open(filename, "w") as f:
+        f.write("Package Build Status:\n")
+        f.write("-" * 30 + "\n")
 
-    built_packages = []
-    missing_spec = []
+        built_packages = []
+        missing_spec = []
 
-    for pkg, info in package_data.items():
-        print(f"Package: {pkg}")
-        if info["spec_file"]:
-            print("  - Spec file: Found")
-            built_packages.append(pkg)
-        else:
-            print("  - Spec file: Missing")
-            missing_spec.append(pkg)
+        for pkg, info in package_data.items():
+            f.write(f"Package: {pkg}\n")
+            if info["spec_file"]:
+                f.write("  - Spec file: Found\n")
+                built_packages.append(pkg)
+            else:
+                f.write("  - Spec file: Missing\n")
+                missing_spec.append(pkg)
 
-        if info["tarballs"]:
-            print(f"  - Tarballs: {', '.join(info['tarballs'])}")
-        else:
-            print("  - Tarballs: None")
-        print("-" * 10)
+            if info["tarballs"]:
+                f.write(f"  - Tarballs: {', '.join(info['tarballs'])}\n")
+            else:
+                f.write("  - Tarballs: None\n")
+            f.write("-" * 10 + "\n")
 
-    print("\nBuilt Packages:")
-    print(", ".join(built_packages))
+        f.write("\nBuilt Packages:\n")
+        f.write(", ".join(built_packages) + "\n")
 
-    print("\nPackages with Missing Spec Files:")
-    print(", ".join(missing_spec))
+        f.write("\nPackages with Missing Spec Files:\n")
+        f.write(", ".join(missing_spec) + "\n")
 
 # Example usage:
 if __name__ == "__main__":
     package_status = analyze_build_directory()
-    print_package_status(package_status)
+    write_package_status(package_status)

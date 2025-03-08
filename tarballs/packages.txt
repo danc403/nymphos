@@ -452,9 +452,29 @@ Package: whiteSur-theme
   - Spec file: Found
   - Tarballs: whitesur-light.tar.xz, whitesur-dark.tar.xz
 ----------
+Package: brasero
+  - Spec file: Found
+  - Tarballs: brasero-3.12.3.tar.xz
+----------
+Package: lxappearance
+  - Spec file: Found
+  - Tarballs: lxappearance-0.6.3.tar.gz
+----------
+Package: obconf
+  - Spec file: Found
+  - Tarballs: obconf-2.0.3.tar.gz
+----------
+Package: vlc
+  - Spec file: Found
+  - Tarballs: vlc-3.0.20.tar.xz
+----------
+Package: ffmpeg
+  - Spec file: Found
+  - Tarballs: ffmpeg-7.1.1.tar.xz
+----------
 
 Built Packages:
-python3, audit, autoconf, automake, bash, bc, binutils, bison, bzip2, coreutils, cracklib, cronie, dbus-glib, dbus, dhcpcd, diffutils, e2fsprogs, espeak-ng, findutils, flex, gawk, gcc, gettext, gmp, gperf, grep, groff, gzip, inetutils, iproute2, less, libcap-ng, libcap, libffi, libseccomp, libspiel, libtool, linux-pam, m4, make, man-db, mpc, mpfr, nano, ncurses, net-tools, openssl, orca, patch, pciutils, pkg-config, readline, sed, shadow, speech-dispatcher, sysstat, tar, texinfo, usbutils, util-linux, vim, xz, zlib, linux, syslinux, dracut, openrc, openbox, gtk4, xorg-server, fail2ban, rxvt-unicode, perl, microdnf, rpm, alsa-utils, dejavu-fonts-ttf, fontconfig, lightdm, polkit, geany, firefox, dragonfly-fonts-ttf, luciole-fonts-ttf, linux-firmware, eudev, kmod, glibc, alsa-lib, glib2, pcre2, libxcrypt, brltty, procps, sudo, wget2, gtk3, rsync, curl, certbot, httpd, php, apr, apr-util, mod_fcgid, mariadb, thunar, caja, git, lightdm-greeter, nymph-accessibility, sound-theme-freedesktop, whiteSur-theme
+python3, audit, autoconf, automake, bash, bc, binutils, bison, bzip2, coreutils, cracklib, cronie, dbus-glib, dbus, dhcpcd, diffutils, e2fsprogs, espeak-ng, findutils, flex, gawk, gcc, gettext, gmp, gperf, grep, groff, gzip, inetutils, iproute2, less, libcap-ng, libcap, libffi, libseccomp, libspiel, libtool, linux-pam, m4, make, man-db, mpc, mpfr, nano, ncurses, net-tools, openssl, orca, patch, pciutils, pkg-config, readline, sed, shadow, speech-dispatcher, sysstat, tar, texinfo, usbutils, util-linux, vim, xz, zlib, linux, syslinux, dracut, openrc, openbox, gtk4, xorg-server, fail2ban, rxvt-unicode, perl, microdnf, rpm, alsa-utils, dejavu-fonts-ttf, fontconfig, lightdm, polkit, geany, firefox, dragonfly-fonts-ttf, luciole-fonts-ttf, linux-firmware, eudev, kmod, glibc, alsa-lib, glib2, pcre2, libxcrypt, brltty, procps, sudo, wget2, gtk3, rsync, curl, certbot, httpd, php, apr, apr-util, mod_fcgid, mariadb, thunar, caja, git, lightdm-greeter, nymph-accessibility, sound-theme-freedesktop, whiteSur-theme, brasero, lxappearance, obconf, vlc, ffmpeg
 
 Packages with Missing Spec Files:
 

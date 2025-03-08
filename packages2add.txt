@@ -1,15 +1,34 @@
 # Have these but need to finish or work on spec file:
-whitesur-theme
+#whitesur-theme
 nymph-accessibility
-sound-theme-freedesktop
+#sound-theme-freedesktop
 
 # Need these tarballs and to build spec files.
 
-Lxappearance  # gui configuration tool for gtk applications
-Obconf  # Gui to configure openbox
+#Lxappearance  # gui configuration tool for gtk applications
+#Obconf  # Gui to configure openbox
 the pipe menu scripts from:
 https://openbox.org/pipemenus
-vlc and the vlc-cli for audio
-brassero for image burning to disk and dvd
+#vlc and the vlc-cli for audio
+#brassero for image burning to disk and dvd
 
+# These are the basic dependencies for ffmpeg:
+• zlib
+• libxml2
+• freetype
+• fontconfig
+• libpng
+• libjpeg-turbo (or libjpeg)
+• libvorbis
+• libogg
+• libopus
+• alsa-lib
+• libva
+• libvdpau
+
+• Build the libraries for the most common codecs: 
+• libx264
+• libx265
+• libvpx
+• libmp3lame
 
