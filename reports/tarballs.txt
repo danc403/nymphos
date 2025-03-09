@@ -1,4 +1,4 @@
-Generated: 2025-03-08 04:50:08.758864
+Generated: 2025-03-08 20:43:09.500901
 Package Build Status:
 ------------------------------
 Package: alsa-lib
@@ -217,6 +217,12 @@ Package: fontconfig
     - SRPMs: None
     - RPMs: None
 ----------
+Package: freetype
+    - Spec file: Found
+    - Tarballs: freetype-2.9.1.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: gawk
     - Spec file: Found
     - Tarballs: gawk-5.2.1.tar.xz
@@ -325,6 +331,12 @@ Package: kmod
     - SRPMs: None
     - RPMs: None
 ----------
+Package: lame
+    - Spec file: Found
+    - Tarballs: lame-3.100.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: less
     - Spec file: Found
     - Tarballs: less-608.tar.gz
@@ -349,6 +361,24 @@ Package: libffi
     - SRPMs: None
     - RPMs: None
 ----------
+Package: libjpeg-turbo
+    - Spec file: Found
+    - Tarballs: libjpeg-turbo-3.1.0.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: libogg
+    - Spec file: Found
+    - Tarballs: libogg-1.3.5.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: libpng
+    - Spec file: Found
+    - Tarballs: libpng-1.6.47.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: libseccomp
     - Spec file: Found
     - Tarballs: libseccomp-2.6.0.tar.gz
@@ -367,9 +397,39 @@ Package: libtool
     - SRPMs: None
     - RPMs: None
 ----------
+Package: libva
+    - Spec file: Found
+    - Tarballs: libva-2.22.0.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: libvdpau
+    - Spec file: Found
+    - Tarballs: libvdpau-1.5.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: libvorbis
+    - Spec file: Found
+    - Tarballs: libvorbis-1.3.7.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: libvpx
+    - Spec file: Found
+    - Tarballs: libvpx-1.15.0.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: libxcrypt
     - Spec file: Found
     - Tarballs: libxcrypt-4.4.38.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: libxml2
+    - Spec file: Found
+    - Tarballs: libxml2-2.12.10.tar.gz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -508,6 +568,12 @@ Package: openrc
 Package: openssl
     - Spec file: Found
     - Tarballs: openssl-3.1.1.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: opus
+    - Spec file: Found
+    - Tarballs: opus-1.5.1.tar.gz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -691,6 +757,18 @@ Package: whiteSur-theme
     - SRPMs: None
     - RPMs: None
 ----------
+Package: x264
+    - Spec file: Found
+    - Tarballs: x264-0.164.r3194.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: x265
+    - Spec file: Found
+    - Tarballs: x265-4.1.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: xorg-server
     - Spec file: Found
     - Tarballs: xorg-server-21.1.16.tar.xz
@@ -711,5 +789,5 @@ Package: zlib
 ----------
 
 Summary:
-Total Packages: 118
+Total Packages: 131
 Packages with Missing Spec Files: 0
