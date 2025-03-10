@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2016 Rico Tzschichholz <ricotz@ubuntu.com> -->
+<component type="desktop">
+  <id>plank.desktop</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Plank Reloaded</name>
+  <summary>Still stupidly simple.</summary>
+  <description>
+    <p>
+      Plank Reloaded is a fork of the original Plank project, providing a simple dock for X11
+      desktop environments. While development began with a focus on Cinnamon, we now actively
+      support multiple desktop environments including MATE and Xfce. Wayland is not supported at
+      this time.
+    </p>
+    <p>
+      Like its predecessor, Plank Reloaded aims to be the simplest dock on the planet, providing
+      just what a dock needs and absolutely nothing more. It also remains a library which can be
+      extended to create other dock programs with more advanced features.
+    </p>
+  </description>
+  <keywords>
+    <keyword>dock</keyword>
+    <keyword>launch</keyword>
+    <keyword>panel</keyword>
+    <keyword>start</keyword>
+  </keywords>
+  <url type="homepage">https://github.com/zquestz/plank-reloaded</url>
+  <url type="bugtracker">https://github.com/zquestz/plank-reloaded/issues</url>
+  <url type="faq">https://github.com/zquestz/plank-reloaded</url>
+  <url type="translate">https://github.com/zquestz/plank-reloaded</url>
+  <provides>
+    <library>libplank.so.1</library>
+    <binary>plank</binary>
+  </provides>
+  <project_license>GPL-3.0</project_license>
+  <developer_name>The Plank Reloaded Developers</developer_name>
+  <update_contact>quest_at_mac_dot_com</update_contact>
+  <releases>
+    <release version="0.11.106" timestamp="1741480858" />
+    <release version="0.11.105" timestamp="1741135534" />
+    <release version="0.11.104" timestamp="1741057448" />
+    <release version="0.11.103" timestamp="1740712050" />
+    <release version="0.11.102" timestamp="1740513962" />
+    <release version="0.11.101" timestamp="1740363222" />
+    <release version="0.11.100" timestamp="1734570128" />
+    <release version="0.11.89" timestamp="1566230400" />
+    <release version="0.11.4" timestamp="1490644800" />
+    <release version="0.11.3" timestamp="1481047200" />
+    <release version="0.11.2" timestamp="1465190929" />
+    <release version="0.11.1" timestamp="1459324800" />
+    <release version="0.11.0" timestamp="1457816400" />
+    <release version="0.10.1" timestamp="1444388400" />
+    <release version="0.10.0" timestamp="1441623600" />
+    <release version="0.9.1" timestamp="1430564400" />
+    <release version="0.9.0" timestamp="1428836400" />
+    <release version="0.8.1" timestamp="1422187200" />
+    <release version="0.8.0" timestamp="1420200000" />
+    <release version="0.7.1" timestamp="1411470000" />
+    <release version="0.7.0" timestamp="1410778800" />
+    <release version="0.6.1" timestamp="1400583600" />
+    <release version="0.6.0" timestamp="1397473200" />
+    <release version="0.5.0" timestamp="1384689600" />
+    <release version="0.4.0" timestamp="1382094000" />
+    <release version="0.3.0" timestamp="1372158000" />
+  </releases>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/zquestz/plank-reloaded/refs/heads/master/screenshots/matte.webp</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/zquestz/plank-reloaded/refs/heads/master/screenshots/preferences-appearance.webp</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/zquestz/plank-reloaded/refs/heads/master/screenshots/preferences-behavior.webp</image>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/zquestz/plank-reloaded/refs/heads/master/screenshots/preferences-docklets.webp</image>
+    </screenshot>
+  </screenshots>
+</component>

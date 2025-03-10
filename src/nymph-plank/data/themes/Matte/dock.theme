@@ -1,0 +1,37 @@
+# Based off Arian Theme
+# Author: Arian H
+# Github: https://github.com/arianXdev/arian-plank-theme
+
+[PlankTheme]
+TopRoundness=15
+BottomRoundness=15
+LineWidth=1
+OuterStrokeColor=25;;25;;25;;100
+FillStartColor=46;;50;;50;;150
+FillEndColor=46;;50;;50;;150
+InnerStrokeColor=50;;50;;50;;100
+
+[PlankDockTheme]
+HorizPadding=3.0
+TopPadding=2.0
+BottomPadding=2.0
+ItemPadding=2
+IndicatorSize=5
+IconShadowSize=0.5
+UrgentBounceHeight=1
+LaunchBounceHeight=0.90000000000000002
+FadeOpacity=0
+ClickTime=900
+UrgentBounceTime=900
+LaunchBounceTime=1000
+ActiveTime=1500
+SlideTime=500
+FadeTime=400
+HideTime=500
+GlowSize=100
+GlowTime=10000
+GlowPulseTime=20000
+UrgentHueShift=180
+ItemMoveTime=800
+CascadeHide=true
+BadgeColor=0;;0;;0;;0

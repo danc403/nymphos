@@ -1,0 +1,409 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: plank-reloaded\n"
+"Report-Msgid-Bugs-To: https://github.com/zquestz/plank-reloaded/issues\n"
+"POT-Creation-Date: 2025-03-08 14:41-1000\n"
+"PO-Revision-Date: 2025-03-05 00:27\n"
+"Last-Translator: \n"
+"Language-Team: Korean\n"
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Crowdin-Project: plank-reloaded\n"
+"X-Crowdin-Project-ID: 768623\n"
+"X-Crowdin-Language: ko\n"
+"X-Crowdin-File: plank.pot\n"
+"X-Crowdin-File-ID: 4\n"
+
+#: data/plank.appdata.xml.in:6 data/plank.desktop.in:2
+msgid "Plank Reloaded"
+msgstr "플랭크 리로디드"
+
+#: data/plank.appdata.xml.in:7 data/plank.desktop.in:4
+msgid "Still stupidly simple."
+msgstr "여전히 엄청 단순합니다."
+
+#: data/plank.appdata.xml.in:9
+msgid ""
+"Plank Reloaded is a fork of the original Plank project, providing a simple "
+"dock for X11 desktop environments. While development began with a focus on "
+"Cinnamon, we now actively support multiple desktop environments including "
+"MATE and Xfce. Wayland is not supported at this time."
+msgstr ""
+"플랭크 리로디드는 원래 Plank 프로젝트에서 파생된 것으로, X11 데스크톱 환경을 "
+"위한 간단한 독을 제공합니다. 처음에는 Cinnamon에 초점을 맞추고 개발을 시작했"
+"지만, 현재 MATE 및 Xfce를 포함한 여러 데스크톱 환경을 적극적으로 지원하고 있"
+"습니다. 현재 Wayland는 지원되지 않습니다."
+
+#: data/plank.appdata.xml.in:15
+msgid ""
+"Like its predecessor, Plank Reloaded aims to be the simplest dock on the "
+"planet, providing just what a dock needs and absolutely nothing more. It "
+"also remains a library which can be extended to create other dock programs "
+"with more advanced features."
+msgstr ""
+"원래 버전과 마찬가지로 Plank Reloaded는 지구상에서 가장 단순한 독이 되는 것"
+"을 목표로 하며, 독에 필요한 것만 제공하고 그 이상은 절대 제공하지 않습니다. "
+"또한 더 고급 기능을 갖춘 다른 독 프로그램을 만들기 위해 확장할 수 있는 라이브"
+"러리로 남아 있습니다."
+
+#: data/plank.appdata.xml.in:22
+msgid "dock"
+msgstr "독"
+
+#: data/plank.appdata.xml.in:23
+msgid "launch"
+msgstr "실행"
+
+#: data/plank.appdata.xml.in:24
+msgid "panel"
+msgstr "패널"
+
+#: data/plank.appdata.xml.in:25
+msgid "start"
+msgstr "시작"
+
+#: data/plank.appdata.xml.in:36
+msgid "The Plank Reloaded Developers"
+msgstr "플랭크 리로디드 개발자"
+
+#: data/plank.desktop.in:3
+msgid "Dock"
+msgstr "독"
+
+#: data/ui/preferences.ui:82
+msgid "Theme:"
+msgstr "테마:"
+
+#: data/ui/preferences.ui:95
+msgid "Position:"
+msgstr "위치:"
+
+#: data/ui/preferences.ui:122
+msgid "Left"
+msgstr "왼쪽"
+
+#: data/ui/preferences.ui:123
+msgid "Right"
+msgstr "오른쪽"
+
+#: data/ui/preferences.ui:124
+msgid "Top"
+msgstr "위"
+
+#: data/ui/preferences.ui:125
+msgid "Bottom"
+msgstr "아래"
+
+#: data/ui/preferences.ui:139
+msgid "Alignment:"
+msgstr "정렬:"
+
+#: data/ui/preferences.ui:152
+msgid "Fill"
+msgstr "채우기"
+
+#: data/ui/preferences.ui:153 data/ui/preferences.ui:222
+msgid "Start"
+msgstr "시작"
+
+#: data/ui/preferences.ui:154 data/ui/preferences.ui:223
+msgid "End"
+msgstr "끝"
+
+#: data/ui/preferences.ui:155 data/ui/preferences.ui:224
+msgid "Center"
+msgstr "가운데"
+
+#: data/ui/preferences.ui:168
+msgid "On Primary Display:"
+msgstr "첫 번째 디스플레이:"
+
+#: data/ui/preferences.ui:191
+msgid "Offset in percent from the center of the screen-edge"
+msgstr "화면 끝에서의 여백"
+
+#: data/ui/preferences.ui:208
+msgid "Icon Alignment:"
+msgstr "아이콘 정렬:"
+
+#: data/ui/preferences.ui:238
+msgid "Icon Size:"
+msgstr "아이콘 크기:"
+
+#: data/ui/preferences.ui:304
+msgid "Icon Zoom:"
+msgstr "아이콘 줌:"
+
+#: data/ui/preferences.ui:328
+msgid "Appearance"
+msgstr "모양"
+
+#: data/ui/preferences.ui:348
+msgid "Intellihide"
+msgstr "똑똑하게 숨기기"
+
+#: data/ui/preferences.ui:349
+msgid "Autohide"
+msgstr "자동으로 숨기기"
+
+#: data/ui/preferences.ui:350
+msgid "Dodge maximized window"
+msgstr "최대화된 창은 피하기"
+
+#: data/ui/preferences.ui:351
+msgid "Window Dodge"
+msgstr "창은 무조건 피하기"
+
+#: data/ui/preferences.ui:352
+msgid "Dodge active window"
+msgstr "사용 중인 창은 피하기"
+
+#: data/ui/preferences.ui:378
+msgid "Hide Dock"
+msgstr "플랭크 숨기기"
+
+#: data/ui/preferences.ui:394
+msgid "Hide Delay:"
+msgstr "숨김 지연 시간:"
+
+#: data/ui/preferences.ui:405
+msgid "Delay in ms before hiding the dock"
+msgstr "플랭크를 숨기기 전 지연 시간 (ms)"
+
+#: data/ui/preferences.ui:421
+msgid "Unhide Delay:"
+msgstr "숨김 해제 지연 시간:"
+
+#: data/ui/preferences.ui:432
+msgid "Delay in ms before showing the dock"
+msgstr "플랭크를 보이기 전 지연 시간 (ms)"
+
+#: data/ui/preferences.ui:448
+msgid "Pressure Reveal:"
+msgstr "압력 표시:"
+
+#: data/ui/preferences.ui:472
+msgid "Item Management"
+msgstr "아이콘 관리"
+
+#: data/ui/preferences.ui:488
+msgid "Show Unpinned:"
+msgstr "고정되지 않은 아이콘 보이기:"
+
+#: data/ui/preferences.ui:512
+msgid "Restrict to Workspace:"
+msgstr "작업공간으로 제한하기:"
+
+#: data/ui/preferences.ui:537
+msgid "Lock Icons:"
+msgstr "아이콘 고정:"
+
+#: data/ui/preferences.ui:561
+msgid "Anchor Docklets:"
+msgstr "독크릿 고정:"
+
+#: data/ui/preferences.ui:604
+msgid "Behaviour"
+msgstr "동작"
+
+#: data/ui/preferences.ui:624
+msgid "Docklets"
+msgstr "독크릿"
+
+#: docklets/Applications/ApplicationsDockItem.vala:39
+#: docklets/Applications/ApplicationsDocklet.vala:31
+msgid "Applications"
+msgstr "애플리케이션"
+
+#: docklets/Battery/BatteryDockItem.vala:28
+#: docklets/Battery/BatteryUPowerDockItem.vala:42
+msgid "No battery"
+msgstr "배터리 없음"
+
+#: docklets/Battery/BatteryDocklet.vala:29
+msgid "Battery"
+msgstr "배터리"
+
+#: docklets/Battery/BatteryDocklet.vala:31
+msgid "Displays battery information"
+msgstr "배터리 정보 표시"
+
+#: docklets/Clippy/ClippyDockItem.vala:23
+msgid "Clipboard is currently empty."
+msgstr "클립보드가 현재 비어 있습니다."
+
+#: docklets/Clippy/ClippyDockItem.vala:24
+msgid "_Clear"
+msgstr "지우기 (_C)"
+
+#: docklets/Clippy/ClippyDocklet.vala:29
+msgid "Clippy"
+msgstr "클리피"
+
+#: docklets/Clippy/ClippyDocklet.vala:31
+msgid "Keep recent clipboard entries."
+msgstr "최근 클립보드 항목을 유지합니다."
+
+#: docklets/Clock/ClockDockItem.vala:348
+msgid "Di_gital Clock"
+msgstr "디지털 시계 (_g)"
+
+#: docklets/Clock/ClockDockItem.vala:353
+msgid "24-Hour _Clock"
+msgstr "24시간 시계 (_C)"
+
+#: docklets/Clock/ClockDockItem.vala:358
+msgid "Show _Date"
+msgstr "날짜 표시 (_D)"
+
+#: docklets/Clock/ClockDocklet.vala:31
+msgid "Clock"
+msgstr "시계"
+
+#: docklets/Clock/ClockDocklet.vala:33
+msgid "What time is it?"
+msgstr "지금 몇 시인가요?"
+
+#: docklets/CPUMonitor/CPUMonitorDocklet.vala:29
+msgid "CPU Monitor"
+msgstr "CPU 모니터"
+
+#: docklets/CPUMonitor/CPUMonitorDocklet.vala:32
+msgid "Keep an eye on that CPU. And when it gets out of line..."
+msgstr "CPU를 지켜봅니다. 그리고 범위를 벗어나면..."
+
+#: docklets/Desktop/DesktopDockItem.vala:45
+msgid "Show Desktop"
+msgstr "바탕화면 표시"
+
+#: docklets/Desktop/DesktopDocklet.vala:33
+msgid "Desktop"
+msgstr "바탕화면"
+
+#: docklets/Desktop/DesktopDocklet.vala:35
+msgid "Show your Desktop."
+msgstr "바탕화면을 표시합니다."
+
+#: docklets/Trash/TrashDockItem.vala:113
+msgid "No items in Trash"
+msgstr "휴지통에 항목 없음"
+
+#: docklets/Trash/TrashDockItem.vala:114
+#, c-format
+msgid "%u item in Trash"
+msgid_plural "%u items in Trash"
+msgstr[0] "휴지통에 %u개 항목"
+
+#: docklets/Trash/TrashDockItem.vala:145
+msgid "Drop to move to Trash"
+msgstr "휴지통으로 이동하려면 드래그하세요"
+
+#: docklets/Trash/TrashDockItem.vala:193
+msgid "Restore Files"
+msgstr "파일 복원"
+
+#: docklets/Trash/TrashDockItem.vala:247
+msgid "_Open Trash"
+msgstr "휴지통 열기 (_O)"
+
+#: docklets/Trash/TrashDockItem.vala:251 docklets/Trash/TrashDockItem.vala:350
+msgid "Empty _Trash"
+msgstr "휴지통 비우기 (_T)"
+
+#: docklets/Trash/TrashDockItem.vala:345
+msgid "Empty all items from Trash?"
+msgstr "휴지통의 모든 항목을 비울까요?"
+
+#: docklets/Trash/TrashDockItem.vala:348
+msgid "All items in the Trash will be permanently deleted."
+msgstr "휴지통의 모든 항목이 영구적으로 삭제됩니다."
+
+#: docklets/Trash/TrashDockItem.vala:349
+msgid "_Cancel"
+msgstr "취소 (_C)"
+
+#: docklets/Trash/TrashDocklet.vala:29
+msgid "Trash"
+msgstr "휴지통"
+
+#: docklets/Trash/TrashDocklet.vala:31
+msgid "Have a look at your trash!"
+msgstr "휴지통을 확인해보세요!"
+
+#: lib/DragManager.vala:456 lib/Items/PlaceholderDockItem.vala:51
+msgid "Drop to add to dock"
+msgstr "플랭크에 올리기"
+
+#: lib/Factories/AbstractMain.vala:405 src/Main.vala:74
+msgid "translator-credits"
+msgstr ""
+"Launchpad Contributions:\n"
+"  B. W. Knight https://launchpad.net/~kbd0651\n"
+"  Hur, Seok https://launchpad.net/~ludishur\n"
+"  Jung-Kyu Park https://launchpad.net/~bagjunggyu\n"
+"  Kim Seung kyu https://launchpad.net/~kskxyzho\n"
+"  MinSik CHO https://launchpad.net/~mscho527\n"
+"  Rico Tzschichholz https://launchpad.net/~ricotz\n"
+"  Youngbin Han https://launchpad.net/~sukso96100\n"
+"  cafeinoz https://launchpad.net/~cafeinoz"
+
+#: lib/Items/ApplicationDockItem.vala:412 lib/Items/FileDockItem.vala:194
+#: lib/Items/FileDockItem.vala:215
+msgid "_Keep in Dock"
+msgstr "플랭크에 두기 (_K)"
+
+#: lib/Items/ApplicationDockItem.vala:420
+msgid "_Close All"
+msgstr "모두 닫기 (_C)"
+
+#: lib/Items/ApplicationDockItem.vala:420
+msgid "_Close"
+msgstr "닫기 (_C)"
+
+#: lib/Items/ApplicationDockItem.vala:492
+#, c-format
+msgid "Drop to open with %s"
+msgstr "%s로 열려면 가져다 놓으세요"
+
+#: lib/Items/FileDockItem.vala:200
+msgid "_Open in File Browser"
+msgstr "파일 브라우저에서 열기 (_O)"
+
+#: lib/Items/FileDockItem.vala:221
+msgid "_Open"
+msgstr "열기 (_O)"
+
+#: lib/Items/FileDockItem.vala:225
+msgid "Open Containing _Folder"
+msgstr "들어 있는 폴더 열기 (_F)"
+
+#: lib/Items/PlaceholderDockItem.vala:37
+msgid "Drop applications or files here"
+msgstr "여기에 어플리케이션이나 파일을 놓으세요"
+
+#: lib/Items/PlankDockItem.vala:66
+msgid "Get _Help Online..."
+msgstr "온라인으로 도움받기... (_H)"
+
+#: lib/Items/PlankDockItem.vala:70
+msgid "_Translate This Application..."
+msgstr "이 애플리케이션을 번역하기... (_T)"
+
+#: lib/Items/PlankDockItem.vala:76
+msgid "_Preferences"
+msgstr "환경설정 (_P)"
+
+#: lib/Items/PlankDockItem.vala:80
+msgid "_About"
+msgstr "정보 (_A)"
+
+#: lib/Items/PlankDockItem.vala:88
+msgid "_Quit"
+msgstr "나가기 (_Q)"
+
+#: lib/Widgets/PreferencesWindow.vala:92
+msgid "Preferences"
+msgstr "기본 설정"
