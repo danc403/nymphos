@@ -37,4 +37,13 @@ Contributions are welcome! Please submit pull requests or bug reports.
 MIT
 Free for any purpose.
 
+## Dynamic Launcher Tool
+
+The `dynamic-launcher` tool is a Python script that simplifies the process of creating `.desktop` files and configuring the Dynamic Docklet in Plank.
+
+### Usage
+
+```bash
+./dynamic-launcher.py <app_name> <script_path> <icon_name> [--dock <dock_number>]
+
 Copyright (c) 2025 Dan Carpenter <danc403@gmail.com>
