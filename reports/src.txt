@@ -1,0 +1,13 @@
+Generated: 2025-03-10 07:09:38.506108
+Package Build Status:
+------------------------------
+Package: nymph-plank
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+
+Summary:
+Total Packages: 1
+Packages with Missing Spec Files: 1
