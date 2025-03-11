@@ -36,7 +36,20 @@ def create_system_pipe_menu_launcher(app_name, script_path, icon_name, dock_numb
         print(f"Error making script executable: {e}")
         return
 
-    # Add the .desktop file path to Plank's config (requires root)
+    update_plank_config(desktop_file_path, plank_config_path)
+
+def use_existing_desktop_file(desktop_file_path, dock_number=1):
+    """
+    Uses an existing .desktop file and adds its path to Plank config for DynamicDocklet.
+    """
+
+    plank_config_path = f"/etc/xdg/plank/dock{dock_number}/settings"
+    update_plank_config(desktop_file_path, plank_config_path)
+
+def update_plank_config(desktop_file_path, plank_config_path):
+    """
+    Updates the Plank configuration file.
+    """
     try:
         # Create the plank config directory if it does not exist.
         if not os.path.exists(os.path.dirname(plank_config_path)):
@@ -69,7 +82,7 @@ def create_system_pipe_menu_launcher(app_name, script_path, icon_name, dock_numb
             print(f"Error writing to Plank config file: {plank_config_path}")
             return
 
-        print(f"Launcher '{app_name}' added to Plank (dock{dock_number}) for DynamicDocklet.")
+        print(f"Launcher added to Plank (dock{dock_number}) for DynamicDocklet.")
 
     except FileNotFoundError:
         print(f"Error: Plank config file not found: {plank_config_path}")
@@ -105,9 +118,9 @@ def print_plank_config(dock_number):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Create system-wide pipe menu launcher.")
-    parser.add_argument("app_name", nargs="?", help="Application name")
-    parser.add_argument("script_path", nargs="?", help="Script path")
-    parser.add_argument("icon_name", nargs="?", help="Icon name")
+    group = parser.add_mutually_exclusive_group(required=True)
+    group.add_argument("--create", nargs=3, metavar=("app_name", "script_path", "icon_name"), help="Create a new .desktop file and add to Plank")
+    group.add_argument("--use", metavar="desktop_file_path", help="Use an existing .desktop file and add to Plank")
     parser.add_argument("--dock", type=int, default=1, help="Dock number (e.g., 1, 2)")
     parser.add_argument("-l", "--list", action="store_true", help="List installed Plank configurations")
     parser.add_argument("-p", "--print", type=int, help="Print contents of a Plank configuration")
@@ -118,7 +131,9 @@ if __name__ == "__main__":
         list_plank_configs()
     elif args.print is not None:
         print_plank_config(args.print)
-    elif args.app_name and args.script_path and args.icon_name:
-        create_system_pipe_menu_launcher(args.app_name, args.script_path, args.icon_name, args.dock)
+    elif args.create:
+        create_system_pipe_menu_launcher(args.create[0], args.create[1], args.create[2], args.dock)
+    elif args.use:
+        use_existing_desktop_file(args.use, args.dock)
     else:
         parser.print_help()
