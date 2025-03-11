@@ -1,5 +1,8 @@
 // dynamic.vala
 
+#include <signal.h>
+#include <unistd.h>
+
 public static void docklet_init (Plank.DockletManager manager) {
     manager.register_docklet (typeof (DynamicDocklet.DynamicDockletDocklet));
 }
@@ -26,8 +29,36 @@ namespace DynamicDocklet {
 
         public DynamicDocklet.with_dockitem_file (GLib.File file) {
             Object (dockitem_file: file);
-
+            signal(SIGUSR1, signal_handler);
+            save_pid();
             load_desktop_file ();
+        }
+
+        private void save_pid(){
+            string desktop_file_path = Plank.DockPreferences.get_string (
+                "DynamicDocklet.desktop_file",
+                ""
+            );
+            if (!desktop_file_path.empty()) {
+                try {
+                    var file = GLib.File.new_for_path(desktop_file_path);
+                    string file_name = file.get_basename();
+                    string pid_file_name = file_name.replace(".desktop","");
+                    pid_file_name = pid_file_name.replace_regex("[^a-zA-Z0-9]", "-");
+                    string pid_file_path = "/tmp/nymph-plank-docklet-" + pid_file_name + ".pid";
+                    int pid = getpid();
+                    string pid_string = pid.to_string();
+                    try {
+                        FileStream pid_file = FileStream.open(pid_file_path, "w");
+                        pid_file.puts(pid_string);
+                        pid_file.close();
+                    } catch (Error e) {
+                        print("Error saving pid: %s\n", e.message);
+                    }
+                } catch (GLib.Error e) {
+                    print("Error getting file name: %s\n", e.message);
+                }
+            }
         }
 
         private void load_desktop_file () {
@@ -91,6 +122,30 @@ namespace DynamicDocklet {
                 }
             } catch (GLib.Error e) {
                 print("Error displaying notification: %s\n", e.message);
+            }
+        }
+
+        void signal_handler(int signum) {
+            if (signum == SIGUSR1) {
+                refresh_menu();
+            }
+        }
+
+        void refresh_menu() {
+            string desktop_file_path = Plank.DockPreferences.get_string (
+                "DynamicDocklet.desktop_file",
+                ""
+            );
+
+            if (!desktop_file_path.empty()) {
+                try {
+                    var desktop_file = GLib.DesktopAppInfo.new_from_filename(desktop_file_path);
+                    if (desktop_file != null) {
+                        desktop_file.launch_default_for_uri (null, null);
+                    }
+                } catch (GLib.Error e) {
+                    print("Error refreshing menu: %s\n", e.message);
+                }
             }
         }
     }
