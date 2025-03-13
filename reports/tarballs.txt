@@ -1,4 +1,4 @@
-Generated: 2025-03-12 22:57:04.657518
+Generated: 2025-03-13 00:16:07.004037
 Package Build Status:
 ------------------------------
 Package: alsa-lib
@@ -553,6 +553,12 @@ Package: nymph-theme-switcher
     - SRPMs: None
     - RPMs: None
 ----------
+Package: nymph-wallpaper-switcher
+    - Spec file: Found
+    - Tarballs: nymph-wallpaper-switcher-1.0.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: nymphDesktop
     - Spec file: Found
     - Tarballs: None
@@ -801,5 +807,5 @@ Package: zlib
 ----------
 
 Summary:
-Total Packages: 133
+Total Packages: 134
 Packages with Missing Spec Files: 0
