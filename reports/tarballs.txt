@@ -1,4 +1,4 @@
-Generated: 2025-03-13 00:16:07.004037
+Generated: 2025-03-13 00:55:36.727127
 Package Build Status:
 ------------------------------
 Package: alsa-lib
@@ -547,6 +547,12 @@ Package: nymph-accessibility
     - SRPMs: None
     - RPMs: None
 ----------
+Package: nymph-power-menu
+    - Spec file: Found
+    - Tarballs: nymph-power-menu-1.0.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: nymph-theme-switcher
     - Spec file: Found
     - Tarballs: nymph-theme-switcher-1.0.tar.xz
@@ -807,5 +813,5 @@ Package: zlib
 ----------
 
 Summary:
-Total Packages: 134
+Total Packages: 135
 Packages with Missing Spec Files: 0
