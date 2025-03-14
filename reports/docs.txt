@@ -1,0 +1,13 @@
+Generated: 2025-03-13 20:59:04.908416
+Package Build Status:
+------------------------------
+Package: dev
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+
+Summary:
+Total Packages: 1
+Packages with Missing Spec Files: 1
