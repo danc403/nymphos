@@ -1,0 +1,38 @@
+# French translations for nymph-power-menu.
+# Copyright (C) 2024 Dan Carpenter
+# This file is distributed under the same license as the nymph-power-menu package.
+# Dan Carpenter <danc403@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: nymph-power-menu 1.0\n"
+"Report-Msgid-Bugs-To: danc403@gmail.com\n"
+"POT-Creation-Date: 2024-06-25 12:00-0000\n"
+"PO-Revision-Date: 2024-06-25 12:00-0000\n"
+"Last-Translator: Dan Carpenter <danc403@gmail.com>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: nymph-power-menu.vala:14
+msgid "Nymph Power Menu"
+msgstr "Menu d'alimentation Nymph"
+
+#: nymph-power-menu.vala:23
+msgid "Log Out"
+msgstr "Se déconnecter"
+
+#: nymph-power-menu.vala:27
+msgid "Shut Down"
+msgstr "Éteindre"
+
+#: nymph-power-menu.vala:31
+msgid "Reboot"
+msgstr "Redémarrer"
+
+#: nymph-power-menu.vala:40
+msgid "Error: %s"
+msgstr "Erreur : %s"

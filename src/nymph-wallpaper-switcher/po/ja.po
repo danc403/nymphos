@@ -1,0 +1,36 @@
+# Japanese translations for nymph-wallpaper-switcher.
+# Copyright (C) 2024 Dan Carpenter
+# This file is distributed under the same license as the nymph-wallpaper-switcher package.
+# Dan Carpenter <danc403@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: nymph-wallpaper-switcher\n"
+"POT-Creation-Date: 2023-10-27 12:00+0000\n"
+"PO-Revision-Date: 2023-10-27 12:00+0000\n"
+"Last-Translator: Dan Carpenter <danc403@gmail.com>\n"
+"Language-Team: Japanese\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: MainWindow.vala:20
+msgid "Nymph Wallpaper Switcher"
+msgstr "Nymph壁紙スイッチャー"
+
+#: MainWindow.vala:33
+msgid "Apply Wallpaper"
+msgstr "壁紙を適用"
+
+#: MainWindow.vala:36
+msgid "Set for all users"
+msgstr "すべてのユーザーに設定"
+
+#: MainWindow.vala:169
+msgid "Error setting wallpaper: {0}"
+msgstr "壁紙の設定エラー: {0}"
+
+#: MainWindow.vala:169
+msgid "Error setting wallpaper: "
+msgstr "壁紙の設定エラー: "

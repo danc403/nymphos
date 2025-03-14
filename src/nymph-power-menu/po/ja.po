@@ -1,0 +1,11 @@
+# Japanese translations for nymph-power-menu.
+# Copyright (C) 2024 Dan Carpenter
+# This file is distributed under the same license as the nymph-power-menu package.
+# Dan Carpenter <danc403@gmail.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: nymph-power-menu 1.0\n"
+"Report-Msgid-Bugs-To: danc403@gmail.com\n"
+"POT-Creation-Date: 2024-06-25 12:00-0000\n"
+"PO-Revision-Date: 20

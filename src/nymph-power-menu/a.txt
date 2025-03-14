@@ -1,0 +1,10 @@
+power_menu.py
+nymph-power-menu.vala
+nymph-power-menu.desktop
+nymph-power-menu.spec
+readme.md
+pack.sh
+po
+nymph-power-menu-1.0.tar.xz
+nyumph-power-menu
+a.txt

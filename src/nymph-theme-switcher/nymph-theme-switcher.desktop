@@ -1,0 +1,33 @@
+[Desktop Entry]
+Name=Nymph Theme Switcher
+Comment=Switch Openbox themes
+Exec=/usr/bin/nymph_theme_switcher
+#Icon=path/to/nymph-theme-switcher-icon.png
+Terminal=false
+Type=Application
+Categories=Settings;Appearance;
+
+# Localizations
+Name[es]=Cambiador de temas Nymph
+Comment[es]=Cambiar temas de Openbox
+
+Name[fr]=Sélecteur de thèmes Nymph
+Comment[fr]=Changer les thèmes Openbox
+
+Name[de]=Nymph Themenwechsler
+Comment[de]=Openbox-Designs wechseln
+
+Name[it]=Selettore temi Nymph
+Comment[it]=Cambia temi Openbox
+
+Name[pt]=Seletor de temas Nymph
+Comment[pt]=Mudar temas Openbox
+
+Name[nl]=Nymph Thema-schakelaar
+Comment[nl]=Openbox-thema's wisselen
+
+Name[pl]=Przełącznik motywów Nymph
+Comment[pl]=Zmień motywy Openbox
+
+Name[tr]=Nymph Openbox Tema Değiştirici
+Comment[tr]=Openbox temalarını değiştir

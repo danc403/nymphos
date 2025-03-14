@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Nymph Wallpaper Switcher
+Name[fr]=Sélecteur de fonds d'écran Nymph
+Name[es]=Cambiador de fondos de pantalla Nymph
+Name[de]=Nymph Hintergrundbild-Wechsler
+Name[ja]=Nymph 壁紙スイッチャー
+Comment=A simple wallpaper switcher for NymphOS
+Comment[fr]=Un simple sélecteur de fonds d'écran pour NymphOS
+Comment[es]=Un simple cambiador de fondos de pantalla para NymphOS
+Comment[de]=Ein einfacher Hintergrundbild-Wechsler für NymphOS
+Comment[ja]=NymphOS用のシンプルな壁紙スイッチャー
+Exec=/usr/bin/nymph-wallpaper-switcher
+Icon=preferences-desktop-wallpaper
+Terminal=false
+Type=Application
+Categories=Settings;DesktopSettings;

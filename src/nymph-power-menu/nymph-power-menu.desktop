@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Nymph Power Menu
+Name[fr]=Menu d'alimentation Nymph
+Name[es]=Menú de energía Nymph
+Name[de]=Nymph Power-Menü
+Name[ja]=Nymph 電源メニュー
+Comment=A simple power menu for NymphOS.
+Comment[fr]=Un menu d'alimentation simple pour NymphOS.
+Comment[es]=Un menú de energía simple para NymphOS.
+Comment[de]=Ein einfaches Power-Menü für NymphOS.
+Comment[ja]=NymphOS用のシンプルな電源メニュー
+Exec=/usr/bin/nymph-power-menu
+Icon=system-shutdown
+Terminal=false
+Type=Application
+Categories=System;
