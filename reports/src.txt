@@ -1,6 +1,30 @@
-Generated: 2025-03-11 09:48:52.351361
+Generated: 2025-03-13 20:54:28.340739
 Package Build Status:
 ------------------------------
+Package: nymph-boot
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-disks
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-keybindings
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-media-control
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: nymph-menu
     - Spec file: Missing
     - Tarballs: None
@@ -13,7 +37,31 @@ Package: nymph-plank
     - SRPMs: None
     - RPMs: None
 ----------
+Package: nymph-power-menu
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-theme-switcher
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-wallpaper-switcher
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: vala
+    - Spec file: Missing
+    - Tarballs: vala-0.56.17.tar.gz
+    - SRPMs: None
+    - RPMs: None
+----------
 
 Summary:
-Total Packages: 2
-Packages with Missing Spec Files: 2
+Total Packages: 10
+Packages with Missing Spec Files: 10
