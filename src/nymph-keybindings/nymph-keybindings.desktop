@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=nymph Keybinding Editor
+GenericName=Keybinding Editor
+Comment=Tool for managing keybindings in the Openbox window manager
+Exec=nymph-keybindings
+Terminal=false
+Type=Application
+Categories=Utility;System;
+# Icon=nymph-keybindings
+
+# Translations
+_Name[es]=Editor de Atajos de Teclado nymph
+_Name[fr]=Éditeur de raccourcis clavier nymph
+_Name[de]=nymph Tastenkombinations-Editor
+
+_Comment[es]=Herramienta para gestionar atajos de teclado en el gestor de ventanas Openbox
+_Comment[fr]=Outil pour gérer les raccourcis clavier dans le gestionnaire de fenêtres Openbox
+_Comment[de]=Werkzeug zum Verwalten von Tastenkombinationen im Fenstermanager Openbox

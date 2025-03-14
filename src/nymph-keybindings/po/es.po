@@ -1,0 +1,129 @@
+# KeybindingEditor.pot
+# Dan Carpenter <danc403@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: KeybindingEditor 1.0\n"
+"POT-Creation-Date: 2023-10-27 12:00+0000\n"
+"PO-Revision-Date: 2023-10-27 12:00+0200\n"
+"Last-Translator: Your Name <your.email@example.com>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: MainWindow.vala:13
+msgid "nymph Keybinding Editor"
+msgstr "Editor de Atajos de Teclado nymph"
+
+#: MainWindow.vala:21
+msgid "User Keybindings"
+msgstr "Atajos de Teclado del Usuario"
+
+#: MainWindow.vala:23
+msgid "System Keybindings"
+msgstr "Atajos de Teclado del Sistema"
+
+#: MainWindow.vala:29
+msgid "Restore User Keybindings from System Defaults"
+msgstr "Restaurar Atajos de Teclado del Usuario desde los Valores Predeterminados del Sistema"
+
+#: MainWindow.vala:34
+msgid "Save"
+msgstr "Guardar"
+
+#: MainWindow.vala:39
+msgid "Add Keybinding"
+msgstr "Agregar Atajo de Teclado"
+
+#: MainWindow.vala:41
+msgid "Remove Keybinding"
+msgstr "Eliminar Atajo de Teclado"
+
+#: MainWindow.vala:80
+msgid "Key Combination"
+msgstr "Combinación de Teclas"
+
+#: MainWindow.vala:80
+msgid "Action"
+msgstr "Acción"
+
+#: MainWindow.vala:80
+msgid "Name"
+msgstr "Nombre"
+
+#: MainWindow.vala:98
+msgid "Root permissions required."
+msgstr "Se requieren permisos de root."
+
+#: MainWindow.vala:111
+msgid "Keybindings file not found."
+msgstr "Archivo de atajos de teclado no encontrado."
+
+#: MainWindow.vala:120
+msgid "Keyboard section not found or malformed."
+msgstr "Sección de teclado no encontrada o mal formada."
+
+#: MainWindow.vala:143
+msgid "Warning: Duplicate key found in config: "
+msgstr "Advertencia: Se encontró una tecla duplicada en la configuración: "
+
+#: MainWindow.vala:174
+msgid "Error parsing XML: "
+msgstr "Error al analizar el XML: "
+
+#: MainWindow.vala:184
+msgid "Keybindings saved successfully."
+msgstr "Atajos de teclado guardados con éxito."
+
+#: MainWindow.vala:206
+msgid "Default keybindings file not found."
+msgstr "Archivo de atajos de teclado predeterminados no encontrado."
+
+#: MainWindow.vala:212
+msgid "User keybindings restored from system defaults."
+msgstr "Atajos de teclado del usuario restaurados desde los valores predeterminados del sistema."
+
+#: MainWindow.vala:214
+msgid "Error restoring keybindings: "
+msgstr "Error al restaurar los atajos de teclado: "
+
+#: MainWindow.vala:221
+msgid "Enter Password"
+msgstr "Ingrese la Contraseña"
+
+#: MainWindow.vala:228
+msgid "Password:"
+msgstr "Contraseña:"
+
+#: MainWindow.vala:256
+msgid "Password entry cancelled."
+msgstr "Entrada de contraseña cancelada."
+
+#: MainWindow.vala:264
+msgid "Error running command: "
+msgstr "Error al ejecutar el comando: "
+
+#: MainWindow.vala:266
+msgid "Unexpected error: "
+msgstr "Error inesperado: "
+
+#: MainWindow.vala:309
+msgid "Malformed config file"
+msgstr "Archivo de configuración mal formado"
+
+#: MainWindow.vala:319
+msgid "Could not open file, xdg-open not found."
+msgstr "No se pudo abrir el archivo, xdg-open no encontrado."
+
+#: MainWindow.vala:341
+msgid "Warning: Key combination '%s' is already in use."
+msgstr "Advertencia: La combinación de teclas '%s' ya está en uso."
+
+#: MainWindow.vala:392
+msgid "Warning: Duplicate key found in list: "
+msgstr "Advertencia: Se encontró una tecla duplicada en la lista: "
+
+#: MainWindow.vala:404
+msgid "Are you sure you want to restore user keybindings from system defaults?"
+msgstr "¿Está seguro de que desea restaurar los atajos de teclado del usuario desde los valores predeterminados del sistema?"

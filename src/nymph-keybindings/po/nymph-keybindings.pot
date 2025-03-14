@@ -1,0 +1,146 @@
+# KeybindingEditor.pot
+# Dan Carpenter <danc403@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: KeybindingEditor 1.0\n"
+"POT-Creation-Date: 2023-10-27 12:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Dan Carpenter <danc403@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: MainWindow.vala:13
+msgid "nymph Keybinding Editor"
+msgstr ""
+
+#: MainWindow.vala:21
+msgid "User Keybindings"
+msgstr ""
+
+#: MainWindow.vala:23
+msgid "System Keybindings"
+msgstr ""
+
+#: MainWindow.vala:29
+msgid "Restore User Keybindings from System Defaults"
+msgstr ""
+
+#: MainWindow.vala:34
+msgid "Save"
+msgstr ""
+
+#: MainWindow.vala:39
+msgid "Add Keybinding"
+msgstr ""
+
+#: MainWindow.vala:41
+msgid "Remove Keybinding"
+msgstr ""
+
+#: MainWindow.vala:80
+msgid "Key Combination"
+msgstr ""
+
+#: MainWindow.vala:80
+msgid "Action"
+msgstr ""
+
+#: MainWindow.vala:80
+msgid "Name"
+msgstr ""
+
+#: MainWindow.vala:98
+msgid "Root permissions required."
+msgstr ""
+
+#: MainWindow.vala:111
+msgid "Keybindings file not found."
+msgstr ""
+
+#: MainWindow.vala:120
+msgid "Keyboard section not found or malformed."
+msgstr ""
+
+#: MainWindow.vala:143
+msgid "Warning: Duplicate key found in config: "
+msgstr ""
+
+#: MainWindow.vala:174
+msgid "Error parsing XML: "
+msgstr ""
+
+#: MainWindow.vala:184
+msgid "Keybindings saved successfully."
+msgstr ""
+
+#: MainWindow.vala:206
+msgid "Default keybindings file not found."
+msgstr ""
+
+#: MainWindow.vala:212
+msgid "User keybindings restored from system defaults."
+msgstr ""
+
+#: MainWindow.vala:214
+msgid "Error restoring keybindings: "
+msgstr ""
+
+#: MainWindow.vala:221
+msgid "Enter Password"
+msgstr ""
+
+#: MainWindow.vala:228
+msgid "Password:"
+msgstr ""
+
+#: MainWindow.vala:256
+msgid "Password entry cancelled."
+msgstr ""
+
+#: MainWindow.vala:264
+msgid "Error running command: "
+msgstr ""
+
+#: MainWindow.vala:266
+msgid "Unexpected error: "
+msgstr ""
+
+#: MainWindow.vala:309
+msgid "Malformed config file"
+msgstr ""
+
+#: MainWindow.vala:319
+msgid "Could not open file, xdg-open not found."
+msgstr ""
+
+#: MainWindow.vala:341
+msgid "Warning: Key combination '%s' is already in use."
+msgstr ""
+
+#: MainWindow.vala:392
+msgid "Warning: Duplicate key found in list: "
+msgstr ""
+
+#: MainWindow.vala:404
+msgid "Are you sure you want to restore user keybindings from system defaults?"
+msgstr ""
+
+# New Orca Keybindings Strings
+#: MainWindow.vala:450
+msgid "Default Orca configuration file not found."
+msgstr ""
+
+#: MainWindow.vala:460
+msgid "User Orca keybindings restored from system defaults."
+msgstr ""
+
+#: MainWindow.vala:466
+msgid "Error restoring Orca keybindings: "
+msgstr ""
+
+#: MainWindow.vala:490
+msgid "Orca configuration file not found."
+msgstr

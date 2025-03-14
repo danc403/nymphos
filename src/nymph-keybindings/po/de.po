@@ -1,0 +1,129 @@
+# KeybindingEditor.pot
+# Dan Carpenter <danc403@gmail.com>
+msgid ""
+msgstr ""
+"Project-Id-Version: KeybindingEditor 1.0\n"
+"POT-Creation-Date: 2023-10-27 12:00+0000\n"
+"PO-Revision-Date: 2023-10-27 12:00+0200\n"
+"Last-Translator: Your Name <your.email@example.com>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: MainWindow.vala:13
+msgid "nymph Keybinding Editor"
+msgstr "nymph Tastenkombinations-Editor"
+
+#: MainWindow.vala:21
+msgid "User Keybindings"
+msgstr "Benutzerdefinierte Tastenkombinationen"
+
+#: MainWindow.vala:23
+msgid "System Keybindings"
+msgstr "Systemweite Tastenkombinationen"
+
+#: MainWindow.vala:29
+msgid "Restore User Keybindings from System Defaults"
+msgstr "Benutzerdefinierte Tastenkombinationen von Systemstandardeinstellungen wiederherstellen"
+
+#: MainWindow.vala:34
+msgid "Save"
+msgstr "Speichern"
+
+#: MainWindow.vala:39
+msgid "Add Keybinding"
+msgstr "Tastenkombination hinzufügen"
+
+#: MainWindow.vala:41
+msgid "Remove Keybinding"
+msgstr "Tastenkombination entfernen"
+
+#: MainWindow.vala:80
+msgid "Key Combination"
+msgstr "Tastenkombination"
+
+#: MainWindow.vala:80
+msgid "Action"
+msgstr "Aktion"
+
+#: MainWindow.vala:80
+msgid "Name"
+msgstr "Name"
+
+#: MainWindow.vala:98
+msgid "Root permissions required."
+msgstr "Root-Berechtigungen erforderlich."
+
+#: MainWindow.vala:111
+msgid "Keybindings file not found."
+msgstr "Datei mit Tastenkombinationen nicht gefunden."
+
+#: MainWindow.vala:120
+msgid "Keyboard section not found or malformed."
+msgstr "Abschnitt Tastatur nicht gefunden oder fehlerhaft."
+
+#: MainWindow.vala:143
+msgid "Warning: Duplicate key found in config: "
+msgstr "Warnung: Doppelte Taste in der Konfiguration gefunden: "
+
+#: MainWindow.vala:174
+msgid "Error parsing XML: "
+msgstr "Fehler beim Parsen des XML: "
+
+#: MainWindow.vala:184
+msgid "Keybindings saved successfully."
+msgstr "Tastenkombinationen erfolgreich gespeichert."
+
+#: MainWindow.vala:206
+msgid "Default keybindings file not found."
+msgstr "Datei mit Standard-Tastenkombinationen nicht gefunden."
+
+#: MainWindow.vala:212
+msgid "User keybindings restored from system defaults."
+msgstr "Benutzerdefinierte Tastenkombinationen von Systemstandardeinstellungen wiederhergestellt."
+
+#: MainWindow.vala:214
+msgid "Error restoring keybindings: "
+msgstr "Fehler beim Wiederherstellen der Tastenkombinationen: "
+
+#: MainWindow.vala:221
+msgid "Enter Password"
+msgstr "Passwort eingeben"
+
+#: MainWindow.vala:228
+msgid "Password:"
+msgstr "Passwort:"
+
+#: MainWindow.vala:256
+msgid "Password entry cancelled."
+msgstr "Passworteingabe abgebrochen."
+
+#: MainWindow.vala:264
+msgid "Error running command: "
+msgstr "Fehler beim Ausführen des Befehls: "
+
+#: MainWindow.vala:266
+msgid "Unexpected error: "
+msgstr "Unerwarteter Fehler: "
+
+#: MainWindow.vala:309
+msgid "Malformed config file"
+msgstr "Fehlerhaft formatierte Konfigurationsdatei"
+
+#: MainWindow.vala:319
+msgid "Could not open file, xdg-open not found."
+msgstr "Datei konnte nicht geöffnet werden, xdg-open nicht gefunden."
+
+#: MainWindow.vala:341
+msgid "Warning: Key combination '%s' is already in use."
+msgstr "Warnung: Die Tastenkombination '%s' wird bereits verwendet."
+
+#: MainWindow.vala:392
+msgid "Warning: Duplicate key found in list: "
+msgstr "Warnung: Doppelte Taste in der Liste gefunden: "
+
+#: MainWindow.vala:404
+msgid "Are you sure you want to restore user keybindings from system defaults?"
+msgstr "Sind Sie sicher, dass Sie die benutzerdefinierten Tastenkombinationen von den Systemstandardeinstellungen wiederherstellen möchten?"
