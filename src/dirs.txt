@@ -1,0 +1,9 @@
+# src directory:
+
+#nymph-theme-switcher
+#nymph-wallpaper-switcher
+#nymph-power-menu
+nymph-keybindings
+nymph-media-control
+nymph-disks
+nymph-boot

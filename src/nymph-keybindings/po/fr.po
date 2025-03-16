@@ -1,129 +1,310 @@
-# fr.po - French translations
-# Dan Carpenter <danc403@gmail.com>
+# Translations for nymph-keybindings.
+# Copyright (C) 2025 Dan Carpenter <danc403@gmail.com>
+# This file is distributed under the same license as the PACKAGE nymph-keybindings.
+# Dan Carpenter <danc403@gmail.com>, 2025.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: KeybindingEditor 1.0\n"
-"PO-Revision-Date: 2023-10-27 12:00+0000\n"
+"Project-Id-Version: nymph-keybindings VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-29 17:09+0000\n"
+"PO-Revision-Date: 2024-02-29 17:20+0000\n"
 "Last-Translator: Dan Carpenter <danc403@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
 
-#: MainWindow.vala:13
+#: main.vala:17
 msgid "nymph Keybinding Editor"
-msgstr "Ã‰diteur de raccourcis clavier nymph"
+msgstr "Éditeur de raccourcis clavier nymph"
 
-#: MainWindow.vala:21
-msgid "User Keybindings"
-msgstr "Raccourcis clavier utilisateur"
+#: main.vala:27
+msgid "Openbox User Keybindings"
+msgstr "Raccourcis clavier utilisateur Openbox"
 
-#: MainWindow.vala:23
-msgid "System Keybindings"
-msgstr "Raccourcis clavier systÃ¨me"
+#: main.vala:28
+msgid "Openbox User keybindings"
+msgstr "Raccourcis clavier utilisateur Openbox"
 
-#: MainWindow.vala:29
+#: main.vala:29
+msgid "Openbox System Keybindings"
+msgstr "Raccourcis clavier système Openbox"
+
+#: main.vala:30
+msgid "Openbox System keybindings"
+msgstr "Raccourcis clavier système Openbox"
+
+#: main.vala:31
+msgid "Orca User Keybindings"
+msgstr "Raccourcis clavier utilisateur Orca"
+
+#: main.vala:32
+msgid "Orca User keybindings"
+msgstr "Raccourcis clavier utilisateur Orca"
+
+#: main.vala:33
+msgid "Orca System Keybindings"
+msgstr "Raccourcis clavier système Orca"
+
+#: main.vala:34
+msgid "Orca System keybindings"
+msgstr "Raccourcis clavier système Orca"
+
+#: main.vala:35
+msgid "NVDA User Keybindings"
+msgstr "Raccourcis clavier utilisateur NVDA"
+
+#: main.vala:36
+msgid "NVDA User keybindings"
+msgstr "Raccourcis clavier utilisateur NVDA"
+
+#: main.vala:37
+msgid "NVDA System Keybindings"
+msgstr "Raccourcis clavier système NVDA"
+
+#: main.vala:38
+msgid "NVDA System keybindings"
+msgstr "Raccourcis clavier système NVDA"
+
+#: main.vala:39
+msgid "macOS VoiceOver Keybindings"
+msgstr "Raccourcis clavier macOS VoiceOver"
+
+#: main.vala:40
+msgid "macOS VoiceOver keybindings"
+msgstr "Raccourcis clavier macOS VoiceOver"
+
+#: main.vala:49
 msgid "Restore User Keybindings from System Defaults"
-msgstr "Restaurer les raccourcis clavier utilisateur Ã  partir des valeurs par dÃ©faut du systÃ¨me"
+msgstr "Restaurer les raccourcis clavier utilisateur à partir des valeurs par défaut du système"
 
-#: MainWindow.vala:34
+#: main.vala:50
+msgid "Restore user keybindings from system defaults"
+msgstr "Restaurer les raccourcis clavier utilisateur à partir des valeurs par défaut du système"
+
+#: main.vala:52
 msgid "Save"
 msgstr "Enregistrer"
 
-#: MainWindow.vala:39
+#: main.vala:53
+msgid "Save keybindings"
+msgstr "Enregistrer les raccourcis clavier"
+
+#: main.vala:55
 msgid "Add Keybinding"
 msgstr "Ajouter un raccourci clavier"
 
-#: MainWindow.vala:41
+#: main.vala:56
+msgid "Add keybinding"
+msgstr "Ajouter un raccourci clavier"
+
+#: main.vala:57
 msgid "Remove Keybinding"
 msgstr "Supprimer un raccourci clavier"
 
-#: MainWindow.vala:80
+#: main.vala:58
+msgid "Remove keybinding"
+msgstr "Supprimer un raccourci clavier"
+
+#: main.vala:83
 msgid "Key Combination"
 msgstr "Combinaison de touches"
 
-#: MainWindow.vala:80
+#: main.vala:83
 msgid "Action"
 msgstr "Action"
 
-#: MainWindow.vala:80
+#: main.vala:83
 msgid "Name"
 msgstr "Nom"
 
-#: MainWindow.vala:98
+#: main.vala:92
+msgid "Openbox"
+msgstr "Openbox"
+
+#: main.vala:92
+msgid "nymph-TTS"
+msgstr "nymph-TTS"
+
+#: main.vala:92
+msgid "Orca"
+msgstr "Orca"
+
+#: main.vala:92
+msgid "NVDA"
+msgstr "NVDA"
+
+#: main.vala:92
+msgid "macOS VoiceOver"
+msgstr "macOS VoiceOver"
+
+#: main.vala:146
 msgid "Root permissions required."
 msgstr "Permissions root requises."
 
-#: MainWindow.vala:111
-msgid "Keybindings file not found."
-msgstr "Fichier de raccourcis clavier introuvable."
-
-#: MainWindow.vala:120
+#: main.vala:223
 msgid "Keyboard section not found or malformed."
-msgstr "Section clavier introuvable ou malformÃ©e."
+msgstr "Section clavier introuvable ou malformée."
 
-#: MainWindow.vala:143
+#: main.vala:234
 msgid "Warning: Duplicate key found in config: "
-msgstr "Avertissement : Touche en double trouvÃ©e dans la configuration : "
+msgstr "Avertissement : une touche dupliquée a été trouvée dans la configuration :"
 
-#: MainWindow.vala:174
+#: main.vala:240 main.vala:289
 msgid "Error parsing XML: "
-msgstr "Erreur d'analyse XML : "
+msgstr "Erreur lors de l'analyse XML :"
 
-#: MainWindow.vala:184
+#: main.vala:298
 msgid "Keybindings saved successfully."
-msgstr "Raccourcis clavier enregistrÃ©s avec succÃ¨s."
+msgstr "Raccourcis clavier enregistrés avec succès."
 
-#: MainWindow.vala:206
+#: main.vala:325
 msgid "Default keybindings file not found."
-msgstr "Fichier de raccourcis clavier par dÃ©faut introuvable."
+msgstr "Fichier de raccourcis clavier par défaut introuvable."
 
-#: MainWindow.vala:212
+#: main.vala:329
 msgid "User keybindings restored from system defaults."
-msgstr "Raccourcis clavier utilisateur restaurÃ©s Ã  partir des valeurs par dÃ©faut du systÃ¨me."
+msgstr "Raccourcis clavier utilisateur restaurés à partir des valeurs par défaut du système."
 
-#: MainWindow.vala:214
+#: main.vala:331
 msgid "Error restoring keybindings: "
-msgstr "Erreur lors de la restauration des raccourcis clavier : "
+msgstr "Erreur lors de la restauration des raccourcis clavier :"
 
-#: MainWindow.vala:221
-msgid "Enter Password"
-msgstr "Entrer le mot de passe"
-
-#: MainWindow.vala:228
-msgid "Password:"
-msgstr "Mot de passe :"
-
-#: MainWindow.vala:256
-msgid "Password entry cancelled."
-msgstr "Saisie du mot de passe annulÃ©e."
-
-#: MainWindow.vala:264
-msgid "Error running command: "
-msgstr "Erreur lors de l'exÃ©cution de la commande : "
-
-#: MainWindow.vala:266
-msgid "Unexpected error: "
-msgstr "Erreur inattendue : "
-
-#: MainWindow.vala:309
-msgid "Malformed config file"
-msgstr "Fichier de configuration malformÃ©"
-
-#: MainWindow.vala:319
-msgid "Could not open file, xdg-open not found."
-msgstr "Impossible d'ouvrir le fichier, xdg-open introuvable."
-
-#: MainWindow.vala:341
+#: main.vala:350
 msgid "Warning: Key combination '%s' is already in use."
-msgstr "Avertissement : La combinaison de touches '%s' est dÃ©jÃ  utilisÃ©e."
+msgstr "Avertissement : la combinaison de touches '%s' est déjà utilisée."
 
-#: MainWindow.vala:392
+#: main.vala:383
 msgid "Warning: Duplicate key found in list: "
-msgstr "Avertissement : Touche en double trouvÃ©e dans la liste : "
+msgstr "Avertissement : une touche dupliquée a été trouvée dans la liste :"
 
-#: MainWindow.vala:404
+#: main.vala:413
 msgid "Are you sure you want to restore user keybindings from system defaults?"
-msgstr "ÃŠtes-vous sÃ»r de vouloir restaurer les raccourcis clavier utilisateur Ã  partir des valeurs par dÃ©faut du systÃ¨me ?"
+msgstr "Êtes-vous sûr de vouloir restaurer les raccourcis clavier utilisateur à partir des valeurs par défaut du système ?"
+
+#: main.vala:426
+msgid "Malformed config file"
+msgstr "Fichier de configuration malformé"
+
+#: nymph-OS.vala:4
+msgid "nymph-OS"
+msgstr "nymph-OS"
+
+#: nymph-OS.vala:30
+msgid "Keybindings file not found: %s"
+msgstr "Fichier de raccourcis clavier introuvable : %s"
+
+#: nymph-OS.vala:40
+msgid "Invalid XML structure: Root element not found."
+msgstr "Structure XML invalide : élément racine introuvable."
+
+#: nymph-OS.vala:74
+msgid "nymph-OS keybindings loaded successfully."
+msgstr "Raccourcis clavier nymph-OS chargés avec succès."
+
+#: nymph-OS.vala:77
+msgid "Error parsing nymph-OS XML configuration file: "
+msgstr "Erreur lors de l'analyse du fichier de configuration XML nymph-OS :"
+
+#: nymph-OS.vala:120
+msgid "nymph-OS keybindings saved successfully."
+msgstr "Raccourcis clavier nymph-OS enregistrés avec succès."
+
+#: nymph-OS.vala:123
+msgid "Error saving nymph-OS XML configuration file: "
+msgstr "Erreur lors de l'enregistrement du fichier de configuration XML nymph-OS :"
+
+#: nymph-TTS.vala:33
+msgid "Invalid XML structure: Root element not found."
+msgstr "Structure XML invalide : élément racine introuvable."
+
+#: nymph-TTS.vala:50
+msgid "Nymph-TTS keybindings loaded successfully."
+msgstr "Raccourcis clavier Nymph-TTS chargés avec succès."
+
+#: nymph-TTS.vala:53
+msgid "Error parsing Nymph-TTS XML configuration file: "
+msgstr "Erreur lors de l'analyse du fichier de configuration XML Nymph-TTS :"
+
+#: nymph-TTS.vala:92
+msgid "Nymph-TTS keybindings saved successfully."
+msgstr "Raccourcis clavier Nymph-TTS enregistrés avec succès."
+
+#: nymph-TTS.vala:95
+msgid "Error saving Nymph-TTS XML configuration file: "
+msgstr "Erreur lors de l'enregistrement du fichier de configuration XML Nymph-TTS :"
+
+#: orca.vala:37
+msgid "Orca configuration file not found."
+msgstr "Fichier de configuration Orca introuvable."
+
+#: orca.vala:95
+msgid "Orca keybindings loaded successfully."
+msgstr "Raccourcis clavier Orca chargés avec succès."
+
+#: orca.vala:98
+msgid "Error reading Orca configuration file: "
+msgstr "Erreur lors de la lecture du fichier de configuration Orca :"
+
+#: orca.vala:132
+msgid "Error writing Orca configuration file: "
+msgstr "Erreur lors de l'écriture du fichier de configuration Orca :"
+
+#: orca.vala:141
+msgid "User Orca keybindings restored from system defaults."
+msgstr "Raccourcis clavier utilisateur Orca restaurés à partir des valeurs par défaut du système."
+
+#: orca.vala:143
+msgid "Error restoring Orca keybindings: "
+msgstr "Erreur lors de la restauration des raccourcis clavier Orca :"
+
+#: NVDA.vala:4
+msgid "NVDA"
+msgstr "NVDA"
+
+#: NVDA.vala:98
+msgid "NVDA configuration file not found: %s"
+msgstr "Fichier de configuration NVDA introuvable : %s"
+
+#: NVDA.vala:141
+msgid "NVDA keybindings loaded successfully."
+msgstr "Raccourcis clavier NVDA chargés avec succès."
+
+#: NVDA.vala:144
+msgid "Error loading NVDA keybindings: "
+msgstr "Erreur lors du chargement des raccourcis clavier NVDA :"
+
+#: NVDA.vala:180
+msgid "NVDA keybindings saved successfully."
+msgstr "Raccourcis clavier NVDA enregistrés avec succès."
+
+#: NVDA.vala:183
+msgid "Error saving NVDA keybindings: "
+msgstr "Erreur lors de l'enregistrement des raccourcis clavier NVDA :"
+
+#: NVDA.vala:190
+msgid "Default NVDA configuration file not found."
+msgstr "Fichier de configuration NVDA par défaut introuvable."
+
+#: NVDA.vala:194
+msgid "User NVDA keybindings restored from system defaults."
+msgstr "Raccourcis clavier utilisateur NVDA restaurés à partir des valeurs par défaut du système."
+
+#: NVDA.vala:196
+msgid "Error restoring NVDA keybindings: "
+msgstr "Erreur lors de la restauration des raccourcis clavier NVDA :"
+
+#: macOS.vala:5
+msgid "macOS VoiceOver"
+msgstr "macOS VoiceOver"
+
+#: macOS.vala:75
+msgid "Loading VoiceOver keybindings (implementation pending).\n"
+msgstr "Chargement des raccourcis clavier VoiceOver (implémentation en attente).\n"
+
+#: macOS.vala:145
+msgid "Saving VoiceOver keybindings (implementation pending).\n"
+msgstr "Enregistrement des raccourcis clavier VoiceOver (implémentation en attente).\n"

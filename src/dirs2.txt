@@ -1,0 +1,7 @@
+#tarballs:
+
+nymph-accessibility
+nymphDesktop
+nymph-theme-switcher
+nymph-wallpaper-switcher
+nymph-power-menu

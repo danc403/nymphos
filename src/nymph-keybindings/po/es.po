@@ -1,129 +1,310 @@
-# KeybindingEditor.pot
-# Dan Carpenter <danc403@gmail.com>
+# Translations template for nymph-keybindings.
+# Copyright (C) 2025 Dan Carpenter <danc403@gmail.com>
+# This file is distributed under the same license as the PACKAGE nymph-keybindings.
+# FIRST AUTHOR Dan Carpenter <danc403@gmail.com>, 2025.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: KeybindingEditor 1.0\n"
-"POT-Creation-Date: 2023-10-27 12:00+0000\n"
-"PO-Revision-Date: 2023-10-27 12:00+0200\n"
-"Last-Translator: Your Name <your.email@example.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
+"Project-Id-Version: nymph-keybindings VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-29 17:09+0000\n"
+"PO-Revision-Date: 2024-02-29 17:10+0000\n"
+"Last-Translator: Dan Carpenter <danc403@gmail.com>\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
 
-#: MainWindow.vala:13
+#: main.vala:17
 msgid "nymph Keybinding Editor"
-msgstr "Editor de Atajos de Teclado nymph"
+msgstr "Editor de atajos de teclado de nymph"
 
-#: MainWindow.vala:21
-msgid "User Keybindings"
-msgstr "Atajos de Teclado del Usuario"
+#: main.vala:27
+msgid "Openbox User Keybindings"
+msgstr "Atajos de teclado de usuario de Openbox"
 
-#: MainWindow.vala:23
-msgid "System Keybindings"
-msgstr "Atajos de Teclado del Sistema"
+#: main.vala:28
+msgid "Openbox User keybindings"
+msgstr "Atajos de teclado de usuario de Openbox"
 
-#: MainWindow.vala:29
+#: main.vala:29
+msgid "Openbox System Keybindings"
+msgstr "Atajos de teclado del sistema de Openbox"
+
+#: main.vala:30
+msgid "Openbox System keybindings"
+msgstr "Atajos de teclado del sistema de Openbox"
+
+#: main.vala:31
+msgid "Orca User Keybindings"
+msgstr "Atajos de teclado de usuario de Orca"
+
+#: main.vala:32
+msgid "Orca User keybindings"
+msgstr "Atajos de teclado de usuario de Orca"
+
+#: main.vala:33
+msgid "Orca System Keybindings"
+msgstr "Atajos de teclado del sistema de Orca"
+
+#: main.vala:34
+msgid "Orca System keybindings"
+msgstr "Atajos de teclado del sistema de Orca"
+
+#: main.vala:35
+msgid "NVDA User Keybindings"
+msgstr "Atajos de teclado de usuario de NVDA"
+
+#: main.vala:36
+msgid "NVDA User keybindings"
+msgstr "Atajos de teclado de usuario de NVDA"
+
+#: main.vala:37
+msgid "NVDA System Keybindings"
+msgstr "Atajos de teclado del sistema de NVDA"
+
+#: main.vala:38
+msgid "NVDA System keybindings"
+msgstr "Atajos de teclado del sistema de NVDA"
+
+#: main.vala:39
+msgid "macOS VoiceOver Keybindings"
+msgstr "Atajos de teclado de macOS VoiceOver"
+
+#: main.vala:40
+msgid "macOS VoiceOver keybindings"
+msgstr "Atajos de teclado de macOS VoiceOver"
+
+#: main.vala:49
 msgid "Restore User Keybindings from System Defaults"
-msgstr "Restaurar Atajos de Teclado del Usuario desde los Valores Predeterminados del Sistema"
+msgstr "Restaurar atajos de teclado de usuario desde los valores predeterminados del sistema"
 
-#: MainWindow.vala:34
+#: main.vala:50
+msgid "Restore user keybindings from system defaults"
+msgstr "Restaurar atajos de teclado de usuario desde los valores predeterminados del sistema"
+
+#: main.vala:52
 msgid "Save"
 msgstr "Guardar"
 
-#: MainWindow.vala:39
+#: main.vala:53
+msgid "Save keybindings"
+msgstr "Guardar atajos de teclado"
+
+#: main.vala:55
 msgid "Add Keybinding"
-msgstr "Agregar Atajo de Teclado"
+msgstr "Añadir atajo de teclado"
 
-#: MainWindow.vala:41
+#: main.vala:56
+msgid "Add keybinding"
+msgstr "Añadir atajo de teclado"
+
+#: main.vala:57
 msgid "Remove Keybinding"
-msgstr "Eliminar Atajo de Teclado"
+msgstr "Eliminar atajo de teclado"
 
-#: MainWindow.vala:80
+#: main.vala:58
+msgid "Remove keybinding"
+msgstr "Eliminar atajo de teclado"
+
+#: main.vala:83
 msgid "Key Combination"
-msgstr "CombinaciÃ³n de Teclas"
+msgstr "Combinación de teclas"
 
-#: MainWindow.vala:80
+#: main.vala:83
 msgid "Action"
-msgstr "AcciÃ³n"
+msgstr "Acción"
 
-#: MainWindow.vala:80
+#: main.vala:83
 msgid "Name"
 msgstr "Nombre"
 
-#: MainWindow.vala:98
+#: main.vala:92
+msgid "Openbox"
+msgstr "Openbox"
+
+#: main.vala:92
+msgid "nymph-TTS"
+msgstr "nymph-TTS"
+
+#: main.vala:92
+msgid "Orca"
+msgstr "Orca"
+
+#: main.vala:92
+msgid "NVDA"
+msgstr "NVDA"
+
+#: main.vala:92
+msgid "macOS VoiceOver"
+msgstr "macOS VoiceOver"
+
+#: main.vala:146
 msgid "Root permissions required."
 msgstr "Se requieren permisos de root."
 
-#: MainWindow.vala:111
-msgid "Keybindings file not found."
-msgstr "Archivo de atajos de teclado no encontrado."
-
-#: MainWindow.vala:120
+#: main.vala:223
 msgid "Keyboard section not found or malformed."
-msgstr "SecciÃ³n de teclado no encontrada o mal formada."
+msgstr "Sección de teclado no encontrada o con formato incorrecto."
 
-#: MainWindow.vala:143
+#: main.vala:234
 msgid "Warning: Duplicate key found in config: "
-msgstr "Advertencia: Se encontrÃ³ una tecla duplicada en la configuraciÃ³n: "
+msgstr "Advertencia: Se encontró una tecla duplicada en la configuración:"
 
-#: MainWindow.vala:174
+#: main.vala:240 main.vala:289
 msgid "Error parsing XML: "
-msgstr "Error al analizar el XML: "
+msgstr "Error al analizar XML:"
 
-#: MainWindow.vala:184
+#: main.vala:298
 msgid "Keybindings saved successfully."
-msgstr "Atajos de teclado guardados con Ã©xito."
+msgstr "Atajos de teclado guardados correctamente."
 
-#: MainWindow.vala:206
+#: main.vala:325
 msgid "Default keybindings file not found."
-msgstr "Archivo de atajos de teclado predeterminados no encontrado."
+msgstr "No se encontró el archivo de atajos de teclado predeterminado."
 
-#: MainWindow.vala:212
+#: main.vala:329
 msgid "User keybindings restored from system defaults."
-msgstr "Atajos de teclado del usuario restaurados desde los valores predeterminados del sistema."
+msgstr "Atajos de teclado de usuario restaurados desde los valores predeterminados del sistema."
 
-#: MainWindow.vala:214
+#: main.vala:331
 msgid "Error restoring keybindings: "
-msgstr "Error al restaurar los atajos de teclado: "
+msgstr "Error al restaurar los atajos de teclado:"
 
-#: MainWindow.vala:221
-msgid "Enter Password"
-msgstr "Ingrese la ContraseÃ±a"
-
-#: MainWindow.vala:228
-msgid "Password:"
-msgstr "ContraseÃ±a:"
-
-#: MainWindow.vala:256
-msgid "Password entry cancelled."
-msgstr "Entrada de contraseÃ±a cancelada."
-
-#: MainWindow.vala:264
-msgid "Error running command: "
-msgstr "Error al ejecutar el comando: "
-
-#: MainWindow.vala:266
-msgid "Unexpected error: "
-msgstr "Error inesperado: "
-
-#: MainWindow.vala:309
-msgid "Malformed config file"
-msgstr "Archivo de configuraciÃ³n mal formado"
-
-#: MainWindow.vala:319
-msgid "Could not open file, xdg-open not found."
-msgstr "No se pudo abrir el archivo, xdg-open no encontrado."
-
-#: MainWindow.vala:341
+#: main.vala:350
 msgid "Warning: Key combination '%s' is already in use."
-msgstr "Advertencia: La combinaciÃ³n de teclas '%s' ya estÃ¡ en uso."
+msgstr "Advertencia: La combinación de teclas '%s' ya está en uso."
 
-#: MainWindow.vala:392
+#: main.vala:383
 msgid "Warning: Duplicate key found in list: "
-msgstr "Advertencia: Se encontrÃ³ una tecla duplicada en la lista: "
+msgstr "Advertencia: Se encontró una tecla duplicada en la lista:"
 
-#: MainWindow.vala:404
+#: main.vala:413
 msgid "Are you sure you want to restore user keybindings from system defaults?"
-msgstr "Â¿EstÃ¡ seguro de que desea restaurar los atajos de teclado del usuario desde los valores predeterminados del sistema?"
+msgstr "¿Está seguro de que desea restaurar los atajos de teclado del usuario desde los valores predeterminados del sistema?"
+
+#: main.vala:426
+msgid "Malformed config file"
+msgstr "Archivo de configuración con formato incorrecto"
+
+#: nymph-OS.vala:4
+msgid "nymph-OS"
+msgstr "nymph-OS"
+
+#: nymph-OS.vala:30
+msgid "Keybindings file not found: %s"
+msgstr "No se encontró el archivo de atajos de teclado: %s"
+
+#: nymph-OS.vala:40
+msgid "Invalid XML structure: Root element not found."
+msgstr "Estructura XML no válida: No se encontró el elemento raíz."
+
+#: nymph-OS.vala:74
+msgid "nymph-OS keybindings loaded successfully."
+msgstr "Atajos de teclado de nymph-OS cargados correctamente."
+
+#: nymph-OS.vala:77
+msgid "Error parsing nymph-OS XML configuration file: "
+msgstr "Error al analizar el archivo de configuración XML de nymph-OS:"
+
+#: nymph-OS.vala:120
+msgid "nymph-OS keybindings saved successfully."
+msgstr "Atajos de teclado de nymph-OS guardados correctamente."
+
+#: nymph-OS.vala:123
+msgid "Error saving nymph-OS XML configuration file: "
+msgstr "Error al guardar el archivo de configuración XML de nymph-OS:"
+
+#: nymph-TTS.vala:33
+msgid "Invalid XML structure: Root element not found."
+msgstr "Estructura XML no válida: No se encontró el elemento raíz."
+
+#: nymph-TTS.vala:50
+msgid "Nymph-TTS keybindings loaded successfully."
+msgstr "Atajos de teclado de Nymph-TTS cargados correctamente."
+
+#: nymph-TTS.vala:53
+msgid "Error parsing Nymph-TTS XML configuration file: "
+msgstr "Error al analizar el archivo de configuración XML de Nymph-TTS:"
+
+#: nymph-TTS.vala:92
+msgid "Nymph-TTS keybindings saved successfully."
+msgstr "Atajos de teclado de Nymph-TTS guardados correctamente."
+
+#: nymph-TTS.vala:95
+msgid "Error saving Nymph-TTS XML configuration file: "
+msgstr "Error al guardar el archivo de configuración XML de Nymph-TTS:"
+
+#: orca.vala:37
+msgid "Orca configuration file not found."
+msgstr "No se encontró el archivo de configuración de Orca."
+
+#: orca.vala:95
+msgid "Orca keybindings loaded successfully."
+msgstr "Atajos de teclado de Orca cargados correctamente."
+
+#: orca.vala:98
+msgid "Error reading Orca configuration file: "
+msgstr "Error al leer el archivo de configuración de Orca:"
+
+#: orca.vala:132
+msgid "Error writing Orca configuration file: "
+msgstr "Error al escribir el archivo de configuración de Orca:"
+
+#: orca.vala:141
+msgid "User Orca keybindings restored from system defaults."
+msgstr "Atajos de teclado de usuario de Orca restaurados desde los valores predeterminados del sistema."
+
+#: orca.vala:143
+msgid "Error restoring Orca keybindings: "
+msgstr "Error al restaurar los atajos de teclado de Orca:"
+
+#: NVDA.vala:4
+msgid "NVDA"
+msgstr "NVDA"
+
+#: NVDA.vala:98
+msgid "NVDA configuration file not found: %s"
+msgstr "No se encontró el archivo de configuración de NVDA: %s"
+
+#: NVDA.vala:141
+msgid "NVDA keybindings loaded successfully."
+msgstr "Atajos de teclado de NVDA cargados correctamente."
+
+#: NVDA.vala:144
+msgid "Error loading NVDA keybindings: "
+msgstr "Error al cargar los atajos de teclado de NVDA:"
+
+#: NVDA.vala:180
+msgid "NVDA keybindings saved successfully."
+msgstr "Atajos de teclado de NVDA guardados correctamente."
+
+#: NVDA.vala:183
+msgid "Error saving NVDA keybindings: "
+msgstr "Error al guardar los atajos de teclado de NVDA:"
+
+#: NVDA.vala:190
+msgid "Default NVDA configuration file not found."
+msgstr "No se encontró el archivo de configuración predeterminado de NVDA."
+
+#: NVDA.vala:194
+msgid "User NVDA keybindings restored from system defaults."
+msgstr "Atajos de teclado de usuario de NVDA restaurados desde los valores predeterminados del sistema."
+
+#: NVDA.vala:196
+msgid "Error restoring NVDA keybindings: "
+msgstr "Error al restaurar los atajos de teclado de NVDA:"
+
+#: macOS.vala:5
+msgid "macOS VoiceOver"
+msgstr "macOS VoiceOver"
+
+#: macOS.vala:75
+msgid "Loading VoiceOver keybindings (implementation pending).\n"
+msgstr "Cargando atajos de teclado de VoiceOver (implementación pendiente).\n"
+
+#: macOS.vala:145
+msgid "Saving VoiceOver keybindings (implementation pending).\n"
+msgstr "Guardando atajos de teclado de VoiceOver (implementación pendiente).\n"

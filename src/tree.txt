@@ -1,0 +1,429 @@
+├── nymph-boot/
+│   └── boot-mgr.py
+├── nymph-disks/
+│   ├── disk-mounter.md
+│   └── disk-mounter.py
+├── nymph-keybindings/
+│   ├── keybindings.py
+│   └── keybindings.vala
+├── nymph-media-control/
+│   └── media-menu.py
+├── nymph-menu/
+│   ├── a.txt
+│   ├── audaciouscontrol/
+│   │   └── audaciouscontrol.sh
+│   ├── battery-menu/
+│   │   └── battery-menu.sh
+│   ├── bookmarks/
+│   │   └── bookmarks.py
+│   ├── date-menu/
+│   │   └── date-menu.sh
+│   ├── dirs-menu/
+│   │   └── dirs-menu.pl
+│   ├── dolphin-bookmarks/
+│   │   └── dolphin-bookmarks.pl
+│   ├── dolphin-bookmarks.pl
+│   ├── gtk-bookmarks/
+│   │   └── gtk-bookmarks.sh
+│   ├── mnt-menu/
+│   │   └── mnt-menu.pl
+│   ├── ob-cpufreq/
+│   │   └── ob-cpufreq-0.2.py
+│   ├── ob-device-menu/
+│   │   └── ob-device-menu.sh
+│   ├── ob-keybind/
+│   │   └── ob-keybind.py
+│   ├── ob-randr/
+│   │   └── ob-randr.py
+│   ├── ob-sysinfo/
+│   │   └── ob-sysinfo.pl
+│   ├── ob3_theme/
+│   │   ├── README.md
+│   │   └── ob3_theme.c
+│   ├── ob3_wall/
+│   │   ├── README.md
+│   │   └── ob3_wall.c
+│   ├── obamenu/
+│   │   ├── README.md
+│   │   ├── obamenu-3.0.0.tar.xz
+│   │   └── obamenu.py
+│   ├── obmenu/
+│   │   └── obmenu-1.0.tar.gz
+│   ├── openbox-xdgmenu/
+│   │   ├── openbox-xdgmenu-0.1.tar.gz
+│   │   └── openbox-xdgmenu.spec
+│   ├── power_menu.py
+│   ├── power_menu.vala
+│   ├── reboot-menu/
+│   │   └── reboot-menu.pl
+│   ├── recentfilesxbel/
+│   │   ├── README.md
+│   │   └── recentfilesxbel.sh
+│   ├── thunar-bookmarks/
+│   │   ├── thunar-bookmarks-0.1/
+│   │   │   └── thunar-bookmarks.pl
+│   │   ├── thunar-bookmarks-0.1.tar.xz
+│   │   └── thunar-bookmarks.spec
+│   ├── tree.py
+│   ├── tree.txt
+│   └── weather-menu/
+│       └── weather-menu.py
+├── nymph-plank/
+│   ├── AUTHORS
+│   ├── COPYING
+│   ├── COPYING.LGPL2.1
+│   ├── COPYRIGHT
+│   ├── DEBIAN/
+│   │   ├── changelog
+│   │   ├── control
+│   │   ├── copyright
+│   │   ├── shlibs
+│   │   └── triggers
+│   ├── HACKING.md
+│   ├── NEWS.md
+│   ├── README.md
+│   ├── build-aux/
+│   │   ├── git-version-gen
+│   │   └── gitlog-to-changelog
+│   ├── config.h.meson
+│   ├── data/
+│   │   ├── application-default-icon.svg
+│   │   ├── apport/
+│   │   │   ├── plank-crashdb.conf
+│   │   │   └── source_plank.py
+│   │   ├── icons/
+│   │   │   ├── 128x128/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   ├── 16x16/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   ├── 22x22/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   ├── 24x24/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   ├── 256x256/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   ├── 32x32/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   ├── 48x48/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   ├── 512x512/
+│   │   │   │   └── plank-reloaded.png
+│   │   │   └── 64x64/
+│   │   │       └── plank-reloaded.png
+│   │   ├── meson.build
+│   │   ├── net.launchpad.plank.gschema.xml.in
+│   │   ├── plank.appdata.xml.in
+│   │   ├── plank.desktop.in
+│   │   ├── plank.gresource.xml
+│   │   ├── poof.svg
+│   │   ├── themes/
+│   │   │   ├── Default/
+│   │   │   │   └── dock.theme
+│   │   │   ├── Matte/
+│   │   │   │   └── dock.theme
+│   │   │   ├── Matte-Light/
+│   │   │   │   └── dock.theme
+│   │   │   └── Transparent/
+│   │   │       └── dock.theme
+│   │   └── ui/
+│   │       └── preferences.ui
+│   ├── docklets/
+│   │   ├── Applications/
+│   │   │   ├── ApplicationsDockItem.vala
+│   │   │   ├── ApplicationsDocklet.vala
+│   │   │   └── meson.build
+│   │   ├── Battery/
+│   │   │   ├── BatteryDockItem.vala
+│   │   │   ├── BatteryDocklet.vala
+│   │   │   ├── BatteryUPowerDockItem.vala
+│   │   │   └── meson.build
+│   │   ├── CPUMonitor/
+│   │   │   ├── CPUMonitorDockItem.vala
+│   │   │   ├── CPUMonitorDocklet.vala
+│   │   │   └── meson.build
+│   │   ├── Clippy/
+│   │   │   ├── ClippyDockItem.vala
+│   │   │   ├── ClippyDocklet.vala
+│   │   │   ├── ClippyPreferences.vala
+│   │   │   └── meson.build
+│   │   ├── Clock/
+│   │   │   ├── ClockDockCalendar.vala
+│   │   │   ├── ClockDockItem.vala
+│   │   │   ├── ClockDocklet.vala
+│   │   │   ├── ClockPreferences.vala
+│   │   │   ├── clock.gresource.xml
+│   │   │   ├── meson.build
+│   │   │   └── themes/
+│   │   │       ├── Default/
+│   │   │       │   ├── clock-drop-shadow.svg
+│   │   │       │   ├── clock-face-shadow.svg
+│   │   │       │   ├── clock-face.svg
+│   │   │       │   ├── clock-frame.svg
+│   │   │       │   ├── clock-glass.svg
+│   │   │       │   └── clock-marks.svg
+│   │   │       └── Default24/
+│   │   │           ├── clock-drop-shadow.svg
+│   │   │           ├── clock-face-shadow.svg
+│   │   │           ├── clock-face.svg
+│   │   │           ├── clock-frame.svg
+│   │   │           ├── clock-glass.svg
+│   │   │           └── clock-marks.svg
+│   │   ├── Desktop/
+│   │   │   ├── DesktopDockItem.vala
+│   │   │   ├── DesktopDocklet.vala
+│   │   │   ├── desktop.gresource.xml
+│   │   │   ├── icons/
+│   │   │   │   ├── show-desktop.svg
+│   │   │   │   ├── window-cascade.svg
+│   │   │   │   └── window-tile.svg
+│   │   │   └── meson.build
+│   │   ├── Trash/
+│   │   │   ├── TrashDockItem.vala
+│   │   │   ├── TrashDocklet.vala
+│   │   │   └── meson.build
+│   │   ├── dynamic/
+│   │   │   └── dynamic.vala
+│   │   └── meson.build
+│   ├── docs/
+│   │   ├── meson.build
+│   │   ├── plank.1
+│   │   └── plank.h2m
+│   ├── dynamic-launcher.py
+│   ├── dynamic.md
+│   ├── examples/
+│   │   ├── RemoteClient.vala
+│   │   ├── UnityClient.vala
+│   │   └── meson.build
+│   ├── lib/
+│   │   ├── DBus/
+│   │   │   ├── Client.vala
+│   │   │   └── Interfaces.vala
+│   │   ├── DBusManager.vala
+│   │   ├── DockController.vala
+│   │   ├── DockPreferences.vala
+│   │   ├── DockRenderer.vala
+│   │   ├── Docklets/
+│   │   │   ├── Docklet.vala
+│   │   │   ├── DockletItem.vala
+│   │   │   └── DockletManager.vala
+│   │   ├── DragManager.vala
+│   │   ├── Drawing/
+│   │   │   ├── Color.vala
+│   │   │   ├── DockTheme.vala
+│   │   │   ├── DrawingService.vala
+│   │   │   ├── Easing.vala
+│   │   │   ├── Renderer.vala
+│   │   │   ├── Surface.vala
+│   │   │   ├── SurfaceCache.vala
+│   │   │   └── Theme.vala
+│   │   ├── Factories/
+│   │   │   ├── AbstractMain.vala
+│   │   │   ├── Factory.vala
+│   │   │   └── ItemFactory.vala
+│   │   ├── HideManager.vala
+│   │   ├── InternalConsts.vala
+│   │   ├── InternalQuarks.vala
+│   │   ├── Items/
+│   │   │   ├── ApplicationDockItem.vala
+│   │   │   ├── ApplicationDockItemProvider.vala
+│   │   │   ├── DefaultApplicationDockItemProvider.vala
+│   │   │   ├── DockContainer.vala
+│   │   │   ├── DockElement.vala
+│   │   │   ├── DockItem.vala
+│   │   │   ├── DockItemDrawValue.vala
+│   │   │   ├── DockItemPreferences.vala
+│   │   │   ├── DockItemProvider.vala
+│   │   │   ├── Enums.vala
+│   │   │   ├── FileDockItem.vala
+│   │   │   ├── PlaceholderDockItem.vala
+│   │   │   ├── PlankDockItem.vala
+│   │   │   └── TransientDockItem.vala
+│   │   ├── PositionManager.vala
+│   │   ├── Services/
+│   │   │   ├── Environment.vala
+│   │   │   ├── EnvironmentSettings.vala
+│   │   │   ├── Logger.vala
+│   │   │   ├── Matcher.vala
+│   │   │   ├── Paths.vala
+│   │   │   ├── Preferences.vala
+│   │   │   ├── Settings.vala
+│   │   │   ├── System.vala
+│   │   │   ├── Unity.vala
+│   │   │   ├── Utils.vala
+│   │   │   ├── WindowControl.vala
+│   │   │   └── Worker.vala
+│   │   ├── Version.vala.in
+│   │   ├── Widgets/
+│   │   │   ├── CompositedWindow.vala
+│   │   │   ├── DockWindow.vala
+│   │   │   ├── DockletViewModel.vala
+│   │   │   ├── HoverWindow.vala
+│   │   │   ├── PoofWindow.vala
+│   │   │   ├── PreferencesWindow.vala
+│   │   │   └── TitledSeparatorMenuItem.vala
+│   │   ├── abicheck.sh
+│   │   ├── gtk-compat.c
+│   │   ├── gtk-compat.h
+│   │   ├── meson.build
+│   │   ├── plank.deps
+│   │   └── plank.pc.in
+│   ├── meson.build
+│   ├── po/
+│   │   ├── LINGUAS
+│   │   ├── POTFILES.in
+│   │   ├── POTFILES.skip
+│   │   ├── am.po
+│   │   ├── ar.po
+│   │   ├── be.po
+│   │   ├── bg.po
+│   │   ├── bs.po
+│   │   ├── ca.po
+│   │   ├── ckb.po
+│   │   ├── cs.po
+│   │   ├── da.po
+│   │   ├── de.po
+│   │   ├── el.po
+│   │   ├── en_AU.po
+│   │   ├── en_CA.po
+│   │   ├── en_GB.po
+│   │   ├── eo.po
+│   │   ├── es.po
+│   │   ├── et.po
+│   │   ├── eu.po
+│   │   ├── fi.po
+│   │   ├── fr.po
+│   │   ├── ga.po
+│   │   ├── gd.po
+│   │   ├── gl.po
+│   │   ├── he.po
+│   │   ├── hr.po
+│   │   ├── hu.po
+│   │   ├── id.po
+│   │   ├── it.po
+│   │   ├── ja.po
+│   │   ├── ka.po
+│   │   ├── kab.po
+│   │   ├── ko.po
+│   │   ├── lt.po
+│   │   ├── lv.po
+│   │   ├── meson.build
+│   │   ├── ml.po
+│   │   ├── ms.po
+│   │   ├── nb.po
+│   │   ├── ne.po
+│   │   ├── nl.po
+│   │   ├── nn.po
+│   │   ├── pl.po
+│   │   ├── plank.pot
+│   │   ├── pt.po
+│   │   ├── pt_BR.po
+│   │   ├── ro.po
+│   │   ├── ru.po
+│   │   ├── sk.po
+│   │   ├── sl.po
+│   │   ├── sma.po
+│   │   ├── sq.po
+│   │   ├── sr.po
+│   │   ├── sr@latin.po
+│   │   ├── sv.po
+│   │   ├── szl.po
+│   │   ├── ta.po
+│   │   ├── te.po
+│   │   ├── th.po
+│   │   ├── tr.po
+│   │   ├── uk.po
+│   │   ├── uz.po
+│   │   ├── vi.po
+│   │   ├── zh_CN.po
+│   │   └── zh_TW.po
+│   ├── screenshots/
+│   │   ├── default.webp
+│   │   ├── matte-light.webp
+│   │   ├── matte.webp
+│   │   ├── preferences-appearance.webp
+│   │   ├── preferences-behavior.webp
+│   │   ├── preferences-docklets.webp
+│   │   └── transparent.webp
+│   ├── src/
+│   │   ├── Main.vala
+│   │   └── meson.build
+│   ├── tests/
+│   │   ├── Controller.vala
+│   │   ├── Dock.vala
+│   │   ├── Drawing.vala
+│   │   ├── Items.vala
+│   │   ├── Main.vala
+│   │   ├── Preferences.vala
+│   │   ├── TestHelper.vala
+│   │   ├── Widgets.vala
+│   │   ├── data/
+│   │   │   ├── test-app.dockitem
+│   │   │   ├── test-icon.svg
+│   │   │   ├── test.desktop
+│   │   │   └── themes/
+│   │   │       └── Test/
+│   │   │           └── dock.theme
+│   │   ├── gmock/
+│   │   │   ├── color.cpp
+│   │   │   └── main.cpp
+│   │   ├── meson.build
+│   │   ├── test-config.h
+│   │   └── test-config.vapi
+│   └── vapi/
+│       ├── compat.vapi
+│       ├── config.vapi
+│       ├── dbusmenu-glib-0.4.vapi
+│       ├── dbusmenu-gtk3-0.4.vapi
+│       ├── gmock.vapi
+│       ├── gtest.vapi
+│       ├── libbamf3.deps
+│       ├── libbamf3.vapi
+│       ├── xfixes.vapi
+│       ├── xi.deps
+│       └── xi.vapi
+├── nymph-power-menu/
+│   ├── a.txt
+│   ├── nymph-power-menu.desktop
+│   ├── nymph-power-menu.vala
+│   ├── pack.sh
+│   ├── po/
+│   │   ├── de.po
+│   │   ├── es.po
+│   │   ├── fr.po
+│   │   ├── ja.po
+│   │   └── nymph-power-menu.pot
+│   ├── power_menu.py
+│   └── readme.md
+├── nymph-theme-switcher/
+│   ├── nymph-theme-switcher.desktop
+│   ├── nymph_theme_switcher.vala
+│   ├── pack.sh
+│   ├── po/
+│   │   ├── de.po
+│   │   ├── es.po
+│   │   ├── fr.po
+│   │   ├── it.po
+│   │   ├── ja.po
+│   │   ├── nymph_theme_switcher.pot
+│   │   ├── pt.po
+│   │   ├── ru.po
+│   │   └── zh_cn.po
+│   └── readme.md
+├── nymph-wallpaper-switcher/
+│   ├── NYMPH-WALLPAPER-SWITCHER.SPEC
+│   ├── nymph-wallpaper-switcher.desktop
+│   ├── nymph-wallpaper-switcher.vala
+│   ├── pack.sh
+│   ├── po/
+│   │   ├── de.po
+│   │   ├── es.po
+│   │   ├── fr.po
+│   │   ├── ja.po
+│   │   └── nymph-wallpaper-switcher.pot
+│   └── readme.md
+├── tree.py
+├── tree.txt
+└── vala/
+    ├── build.notes
+    ├── vala-0.56.17.tar.gz
+    └── vala.spec

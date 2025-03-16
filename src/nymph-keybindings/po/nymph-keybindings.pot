@@ -1,146 +1,310 @@
-# KeybindingEditor.pot
-# Dan Carpenter <danc403@gmail.com>
+# Translations template for nymph-keybindings.
+# Copyright (C) 2025 Dan Carpenter <danc403@gmail.com>
+# This file is distributed under the same license as the PACKAGE nymph-keybindings.
+# FIRST AUTHOR <danc403@gmail.com>, 2025.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: KeybindingEditor 1.0\n"
-"POT-Creation-Date: 2023-10-27 12:00+0000\n"
+"Project-Id-Version: nymph-keybindings VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-02-29 17:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Dan Carpenter <danc403@gmail.com>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
 
-#: MainWindow.vala:13
+#: main.vala:17
 msgid "nymph Keybinding Editor"
 msgstr ""
 
-#: MainWindow.vala:21
-msgid "User Keybindings"
+#: main.vala:27
+msgid "Openbox User Keybindings"
 msgstr ""
 
-#: MainWindow.vala:23
-msgid "System Keybindings"
+#: main.vala:28
+msgid "Openbox User keybindings"
 msgstr ""
 
-#: MainWindow.vala:29
+#: main.vala:29
+msgid "Openbox System Keybindings"
+msgstr ""
+
+#: main.vala:30
+msgid "Openbox System keybindings"
+msgstr ""
+
+#: main.vala:31
+msgid "Orca User Keybindings"
+msgstr ""
+
+#: main.vala:32
+msgid "Orca User keybindings"
+msgstr ""
+
+#: main.vala:33
+msgid "Orca System Keybindings"
+msgstr ""
+
+#: main.vala:34
+msgid "Orca System keybindings"
+msgstr ""
+
+#: main.vala:35
+msgid "NVDA User Keybindings"
+msgstr ""
+
+#: main.vala:36
+msgid "NVDA User keybindings"
+msgstr ""
+
+#: main.vala:37
+msgid "NVDA System Keybindings"
+msgstr ""
+
+#: main.vala:38
+msgid "NVDA System keybindings"
+msgstr ""
+
+#: main.vala:39
+msgid "macOS VoiceOver Keybindings"
+msgstr ""
+
+#: main.vala:40
+msgid "macOS VoiceOver keybindings"
+msgstr ""
+
+#: main.vala:49
 msgid "Restore User Keybindings from System Defaults"
 msgstr ""
 
-#: MainWindow.vala:34
+#: main.vala:50
+msgid "Restore user keybindings from system defaults"
+msgstr ""
+
+#: main.vala:52
 msgid "Save"
 msgstr ""
 
-#: MainWindow.vala:39
+#: main.vala:53
+msgid "Save keybindings"
+msgstr ""
+
+#: main.vala:55
 msgid "Add Keybinding"
 msgstr ""
 
-#: MainWindow.vala:41
+#: main.vala:56
+msgid "Add keybinding"
+msgstr ""
+
+#: main.vala:57
 msgid "Remove Keybinding"
 msgstr ""
 
-#: MainWindow.vala:80
+#: main.vala:58
+msgid "Remove keybinding"
+msgstr ""
+
+#: main.vala:83
 msgid "Key Combination"
 msgstr ""
 
-#: MainWindow.vala:80
+#: main.vala:83
 msgid "Action"
 msgstr ""
 
-#: MainWindow.vala:80
+#: main.vala:83
 msgid "Name"
 msgstr ""
 
-#: MainWindow.vala:98
+#: main.vala:92
+msgid "Openbox"
+msgstr ""
+
+#: main.vala:92
+msgid "nymph-TTS"
+msgstr ""
+
+#: main.vala:92
+msgid "Orca"
+msgstr ""
+
+#: main.vala:92
+msgid "NVDA"
+msgstr ""
+
+#: main.vala:92
+msgid "macOS VoiceOver"
+msgstr ""
+
+#: main.vala:146
 msgid "Root permissions required."
 msgstr ""
 
-#: MainWindow.vala:111
-msgid "Keybindings file not found."
-msgstr ""
-
-#: MainWindow.vala:120
+#: main.vala:223
 msgid "Keyboard section not found or malformed."
 msgstr ""
 
-#: MainWindow.vala:143
+#: main.vala:234
 msgid "Warning: Duplicate key found in config: "
 msgstr ""
 
-#: MainWindow.vala:174
+#: main.vala:240 main.vala:289
 msgid "Error parsing XML: "
 msgstr ""
 
-#: MainWindow.vala:184
+#: main.vala:298
 msgid "Keybindings saved successfully."
 msgstr ""
 
-#: MainWindow.vala:206
+#: main.vala:325
 msgid "Default keybindings file not found."
 msgstr ""
 
-#: MainWindow.vala:212
+#: main.vala:329
 msgid "User keybindings restored from system defaults."
 msgstr ""
 
-#: MainWindow.vala:214
+#: main.vala:331
 msgid "Error restoring keybindings: "
 msgstr ""
 
-#: MainWindow.vala:221
-msgid "Enter Password"
-msgstr ""
-
-#: MainWindow.vala:228
-msgid "Password:"
-msgstr ""
-
-#: MainWindow.vala:256
-msgid "Password entry cancelled."
-msgstr ""
-
-#: MainWindow.vala:264
-msgid "Error running command: "
-msgstr ""
-
-#: MainWindow.vala:266
-msgid "Unexpected error: "
-msgstr ""
-
-#: MainWindow.vala:309
-msgid "Malformed config file"
-msgstr ""
-
-#: MainWindow.vala:319
-msgid "Could not open file, xdg-open not found."
-msgstr ""
-
-#: MainWindow.vala:341
+#: main.vala:350
 msgid "Warning: Key combination '%s' is already in use."
 msgstr ""
 
-#: MainWindow.vala:392
+#: main.vala:383
 msgid "Warning: Duplicate key found in list: "
 msgstr ""
 
-#: MainWindow.vala:404
+#: main.vala:413
 msgid "Are you sure you want to restore user keybindings from system defaults?"
 msgstr ""
 
-# New Orca Keybindings Strings
-#: MainWindow.vala:450
-msgid "Default Orca configuration file not found."
+#: main.vala:426
+msgid "Malformed config file"
 msgstr ""
 
-#: MainWindow.vala:460
+#: nymph-OS.vala:4
+msgid "nymph-OS"
+msgstr ""
+
+#: nymph-OS.vala:30
+msgid "Keybindings file not found: %s"
+msgstr ""
+
+#: nymph-OS.vala:40
+msgid "Invalid XML structure: Root element not found."
+msgstr ""
+
+#: nymph-OS.vala:74
+msgid "nymph-OS keybindings loaded successfully."
+msgstr ""
+
+#: nymph-OS.vala:77
+msgid "Error parsing nymph-OS XML configuration file: "
+msgstr ""
+
+#: nymph-OS.vala:120
+msgid "nymph-OS keybindings saved successfully."
+msgstr ""
+
+#: nymph-OS.vala:123
+msgid "Error saving nymph-OS XML configuration file: "
+msgstr ""
+
+#: nymph-TTS.vala:33
+msgid "Invalid XML structure: Root element not found."
+msgstr ""
+
+#: nymph-TTS.vala:50
+msgid "Nymph-TTS keybindings loaded successfully."
+msgstr ""
+
+#: nymph-TTS.vala:53
+msgid "Error parsing Nymph-TTS XML configuration file: "
+msgstr ""
+
+#: nymph-TTS.vala:92
+msgid "Nymph-TTS keybindings saved successfully."
+msgstr ""
+
+#: nymph-TTS.vala:95
+msgid "Error saving Nymph-TTS XML configuration file: "
+msgstr ""
+
+#: orca.vala:37
+msgid "Orca configuration file not found."
+msgstr ""
+
+#: orca.vala:95
+msgid "Orca keybindings loaded successfully."
+msgstr ""
+
+#: orca.vala:98
+msgid "Error reading Orca configuration file: "
+msgstr ""
+
+#: orca.vala:132
+msgid "Error writing Orca configuration file: "
+msgstr ""
+
+#: orca.vala:141
 msgid "User Orca keybindings restored from system defaults."
 msgstr ""
 
-#: MainWindow.vala:466
+#: orca.vala:143
 msgid "Error restoring Orca keybindings: "
 msgstr ""
 
-#: MainWindow.vala:490
-msgid "Orca configuration file not found."
-msgstr
+#: NVDA.vala:4
+msgid "NVDA"
+msgstr ""
+
+#: NVDA.vala:98
+msgid "NVDA configuration file not found: %s"
+msgstr ""
+
+#: NVDA.vala:141
+msgid "NVDA keybindings loaded successfully."
+msgstr ""
+
+#: NVDA.vala:144
+msgid "Error loading NVDA keybindings: "
+msgstr ""
+
+#: NVDA.vala:180
+msgid "NVDA keybindings saved successfully."
+msgstr ""
+
+#: NVDA.vala:183
+msgid "Error saving NVDA keybindings: "
+msgstr ""
+
+#: NVDA.vala:190
+msgid "Default NVDA configuration file not found."
+msgstr ""
+
+#: NVDA.vala:194
+msgid "User NVDA keybindings restored from system defaults."
+msgstr ""
+
+#: NVDA.vala:196
+msgid "Error restoring NVDA keybindings: "
+msgstr ""
+
+#: macOS.vala:5
+msgid "macOS VoiceOver"
+msgstr ""
+
+#: macOS.vala:75
+msgid "Loading VoiceOver keybindings (implementation pending).\n"
+msgstr ""
+
+#: macOS.vala:145
+msgid "Saving VoiceOver keybindings (implementation pending).\n"
+msgstr ""
