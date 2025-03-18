@@ -1,7 +1,13 @@
-Generated: 2025-03-13 20:54:28.340739
+Generated: 2025-03-18 15:53:23.061720
 Package Build Status:
 ------------------------------
 Package: nymph-boot
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-cuda
     - Spec file: Missing
     - Tarballs: None
     - SRPMs: None
@@ -15,7 +21,7 @@ Package: nymph-disks
 ----------
 Package: nymph-keybindings
     - Spec file: Missing
-    - Tarballs: None
+    - Tarballs: nymph-keybindings-1.0.tar.xz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -26,6 +32,12 @@ Package: nymph-media-control
     - RPMs: None
 ----------
 Package: nymph-menu
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-nvidia
     - Spec file: Missing
     - Tarballs: None
     - SRPMs: None
@@ -63,5 +75,5 @@ Package: vala
 ----------
 
 Summary:
-Total Packages: 10
-Packages with Missing Spec Files: 10
+Total Packages: 12
+Packages with Missing Spec Files: 12
