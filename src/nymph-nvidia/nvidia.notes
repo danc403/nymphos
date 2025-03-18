@@ -1,0 +1,1266 @@
+We are tryig to build our own rpm package for cuda only compute with no display.
+Our distro will not use systemd but openrc init and syslinux/extlinux boot loader.
+we do have x11 xorgs  only.
+again we are targeting no display and to use the integrated for that.
+Chapter 4 seems to address this.
+Also pay attention to the comments section below the article for anything that applies to our situation.
+Below that i have pasted the spec file from his github to help in creating ours.
+the current linux kernel for our distro is 6.5.3
+The current version of cuda we have a tarball for is 12.8
+and the nvidia driver is 570.124.0
+
+Here is the article,comments, and spec file.:
+
+negativo17.org
+Oh no, another Nvidia driver repository? Why? This repository reflects my personal view for the way the driver should be packaged for Fedora and CentOS/RHEL. It’s somewhat different from ELRepo repositories for RHEL/CentOS and from RPMFusion packages for Fedora.
+Table of Contents 
+ 
+ 
+1. Repository installation
+2. What’s different?
+3. Nvidia drivers
+3.1. Packaging
+3.2. Versioning
+3.3. CUDA support
+3.4. Kernel modules
+3.5. Default configuration
+3.6. Kernel modesetting and Wayland support
+3.7. Optimus laptops
+3.7.0.1. Limitations with the Nvidia driver
+3.7.0.2. Limitations with the OSS stack
+3.8. SLI systems
+3.9. Nouveau fallback
+3.10. Sample installation
+3.10.1. Package installation
+3.11. Specific driver installations
+3.12. Proprietary and open source kernel modules
+3.12.1. DKMS
+3.12.2. akmods
+3.13. Additional driver configuration to your system
+3.14. Configuration for CUDA only systems
+3.14.1. Option with only CUDA components installed
+4. CUDA
+4.1. Packaging
+4.2. Distribution and CUDA version support
+4.3. CUDA installations
+5. Bugs
+Repository installation
+To install the repository on a supported Fedora distribution, run as root the following command:
+dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
+To install the repository on CentOS/RHEL:
+yum-config-manager --add-repo=https://negativo17.org/repos/epel-nvidia.repo
+The Nvidia software packages are available for installation by default also in Gnome Software.
+Please note that the driver will show up only if your system matches one of the PCI ID supported by the driver. Otherwise, only the other Nvidia programs (mostly for CUDA development) will show up in the software center.
+What’s different?
+First of all the packaging is a lot simplified; more stuff is compiled from source, smaller packages and more options. This packages try to comply as maximum to the Fedora Packaging Guidelines; which means they have debuginfo packages, default Fedora’s GCC compile time options (where possible) and standard locations for binaries, data and docs.
+What follows below, is a detailed explanation of all the “differences” from the various Nvidia driver packages that I was able to spot on the web and a detailed description on how to install components, etc.
+Nvidia drivers
+Packaging
+• nvidia-settings, nvidia-persistenced, nvidia-xconfig and nvidia-modprobe are compiled from source.
+• All RPM filters except for GL and OpenCL libraries have been removed, so there is no weird dependency option in the SPEC file. RPM pulls in all correct requirements on its own. This is to avoid pulling in the Nvidia drivers instead of the Mesa libraries or in place of the new open source OpenCL support that’s in Fedora.
+• Simplified packaging with much simpler and readable SPEC file.
+• Dependency on libva-vdpau-driver. So in Totem, or any other libVA supported application you can benefit from VDPAU acceleration.
+• Sources are generated with a script and inserted individually in the various packages; so it can be easily reproduced just by changing the version and rerunning the script.
+• nvidia-xconfig is not required on anything that uses the modular X.org directives, as it writes too much in the configuration file (keyboards, monitors, etc.) and the required entries should be written in separate configuration files under /etc/X11/xorg.conf.d. The package is still available as it’s required to speed up some configuration like multi-monitor setups with SLI Mosaic enabled from the command line, but not installed by default.
+• The NVIDIA OpenGL-based Framebuffer Capture (NvFBCOpenGL) libraries (NvFBC and NvIFR) are private APIs that are only available to NVIDIA approved partners for use in remote graphics scenarios (i.e. Steam In-Home Streaming hardware encoding); so they are packaged in another small package called nvidia-driver-NvFBCOpenGL.
+• The nvidia-settings package now builds the external libXNVCtrl.so library that can be used to control the graphic cards through the NV-CONTROL extension. This library updates the old and obsolete one in Fedora.
+• The nvidia-settings binary is compiled with GTK3 instead of GTK2 on Fedora and RHEL/CentOS 7+.
+• The driver can be installed separately from the nvidia-settings utility, so if you simply want a working driver and do not care about details, your experience should be as close as possible to the one with open source drivers.
+Versioning
+• ELRepo ships 32 bit compatibility libraries in a separate package with x86_64 as the architecture and “32bit” in the name. 32 bit libraries should be like in RPMFusion, with an i686 package installable in parallel with the x86_64 one. There are no other packages in the distribution that are built for x86_64, with “32bit” in their name that contain i686 binaries (!), so Nvidia drivers should not be an exception. So no separate “32bit.x86_64” package for 32 bit libraries also on CentOS/RHEL; just install nvidia-driver-libs.i686.
+• Versions are not hidden; all packages have the same driver version.
+• No alternatives system, only the latest version which integrates CUDA support is available. For older releases nouveau works great; and anything below a GeForce 8xxx it’s in my opinion too low end to play anything modern. And Quake 3 and Doom 3 work greatly with nouveau, so that’s not a case!
+• The CentOS/RHEL repository contains the “Long Lived Branch version” where less changes occur; while Fedora repositories contains the “Short Lived Branch version”. Beta CentOS/RHEL and Fedora’s rawhide repositories will contain the “Beta Branch version”
+CUDA support
+• CUDA libraries/tools for the driver are split into subpackages. There’s no need to install all the CUDA libraries and tools on a system that has only one adapter and is used for occasional gaming or for simple office use. This can save ~120 MB worth of installed libraries. nvidia-persistenced falls in this category as it’s not needed on a normal laptop or gaming system.
+• Complete packaged CUDA stack has been added for all supported distributions, all the packages provide/require/obsolete the relevant packages in the Nvidia CUDA repository; so you can enable this repository along with the official Nvidia CUDA one (x86_64 systems only).
+Kernel modules
+• Multiple choice of kernel module packages; akmod (RPMFusion) for Fedora and binary kmod (Kernel ABI whitelists) for CentOS/RHEL. In addition to this, on both distributions dkms packages are available. This way all cases and personal preferences are covered for both distributions.
+• The Nvidia udev rules leverage nvidia-modprobe command in the system to create devices and set permissions even when the userspace libraries have not been loaded yet, covering the case of Wayland only sessions and compute only system without display userspace components installed.
+• The nvidia-uvm module has a soft dependency on the nvidia module, making sure that these modules are not included in the initrd (thing that would happen by using systemd’s configuration (module-s-load.d). UDev rules make sure the module has proper permissions.
+• Choice of proprietary or open source license kernel modules.
+Default configuration
+• Dracut options are depending on the distribution; so no more “vga=normal is an obsolete option” at boot. Each distribution gets its own specific GRUB options for booting.
+• 96 DPI is written in the default xorg.conf config file. Why? Gnome 3 by defaults hard-codes a 96×96 DPI resolution, most of the free drivers do (intel, nouveau, etc.) as the EDID is almost never reliable (please see the excellent Adam’s Jackson post where he explains this). As an example, if you install the Nvidia drivers on a RHEL/CentOS 6 laptop where you used to have nouveau installed (96 DPI hardcoded), the fonts gets 90% of the time supersize and ugly as Gnome 2 and the Nvidia driver do not hard-code 96 DPI like Gnome 3.
+• Make X.org NVIDIA Files section to be loaded latest in case there are other packages providing a custom Files section.
+• Use new OutputClass directive on X.org server 1.16 (and later) to load the driver and do not rely on an edited /etc/X11/xorg.conf file. This also removes editing of the xorg.conf file from the package scriptlets. This does not hardcode the 96 DPI resolution.
+• Add the IgnoreABI directive by default on Fedora rawhide builds.
+Kernel modesetting and Wayland support
+Kernel mode setting on the nvidia-drm module is enabled by default along with the console frame buffer driver.
+Distribution and Nvidia driver version support
+Here is a rundown of Nvidia supported drivers and options split by distribution. Basically, CentOS/RHEL will always get a Long Lived branch release if possible, Fedora always a Short Lived branch release, and unreleased distributions will always get a Beta driver.
+Operating system
+CentOS / RHEL
+Fedora
+rawhide
+Driver branch
+Long Lived
+Short Lived
+Long Lived
+Short Lived
+Long Lived
+Beta
+Video Codec SDK
+Yes
+Yes
+Yes
+Architectures:
+
+x86_64
+aarch64
+Yes
+Yes
+Yes
+Basic nvidia driver:
+
+nvidia-driver
+nvidia-driver-libs
+nvidia-libXNVCtrl
+nvidia-kmod-common
+Yes
+Yes
+Yes
+CUDA libraries and tools:
+
+libnvidia-ml
+nvidia-driver-cuda
+nvidia-driver-cuda-libs
+nvidia-persistenced
+Yes
+Yes
+Yes
+OpenGL Framebuffer Capture:
+
+libnvidia-fbc
+Yes
+Yes
+Yes
+Nvidia tools:
+
+nvidia-modprobe
+nvidia-settings
+nvidia-xconfig
+Yes
+Yes
+Yes
+Binary kernel
+modules (kABI):
+
+kmod-nvidia
+Yes
+No
+No
+DKMS kernel
+modules:
+
+dkms-nvidia
+Yes
+Yes
+Yes
+aKMOD kernel
+modules:
+
+akmod-nvidia
+No
+Yes
+Yes
+32 bit compatibility on x86_64:
+
+libnvidia-ml
+nvidia-libXNVCtrl
+nvidia-driver-libs
+nvidia-driver-cuda-libs
+Yes
+Yes
+Yes
+VDPAU libraries
+Yes
+Yes
+Yes
+EGLStream-based Wayland external platform
+Yes
+Yes
+Yes
+GBM EGL external platform library
+Yes
+Yes
+Yes
+Optimus laptops
+The driver should install and operate cleanly whether you are installing it on a system which has one or more discrete Nvidia cards or an Optimus laptop with an Intel and a Nvidia card. Nothing to do to enable or configure Optimus.
+This is up to the point that when the drivers are installed, you can even turn off Optimus on or off in your system Bios (if your laptop allows that) and the only difference you should see is that there’s an additional VGA card enabled in your system (check with lspci) and that the Nvidia control panel switches between a PRIME Display, like in this picture:
+And a normal RandR managed one, like in this one:
+Everything else should not be different from your normal experience.
+Limitations with the Nvidia driver
+The limitations are the same as provided by the Nvidia driver, this means that if you are running it on an Optimus laptop, the Intel card can never power off. Which means higher power consumption, unfortunately. If you have an Optimus laptop and absolutely need the proprietary drivers, my suggestion is still to disable Optimus in the Bios.
+Limitations with the OSS stack
+On the contrary, if you use the OSS stack (nouveau/intel) the second card can be powered off if there’s no application running on it or display directly connected to one of the card’s outputs. That’s the best reason to use the OSS drivers at all if you you’re not doing serious gaming or 3D work:
+$ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynOff:0000:01:00.0
+You also got the nifty selection menu about running your game on the discrete card on Gnome, which is really cool:
+It will power up the video card just before launching the process. Launching a program through that menu entry is like starting it from the command line with the DRI_PRIME variable declared. For example, the same as above would be:
+$ DRI_PRIME=1 quake3 &
+$ sudo cat /sys/kernel/debug/vgaswitcheroo/switch
+0:IGD:+:Pwr:0000:00:02.0
+1:DIS: :DynPwr:0000:01:00.0
+As you can see, the discrete video card is turned on. For Steam, you still need to edit each of your game to run on the Nvidia card:
+SLI systems
+SLI is now enabled by default with the Auto profile, there’s nothing to do if you have a SLI system. If you need any different SLI option (AA, SFR, etc.), just override it in X.org configuration files.
+Nouveau fallback
+With the new expanded OutputClass support for X, as carried out by Hans, it’s now super easy to switch to the OSS stack if the proprietary Nvidia driver somehow does not work. No user space component is touched, as soon as the Nvidia kernel module is not loaded (check on /sys/module/nvidia), the desktop starts with the normal OSS components you get with a normal installation. Thanks to all the work done on libglvnd, the libraries loaded are the correct one for the driver you are running.
+This means that the performance of the Nvidia card would be abysmal, but still you would get a nice desktop and browser to Google around for answers on how to fix it :).
+Sample installation
+Here is an example. Let’s assume you have a freshly installed CentOS system with a recent Nvidia GPU and you want to:
+• Install the driver for gaming
+• Play Vulkan enabled games
+• Want to be comfortable with the Nvidia control panel
+• Play 32 bit games (Vulkan included) on a 64 bit system
+• Play 32 bit Vulkan games on a 64 bit system
+# yum install nvidia-driver nvidia-driver-libs.i686
+Last metadata expiration check: 0:05:30 ago on Tue 05 Feb 2019 06:52:50 AM CET.
+Dependencies resolved.
+================================================================================
+ Package                   Arch     Version           Repository           Size
+================================================================================
+Installing:
+ nvidia-driver             x86_64   3:415.27-4.fc29   fedora-multimedia   2.4 M
+ nvidia-driver-libs        i686     3:415.27-4.fc29   fedora-multimedia    18 M
+Installing dependencies:
+ akmod-nvidia              x86_64   3:415.27-1.fc29   fedora-multimedia    10 M
+ nvidia-driver-cuda-libs   x86_64   3:415.27-4.fc29   fedora-multimedia    25 M
+ nvidia-driver-libs        x86_64   3:415.27-4.fc29   fedora-multimedia    34 M
+ nvidia-kmod-common        noarch   3:415.27-1.fc29   fedora-multimedia    10 k
+ akmods                    noarch   0.5.6-17.fc29     updates              22 k
+ egl-wayland               x86_64   1.1.1-3.fc29      updates              29 k
+ kernel-devel              x86_64   4.20.6-200.fc29   updates              13 M
+ mesa-libEGL               i686     18.2.8-1.fc29     updates             112 k
+ mesa-libgbm               i686     18.2.8-1.fc29     updates              39 k
+ libglvnd-egl              i686     1:1.1.0-2.fc29    fedora               45 k
+ libglvnd-gles             i686     1:1.1.0-2.fc29    fedora               32 k
+ libglvnd-opengl           i686     1:1.1.0-2.fc29    fedora               37 k
+ libglvnd-opengl           x86_64   1:1.1.0-2.fc29    fedora               39 k
+ libva-vdpau-driver        x86_64   0.7.4-22.fc29     fedora               60 k
+ libwayland-server         i686     1.16.0-1.fc29     fedora               38 k
+
+Transaction Summary
+================================================================================
+Install  17 Packages
+
+Total download size: 103 M
+Installed size: 385 M
+Is this ok [y/N]:
+As you can see, this system has akmod enabled kernel modules and libraries for running 32 bit applications. The amount of data to download for the drivers is really small compared to packages that contain CUDA libraries and tools.
+Package installation
+If you are booting the system in UEFI mode; as a prerequisite to installing any external module (not built into the kernel package), you have to disable UEFI Secure Boot in the system configuration. All modules contained in the kernel package are signed with keys that are generated during build and deleted when packaging. If you want to preserve Secure Boot, you need to sign the modules yourself and import the keys into your hardware module. Doing so is out of scope here; if you need a decent guide just follow Red Hat’s guide for signing kernel modules.
+First of all remove all the Nvidia drivers you might have on your system due to RPMFusion, ELRepo, or the Nvidia CUDA repository. This is usually accomplished with the following root command:
+yum -y remove *nvidia*
+Then, to install the Nvidia driver and its control panel utility in CentOS/RHEL with the binary kABI (Kernel ABI whitelist) module (this is the default on CentOS/RHEL), perform the following command:
+yum -y install nvidia-driver nvidia-settings
+To do the same in Fedora, using akmod modules, perform the following command:
+dnf -y install nvidia-driver nvidia-settings
+Specific driver installations
+For both Fedora and CentOS/RHEL distributions it’s possible to install additional packages and / or variant of the basic kernel modules. This paragraph contains some examples. Make sure you have the EPEL repository enabled if you plan to use DKMS modules on CentOS/RHEL.
+akmod kernel module variant (Fedora):
+dnf -y install nvidia-driver akmod-nvidia
+DKMS kernel module variant (Fedora/CentOS/RHEL):
+yum/dnf -y install nvidia-driver dkms-nvidia
+To add 32 bit libraries on a 64 bit system (for games or applications like Steam):
+yum/dnf -y install nvidia-driver-libs.i686
+Proprietary and open source kernel modules
+Since almost a year, the Nvidia driver ships with two different implementations of the kernel modules, one proprietary and one open source. The open source one as of drivers 545.x is now considered beta quality also for the workstations, so it seems a good moment to start shipping it.
+The open source one is supposed to be the only one that will be kept in the future, but at the moment both are available and both differ in terms of functionality. You can read about the main differences in terms of functionality and what chips they support in the official documentation.
+I did not want to introduce another variation of the kernel modules beside akmods, kABI and DKMS, this would have created even more confusion and lots of dependencies in the SPEC files for the variations. The new akmod and DKMS packages ship both sources (MIT/GPL and proprietary kernel modules) and allow you to switch between one or the other through a configuration file.
+Considering that in the long run only the open source variant will remain, I wanted to make this as transparent as possible for the users. Basically, if you don’t care and just want something that works, nothing has changed for you.
+The two sources get referenced as they are referenced inside the Nvidia run file, namely “kernel” for the original proprietary kernel modules and “kernel-open” for the new open source variation.
+The following instructions show you how to switch between one implementation or the other.
+DKMS
+Check which version you have installed:
+# modinfo -l nvidia
+NVIDIA
+Change the type of modules you want to use and trigger a rebuild and a reinstall:
+# sed -i -e 's/kernel$/kernel-open/g' /etc/nvidia/kernel.conf
+# dkms build -m nvidia/545.29.02 --force
+# dkms install -m nvidia/545.29.02 --force
+Now check again the license and you should see that it has changed to MIT/GPL:
+# modinfo -l nvidia
+Dual MIT/GPL
+# reboot
+To switch back, change the configuration again and then trigger the same process for rebuilding installing:
+# sed -i -e 's/kernel-open$/kernel/g' /etc/nvidia/kernel.conf
+# dkms build -m nvidia/545.29.02 --force
+# dkms install -m nvidia/545.29.02 --force
+# reboot
+akmods
+Check which version you have installed:
+# modinfo -l nvidia
+NVIDIA
+Change the type of modules you want to use and trigger a rebuild and a reinstall:
+# sed -i -e 's/kernel$/kernel-open/g' /etc/nvidia/kernel.conf
+# akmods --rebuild
+Now check again the license and you should see that it has changed to MIT/GPL:
+# modinfo -l nvidia
+Dual MIT/GPL
+# reboot
+To switch back, change the configuration again and then trigger the same process for rebuilding installing:
+# sed -i -e 's/kernel-open$/kernel/g' /etc/nvidia/kernel.conf
+# akmods --rebuild
+# reboot
+Additional driver configuration to your system
+To add additional configuration to your system, just create the /etc/X11/xorg.conf file. For example:
+Section "Device"
+  Identifier  "Device0"
+  Driver      "nvidia"
+  Option      "NoLogo" "true"
+  Option      "DPI" "96 x 96"
+  Option      "SLI" "Auto"
+  Option      "nvidiaXineramaInfoOrder" "DFP-0"
+  Option      "metamodes" "GPU-a493fbbb-7d76-86a2-8764-d76d487a75a7.DVI-I-1: nvidia-auto-select +0+0, GPU-c02960a4-be28-d5ce-8b02-be04b5e2550b.DVI-I-1: nvidia-auto-select +1680+0"
+  Option      "BaseMosaic" "on"
+EndSection
+In this example we have 2 video cards with one monitor each, so we enabled SLI, Base Mosaic to have multi monitor support on SLI and make a layout with the second GPU monitor on the right of the first one. Also, we fix the DPI to 96×96, which is the hardcoded default in Gnome and in Open Source drivers.
+Configuration for CUDA only systems
+Your system might only be used for CUDA development and not require the X server to be running the DDX driver at all, so you might want to tweak the configuration a bit to make the system load (for example) the Intel driver as the main display and just the Nvidia driver for GPU workloads. In this case you have two options.
+Option with only CUDA components installed
+To install just the CUDA components of the driver and not the OpenGL libraries and all files required by the DDX part of the driver, proceed to install as follows:
+# yum install nvidia-driver-cuda
+Last metadata expiration check: 0:22:51 ago on Tue 05 Feb 2019 06:52:50 AM CET.
+Dependencies resolved.
+================================================================================
+ Package                   Arch     Version           Repository           Size
+================================================================================
+Installing:
+ nvidia-driver-cuda        x86_64   3:415.27-4.fc29   fedora-multimedia   308 k
+Installing dependencies:
+ akmod-nvidia              x86_64   3:415.27-1.fc29   fedora-multimedia    10 M
+ nvidia-driver-NVML        x86_64   3:415.27-4.fc29   fedora-multimedia   457 k
+ nvidia-driver-cuda-libs   x86_64   3:415.27-4.fc29   fedora-multimedia    25 M
+ nvidia-kmod-common        noarch   3:415.27-1.fc29   fedora-multimedia    10 k
+ nvidia-persistenced       x86_64   3:415.27-2.fc29   fedora-multimedia    40 k
+ akmods                    noarch   0.5.6-17.fc29     updates              22 k
+ kernel-devel              x86_64   4.20.6-200.fc29   updates              13 M
+
+Transaction Summary
+================================================================================
+Install  8 Packages
+
+Total download size: 49 M
+Installed size: 168 M
+Is this ok [y/N]:
+As you can see, there are no components providing OpenGL or DDX drivers installed on the system. This will not use any X (or Wayland) configuration compared to what has been installed by default on your system.
+On top of this, you can still select what kind of kernel modules you want to have installed (kABI, akmods and dkms).
+The device files are created by the udev rules that call the nvidia-modprobe command, it contains a SUID binary that creates the device files and set the appropriate permissions. The same binary is called directly by Nvidia libraries when accessing a user space component that would require device files access:
+$ for i in $(rpm -ql nvidia-driver-libs.x86_64 nvidia-driver-cuda-libs.x86_64 | grep \.so); do
+  strings $i | grep nvidia-modprobe > /dev/null && echo $i
+done
+/usr/lib64/gbm/nvidia-drm_gbm.so
+/usr/lib64/libnvidia-allocator.so.1
+/usr/lib64/libnvidia-allocator.so.545.29.02
+/usr/lib64/libnvidia-api.so.1
+/usr/lib64/libnvidia-cfg.so.1
+/usr/lib64/libnvidia-cfg.so.545.29.02
+/usr/lib64/libnvidia-eglcore.so.545.29.02
+/usr/lib64/libnvidia-glcore.so.545.29.02
+/usr/lib64/libnvidia-glsi.so.545.29.02
+/usr/lib64/vdpau/libvdpau_nvidia.so.1
+/usr/lib64/vdpau/libvdpau_nvidia.so.545.29.02
+/usr/lib64/libcuda.so
+/usr/lib64/libcuda.so.1
+/usr/lib64/libcuda.so.545.29.02
+/usr/lib64/libnvcuvid.so
+/usr/lib64/libnvcuvid.so.1
+/usr/lib64/libnvcuvid.so.545.29.02
+/usr/lib64/libnvidia-opencl.so.1
+/usr/lib64/libnvidia-opencl.so.545.29.02
+This requires some testing and adjustments with specifics to your setup, but is definitely possible to use the integrated Intel card and or rely on a system without X installed to run the CUDA components.
+CUDA
+Packaging
+• Previously in the repository was included the GPU Deployment kit. This was constructed with NVML (NVIDIA Management Library) headers, docs and samples from a separate tarball. The separate tarball was using a different version number than the drivers and was packaged in the nvidia-driver-NVML and nvidia-driver-NVML-devel packages. Starting from CUDA version 8, the NVML header is provided by a CUDA subpackage (cuda-nvml-devel) and no longer provided as part of the GPU Deployment kit.
+• Included is also the Video Codec SDK (Decoder/Encoder) headers, docs and code samples. Again, this uses a different version than the drivers.
+• All the libraries are split into subpackages, much like in the original Nvidia CUDA repository. This allows you to install and build software relying on specific components without the need to install all the CUDA toolkit just to satisfy a library dependency. Also, for the same reason, static libraries have been included in each respective static subpackage.
+• In addition to the libraries bundled in the CUDA toolkit, also the cuDNN library for distributed neural networks is included in the repository. See the table below for details.
+Distribution and CUDA version support
+All the currently supported Red Hat Enterprise Linux versions (including rebuilds and similar forks – CentOS Stream, AlmaLinux, RockyLinux, EuroLinux, etc.) and Fedora versions are available.
+In case of yet unsupported compilers in recent distributions, a compatibility cuda-gcc package is available that brings the distribution to a working level with nvcc.
+By installing the cuda-gcc package, a variable is loaded automatically that adds the appropriate NVCC options to override the default system GCC when compiling:
+$ cat /etc/profile.d/cuda-gcc.sh 
+export NVCC_PREPEND_FLAGS='-ccbin /usr/bin/cuda'
+CUDA installations
+To install just a runtime CUDA support (required for running CUDA enabled programs), without DDX drivers:
+yum -y install cuda nvidia-driver-cuda
+To just install packages required for enabling CUDA development:
+yum -y install cuda-devel
+Or if you just want to enable everything:
+dnf/yum -y install nvidia-driver nvidia-driver-cuda cuda-devel
+A couple of examples. Just the basic tools:
+# yum install cuda
+Last metadata expiration check: 0:30:55 ago on Tue 05 Feb 2019 06:52:50 AM CET.
+Dependencies resolved.
+================================================================================
+ Package                  Arch    Version              Repository          Size
+
+================================================================================
+Installing:
+ cuda                     x86_64  1:10.0.130-1.fc29    fedora-multimedia   17 M
+Installing dependencies:
+ cuda-libs                x86_64  1:10.0.130-1.fc29    fedora-multimedia  8.6 M
+ nvidia-driver-cuda-libs  x86_64  3:415.27-4.fc29      fedora-multimedia   25 M
+
+Transaction Summary
+================================================================================
+Install  3 Packages
+
+Total download size: 51 M
+Installed size: 178 M
+Is this ok [y/N]:
+The basic tools along with all the libraries (note that the NVML headers are included):
+# yum install cuda-devel
+Last metadata expiration check: 0:35:09 ago on Tue 05 Feb 2019 06:52:50 AM CET.
+Dependencies resolved.
+================================================================================
+ Package                  Arch    Version              Repository          Size
+================================================================================
+Installing:
+ cuda-devel               x86_64  1:10.0.130-1.fc29    fedora-multimedia  1.6 M
+Installing dependencies:
+ cuda                     x86_64  1:10.0.130-1.fc29    fedora-multimedia   17 M
+ cuda-cublas              x86_64  1:10.0.130-1.fc29    fedora-multimedia   31 M
+ cuda-cublas-devel        x86_64  1:10.0.130-1.fc29    fedora-multimedia   32 M
+ cuda-cudart              x86_64  1:10.0.130-1.fc29    fedora-multimedia  135 k
+ cuda-cudart-devel        x86_64  1:10.0.130-1.fc29    fedora-multimedia  533 k
+ cuda-cufft               x86_64  1:10.0.130-1.fc29    fedora-multimedia   64 M
+ cuda-cufft-devel         x86_64  1:10.0.130-1.fc29    fedora-multimedia  127 M
+ cuda-cupti               x86_64  1:10.0.130-1.fc29    fedora-multimedia  1.4 M
+ cuda-cupti-devel         x86_64  1:10.0.130-1.fc29    fedora-multimedia  226 k
+ cuda-curand              x86_64  1:10.0.130-1.fc29    fedora-multimedia   38 M
+ cuda-curand-devel        x86_64  1:10.0.130-1.fc29    fedora-multimedia   61 M
+ cuda-cusolver            x86_64  1:10.0.130-1.fc29    fedora-multimedia   40 M
+ cuda-cusolver-devel      x86_64  1:10.0.130-1.fc29    fedora-multimedia   15 M
+ cuda-cusparse            x86_64  1:10.0.130-1.fc29    fedora-multimedia   27 M
+ cuda-cusparse-devel      x86_64  1:10.0.130-1.fc29    fedora-multimedia   28 M
+ cuda-libs                x86_64  1:10.0.130-1.fc29    fedora-multimedia  8.6 M
+ cuda-npp-devel           x86_64  1:10.0.130-1.fc29    fedora-multimedia   58 M
+ cuda-nvgraph             x86_64  1:10.0.130-1.fc29    fedora-multimedia   68 M
+ cuda-nvgraph-devel       x86_64  1:10.0.130-1.fc29    fedora-multimedia   13 k
+ cuda-nvjpeg              x86_64  1:10.0.130-1.fc29    fedora-multimedia  372 k
+ cuda-nvjpeg-devel        x86_64  1:10.0.130-1.fc29    fedora-multimedia   14 k
+ cuda-nvml-devel          x86_64  1:10.0.130-1.fc29    fedora-multimedia   53 k
+ cuda-nvrtc               x86_64  1:10.0.130-1.fc29    fedora-multimedia  6.3 M
+ cuda-nvrtc-devel         x86_64  1:10.0.130-1.fc29    fedora-multimedia   15 k
+ cuda-nvtx                x86_64  1:10.0.130-1.fc29    fedora-multimedia   33 k
+ cuda-nvtx-devel          x86_64  1:10.0.130-1.fc29    fedora-multimedia   41 k
+ nvidia-driver-NVML       x86_64  3:415.27-4.fc29      fedora-multimedia  457 k
+ nvidia-driver-cuda-libs  x86_64  3:415.27-4.fc29      fedora-multimedia   25 M
+
+Transaction Summary
+================================================================================
+Install  29 Packages
+
+Total download size: 650 M
+Installed size: 1.6 G
+Is this ok [y/N]:
+An example where your CUDA application just uses the CUDA Runtime API and not the kernel runtime:
+$ sudo dnf install cuda-cudart
+Last metadata expiration check: 0:13:10 ago on Sun Oct 23 13:11:01 2016.
+Dependencies resolved.
+================================================================================
+ Package           Arch         Version               Repository           Size
+================================================================================
+Installing:
+ cuda-cudart       x86_64       1:8.0.44-4.fc24       fedora-nvidia       131 k
+
+Transaction Summary
+================================================================================
+Install  1 Package
+
+Total size: 131 k
+Installed size: 536 k
+Is this ok [y/N]:
+This will avoid you pulling in all the libraries as before just because you need a single library. This is useful for example for programs that leverage just some part of the CUDA toolkit, like the Nvidia Performance Primitives for image and signal processing in FFmpeg, and similar things.
+Bugs
+Just open an issue to the specific package on GitHub.
+Share this:
+PrintLinkedInFacebookXEmailMastodonReddit
+Like this:
+Loading...
+1,272 thoughts to “Nvidia driver, CUDA tools and libraries” 
+Comment navigation
+Older Comments
+TOM 
+November 21, 2024 at 4:38 pm
+I have a problem with the latest driver, dvi is not working at all, how can I install the Long Lived version on fedora 41?
+Reply to Tom
+VOLODYMYR 
+October 31, 2024 at 9:13 pm
+In my case (Fedora 40, Geforce RTX 3080 Ti Mobile), open source NVidia driver has memory leak triggered by Ollama. I switched back to closed source driver as workaround for the bug.
+Reply to Volodymyr
+YURIYKUZIN 
+October 26, 2024 at 5:22 pm
+Anyway despite I solved problem with open/prop NVIDIA driver. I will try to move to rpmfusion
+because I all steam games are hanging with 560 driver actually most of them continue to play music and sounds but whole image is frozen
+my current package is 3:560.35.03-4 and I’ve tried to downgrade it few numbers down till no downgrade available but it is still 560 and steam games still hanging
+so moving to rpmfusion I will try my luck there looks like there is 555 driver available….
+Reply to YuriyKuzin
+MATT LAVIGNE 
+September 8, 2024 at 5:21 pm
+Anyone having throughput issues from Negativo17? I have been getting timeouts for the last 4 days or so? maybe since the key change on the 1st?
+Reply to Matt Lavigne
+VOLODYMYR 
+September 1, 2024 at 7:06 am
+I got this error today:
+LANG=C.utf8 dnf upgrade -y
+Last metadata expiration check: 0:08:39 ago on Sun Sep 1 07:54:29 2024.
+Dependencies resolved.
+Problem: cannot install both gstreamer1-plugins-ugly-1:1.24.6-1.fc40.x86_64 from fedora-multimedia and gstreamer1-plugins-ugly-1:1.24.6-1.fc40.x86_64 from @System
+– cannot install the best update candidate for package gstreamer1-plugins-ugly-free-1.24.7-1.fc40.x86_64
+– cannot install the best update candidate for package gstreamer1-plugins-ugly-1:1.24.6-1.fc40.x86_64
+Package Architecture Version Repository Size
+Upgrading:
+libnvidia-cfg x86_64 3:560.35.03-2.fc40 fedora-multimedia 153 k
+libnvidia-ml x86_64 3:560.35.03-2.fc40 fedora-multimedia 620 k
+nvidia-driver x86_64 3:560.35.03-2.fc40 fedora-multimedia 3.9 M
+nvidia-driver-cuda x86_64 3:560.35.03-2.fc40 fedora-multimedia 453 k
+nvidia-driver-cuda-libs x86_64 3:560.35.03-2.fc40 fedora-multimedia 40 M
+nvidia-driver-libs x86_64 3:560.35.03-2.fc40 fedora-multimedia 150 M
+Installing weak dependencies:
+xorg-x11-nvidia x86_64 3:560.35.03-2.fc40 fedora-multimedia 2.3 M
+Transaction Summary
+Install 1 Package
+Upgrade 6 Packages
+Total download size: 197 M
+Downloading Packages:
+(1/7): libnvidia-cfg-560.35.03-2.fc40.x86_64.rpm 275 kB/s | 153 kB 00:00
+(2/7): libnvidia-ml-560.35.03-2.fc40.x86_64.rpm 1.0 MB/s | 620 kB 00:00
+(3/7): nvidia-driver-cuda-560.35.03-2.fc40.x86_64.rpm 2.2 MB/s | 453 kB 00:00
+(4/7): xorg-x11-nvidia-560.35.03-2.fc40.x86_64.rpm 2.0 MB/s | 2.3 MB 00:01
+(5/7): nvidia-driver-560.35.03-2.fc40.x86_64.rpm 1.2 MB/s | 3.9 MB 00:03
+(6/7): nvidia-driver-cuda-libs-560.35.03-2.fc40.x86_64.rpm 2.2 MB/s | 40 MB 00:18
+(7/7): nvidia-driver-libs-560.35.03-2.fc40.x86_64.rpm 2.7 MB/s | 150 MB 00:56
+Total 3.4 MB/s | 197 MB 00:57
+Package xorg-x11-nvidia-560.35.03-2.fc40.x86_64.rpm is not signed
+Package libnvidia-cfg-560.35.03-2.fc40.x86_64.rpm is not signed
+Package libnvidia-ml-560.35.03-2.fc40.x86_64.rpm is not signed
+Package nvidia-driver-560.35.03-2.fc40.x86_64.rpm is not signed
+Package nvidia-driver-cuda-560.35.03-2.fc40.x86_64.rpm is not signed
+Package nvidia-driver-cuda-libs-560.35.03-2.fc40.x86_64.rpm is not signed
+Package nvidia-driver-libs-560.35.03-2.fc40.x86_64.rpm is not signed
+The downloaded packages were saved in cache until the next successful transaction.
+You can remove cached packages by executing ‘dnf clean packages’.
+Error: GPG check FAILED
+Is it a bug in repository, or, maybe, it’s a targeted attack on me?
+Reply to Volodymyr
+SLAANESH 
+September 1, 2024 at 11:49 am
+Went late replacing the keys :/
+https://negativo17.org/gpg-key-rotation/
+Repositories are currently being synced now.
+Reply to slaanesh
+MARTIN SKILNAND 
+August 11, 2024 at 2:31 pm
+Due to change to Nvidia Open GPU, akmod-nvidia.x86_64 driver version 560.31.02 does no seem to work for GTX 10×0 or older GPUs (not supported by Open GPU). Downgraded driver again to get back display. Will you stop supporting the prioritary driver for older GPUs?
+Reply to Martin Skilnand
+SLAANESH 
+September 1, 2024 at 11:46 am
+Hello, I announced it in November: https://negativo17.org/nvidia-proprietary-and-open-source-kernel-modules/
+Nvidia switched to the open modules by default with driver 560, so did I. Just change the configuration file and you should be good to go.
+Reply to slaanesh
+YET ANOTHER DAVID 
+August 10, 2024 at 9:24 am
+I recently rebooted my reliable Media PC to discover my Fedora 39 system wouldn’t load the NVIDIA driver. Because it uses an old GeForce GT 1030, it seems it will never be supported by the “kernel-open” driver. Does anyone have any idea when support for the fully propietary NVIDIA driver might end?
+Thanks!
+For the sake of others with my problem, I’ll post the kernel error here for search engines to find:
+kernel: NVRM: The NVIDIA GPU 0000:01:00.0 (PCI ID: 10de:1d01)
+NVRM: installed in this system is not supported by open
+NVRM: nvidia.ko because it does not include the required GPU
+NVRM: System Processor (GSP).
+NVRM: Please see the ‘Open Linux Kernel Modules’ and ‘GSP
+NVRM: Firmware’ sections in the driver README, available on
+NVRM: the Linux graphics driver download page at
+NVRM: http://www.nvidia.com.
+kernel: nvidia 0000:01:00.0: probe with driver nvidia failed with error -1
+Reply to Yet Another David
+SLAANESH 
+September 1, 2024 at 11:46 am
+Hello, I announced it in November: https://negativo17.org/nvidia-proprietary-and-open-source-kernel-modules/
+Nvidia switched to the open modules by default with driver 560, so did I.
+Reply to slaanesh
+YET ANOTHER DAVID 
+November 3, 2024 at 7:37 am
+Hey, thanks for that, but did you notice my question?
+Does anyone have any idea when support for the fully propietary NVIDIA driver might end?
+I’m stuck using the old driver because of the age of the graphics card on my trusty old Media PC.
+Reply to Yet Another David
+HAMMERHEAD CORVETTE 
+June 29, 2024 at 2:09 am
+Is nvidia-gpu-firmware included in the package for this repo? Is it necessary?
+Reply to hammerhead corvette
+SLAANESH 
+July 11, 2024 at 9:26 am
+It is not included and it’s not needed. All the necessary firmware is in nvidia-kmod-common.
+Reply to slaanesh
+ANDRE COSTA 
+April 6, 2024 at 5:47 pm
+Whenever I upgrade either the kernel or the driver, I have to manually force-rebuild nvidia akmod after the reboot, otherwise my external monitor isn’t recognized (which usually is a signal that Nvidia driver isn’t loaded, because on my laptop nouveau cannot activate the external monitor). Does it happen to anyone else? Am I missing something?
+Reply to Andre Costa
+SLAANESH 
+May 31, 2024 at 11:35 am
+If you use akmods, the kernel modules are rebuilt not at install time like for DKMS but when the system boots.
+Reply to slaanesh
+DA GUNNY 
+July 16, 2023 at 4:42 pm
+Is it possible to get a ccextractor for Fedora 38 available to your repo for dnf install to add to makemkv?
+Reply to Da Gunny
+SLAANESH 
+August 8, 2023 at 6:34 pm
+A bundled copy of ccextractor used by MakeMKV is already bundled in the package:
+$ rpm -ql makemkv | grep ccextr
+/usr/bin/mmccextr
+$ mmccextr --version
+CCExtractor 0.88, Carlos Fernandez Sanz, Volker Quetschke.
+Teletext portions taken from Petr Kutalek's telxcc
+This is a reduced-functionality version optimised for DVD closed captions transcoding.
+CCExtractor detailed version info
+Version: 0.88
+Platform: x86_64-redhat-linux
+Compilation date: Sun Jun 4 20:39:02 CEST 2023
+This is a reduced-functionality version
+optimised for DVD closed captions transcoding.
+Reply to slaanesh
+DAVIDMH 
+May 8, 2023 at 4:41 pm
+I have tried to install this in a fresh installation of Fedora 38. dnf install nvidia-driver nvidia-settings pulls in the akmods and everything, but rebooting the main screen is blank. I can switch to TTY and SSH, dmesg reports everything nvidia is loaded correctly.
+The card is a RTX 2070Ti.
+Am I missing something?
+Reply to Davidmh
+DAVIDMH 
+May 11, 2023 at 4:46 pm
+I am now using CUDA under nouveau drivers, using nvidia-driver-cuda. It seems to work, at least, but it would be nice to know what is wrong.
+When booting on nvidia-driver, dmesg shows it loading correctly, and I can’t find anything else wrong. The main screen is just blank.
+Reply to Davidmh
+DAVIDMH 
+August 16, 2023 at 12:08 pm
+I have a suspicion now. I noticed that a naive update is pulling files from rpmfusion, and some have version mismatches.
+For example, now the latest version of the driver in the repo is 535.86.05, but dnf update wants to pull nvidia-modprobe 3:535.98-1.fc38, among others.
+Reply to Davidmh
+GIACOMOB58 
+May 5, 2023 at 5:52 pm
+This repository has some interesting features, but it seems to lack the necessary support for Secure Boot. In my opinion a user should not have to disable Secure Boot in BIOS before updating the NVidia driver, then sign the new kernel module and finally re-enable Secure Boot in BIOS.
+ElRepo provides signed NVidia drivers and has good support for Secure Boot. Details are available on the wiki page at http://elrepo.org/tiki/SecureBootKey.
+Reply to giacomob58
+SLAANESH 
+August 8, 2023 at 6:42 pm
+If you use DKMS, you just need to import the DKMS key: /var/lib/dkms/mok.pub
+DKMS already signs all built modules with a per system unique key by default.
+If you use akmods, you need to import this: /usr/src/akmods/mok.der
+This is a custom addition I added to the AKMOD: https://github.com/negativo17/nvidia-kmod/blob/master/nvidia-kmod.spec#L19-L27
+Reply to slaanesh
+#####
+#Example of spec file from his github.:
+%global debug_package %{nil}
+%global __brp_strip %{nil}
+%global __brp_ldconfig %{nil}
+%define _build_id_links none
+
+# systemd 248+
+%if 0%{?rhel} == 8
+%global _systemd_util_dir %{_prefix}/lib/systemd
+%endif
+
+Name:           nvidia-driver
+Version:        570.124.04
+Release:        3%{?dist}
+Summary:        NVIDIA's proprietary display driver for NVIDIA graphic cards
+Epoch:          3
+License:        NVIDIA License
+URL:            http://www.nvidia.com/object/unix.html
+ExclusiveArch:  %{ix86} x86_64 aarch64
+
+Source0:        %{name}-%{version}-i386.tar.xz
+Source1:        %{name}-%{version}-x86_64.tar.xz
+Source2:        %{name}-%{version}-aarch64.tar.xz
+Source8:        70-nvidia-driver.preset
+Source9:        70-nvidia-driver-cuda.preset
+Source10:       10-nvidia.conf
+Source13:       alternate-install-present
+
+Source40:       com.nvidia.driver.metainfo.xml
+Source41:       parse-supported-gpus.py
+Source42:       com.nvidia.driver.png
+
+Source99:       nvidia-generate-tarballs.sh
+
+%ifarch x86_64 aarch64
+BuildRequires:  libappstream-glib
+%if 0%{?rhel} == 8
+# xml.etree.ElementTree has indent only from 3.9+:
+BuildRequires:  python(abi) >= 3.9
+%else
+BuildRequires:  python3
+%endif
+BuildRequires:  systemd-rpm-macros
+%endif
+
+Requires:       nvidia-driver-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+
+Conflicts:      nvidia-x11-drv
+Conflicts:      nvidia-x11-drv-470xx
+Conflicts:      xorg-x11-drv-nvidia
+Conflicts:      xorg-x11-drv-nvidia-470xx
+
+%description
+This package provides the most recent NVIDIA display driver which allows for
+hardware accelerated rendering with recent NVIDIA chipsets.
+
+For the full product support list, please consult the release notes for driver
+version %{version}.
+
+%package libs
+Summary:        Libraries for %{name}
+Requires:       egl-gbm%{?_isa} >= 2:1.1.2
+Requires:       egl-wayland%{?_isa} >= 1.1.13.1
+Requires:       egl-x11%{?_isa}
+Requires:       libvdpau%{?_isa} >= 0.5
+Requires:       libglvnd%{?_isa} >= 1.0
+Requires:       libglvnd-egl%{?_isa} >= 1.0
+Requires:       libglvnd-gles%{?_isa} >= 1.0
+Requires:       libglvnd-glx%{?_isa} >= 1.0
+Requires:       libglvnd-opengl%{?_isa} >= 1.0
+Requires:       libnvidia-ml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       vulkan-loader
+
+Conflicts:      nvidia-x11-drv-libs
+Conflicts:      nvidia-x11-drv-470xx-libs
+Conflicts:      xorg-x11-drv-nvidia-libs
+Conflicts:      xorg-x11-drv-nvidia-470xx-libs
+
+%description libs
+This package provides the shared libraries for %{name}.
+
+%package cuda-libs
+Summary:        Libraries for %{name}-cuda
+Provides:       %{name}-devel = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      %{name}-devel < %{?epoch:%{epoch}:}%{version}-%{release}
+Requires:       libnvidia-ml = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%ifarch x86_64 aarch64
+Requires:       libnvidia-cfg = %{?epoch:%{epoch}:}%{version}-%{release}
+%endif
+
+Conflicts:      xorg-x11-drv-nvidia-cuda-libs
+Conflicts:      xorg-x11-drv-nvidia-470xx-cuda-libs
+
+%description cuda-libs
+This package provides the CUDA libraries for %{name}-cuda.
+
+%package -n libnvidia-fbc
+Summary:        NVIDIA OpenGL-based Framebuffer Capture libraries
+Provides:       nvidia-driver-NvFBCOpenGL = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      nvidia-driver-NvFBCOpenGL < %{?epoch:%{epoch}:}%{version}-%{release}
+# Loads libnvidia-encode.so at runtime
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n libnvidia-fbc
+This library provides a high performance, low latency interface to capture and
+optionally encode the composited framebuffer of an X screen. NvFBC are private
+APIs that are only available to NVIDIA approved partners for use in remote
+graphics scenarios.
+
+%package -n libnvidia-ml
+Summary:        NVIDIA Management Library (NVML)
+Provides:       cuda-nvml%{?_isa} = %{?epoch:%{epoch}:}%{version}-%{release}
+Provides:       nvidia-driver-NVML = %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes:      nvidia-driver-NVML < %{?epoch:%{epoch}:}%{version}-%{release}
+
+%description -n libnvidia-ml
+A C-based API for monitoring and managing various states of the NVIDIA GPU
+devices. It provides a direct access to the queries and commands exposed via
+nvidia-smi. The run-time version of NVML ships with the NVIDIA display driver,
+and the SDK provides the appropriate header, stub libraries and sample
+applications. Each new version of NVML is backwards compatible and is intended
+to be a platform for building 3rd party applications.
+
+%ifarch x86_64 aarch64
+
+%package -n libnvidia-cfg
+Summary:        NVIDIA Config public interface (nvcfg)
+
+%description -n libnvidia-cfg
+This package contains the private libnvidia-cfg runtime library which is used by
+other driver components.
+
+%package cuda
+Summary:        CUDA integration for %{name}
+Requires:       %{name}-cuda-libs%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-kmod-common = %{?epoch:%{epoch}:}%{version}
+Requires:       nvidia-persistenced = %{?epoch:%{epoch}:}%{version}
+Requires:       (ocl-icd or OpenCL-ICD-Loader)
+Requires:       opencl-filesystem
+
+Conflicts:      xorg-x11-drv-nvidia-cuda
+Conflicts:      xorg-x11-drv-nvidia-470xx-cuda
+
+%description cuda
+This package provides the CUDA integration components for %{name}.
+
+%if 0%{?fedora} || 0%{?rhel} < 10
+%package -n xorg-x11-nvidia
+Summary:        X.org X11 NVIDIA driver and extensions
+Requires:       %{name}%{?_isa} = %{?epoch:%{epoch}:}%{version}
+Requires:       xorg-x11-server-Xorg%{?_isa}
+Supplements:    (nvidia-driver and xorg-x11-server-Xorg)
+
+Conflicts:      xorg-x11-drv-nvidia
+Conflicts:      xorg-x11-drv-nvidia-470xx
+
+%description -n xorg-x11-nvidia
+The NVIDIA X.org X11 driver and associated components.
+%endif
+
+%endif
+ 
+%prep
+%ifarch %{ix86}
+%setup -q -n %{name}-%{version}-i386
+%endif
+
+%ifarch x86_64
+%setup -q -T -b 1 -n %{name}-%{version}-x86_64
+%endif
+
+%ifarch aarch64
+%setup -q -T -b 2 -n %{name}-%{version}-aarch64
+%endif
+
+%ifarch x86_64
+%if 0%{?rhel} == 8
+rm -f libnvidia-pkcs11-openssl3.so.%{version}
+%else
+rm -f libnvidia-pkcs11.so.%{version}
+%endif
+%endif
+
+# Create symlinks for shared objects
+ldconfig -vn .
+
+# Required for building gstreamer 1.0 NVENC plugins
+ln -sf libnvidia-encode.so.%{version} libnvidia-encode.so
+
+# Required for building ffmpeg 3.1 Nvidia CUVID
+ln -sf libnvcuvid.so.%{version} libnvcuvid.so
+
+# Required for building against CUDA
+ln -sf libcuda.so.%{version} libcuda.so
+
+%build
+
+%install
+# EGL loader
+install -p -m 0644 -D 10_nvidia.json %{buildroot}%{_datadir}/glvnd/egl_vendor.d/10_nvidia.json
+
+# Vulkan loader
+install -p -m 0644 -D nvidia_icd.json %{buildroot}%{_datadir}/vulkan/icd.d/nvidia_icd.%{_target_cpu}.json
+sed -i -e 's|libGLX_nvidia|%{_libdir}/libGLX_nvidia|g' %{buildroot}%{_datadir}/vulkan/icd.d/nvidia_icd.%{_target_cpu}.json
+
+%ifarch x86_64
+# Vulkan SC loader and compiler
+install -p -m 0644 -D nvidia_icd_vksc.json %{buildroot}%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
+sed -i -e 's|libnvidia-vksc-core|%{_libdir}/libnvidia-vksc-core|g' %{buildroot}%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
+install -p -m 0755 -D nvidia-pcc %{buildroot}%{_bindir}/nvidia-pcc
+%endif
+
+# Unique libraries
+mkdir -p %{buildroot}%{_libdir}/vdpau/
+cp -a lib*GL*_nvidia.so* libcuda*.so* libnv*.so* %{buildroot}%{_libdir}/
+cp -a libvdpau_nvidia.so* %{buildroot}%{_libdir}/vdpau/
+
+%if 0%{?fedora} || 0%{?rhel} >= 9
+# GBM loader
+mkdir -p %{buildroot}%{_libdir}/gbm/
+ln -sf ../libnvidia-allocator.so.%{version} %{buildroot}%{_libdir}/gbm/nvidia-drm_gbm.so
+%endif
+
+%ifarch x86_64
+
+# NGX Proton/Wine library
+mkdir -p %{buildroot}%{_libdir}/nvidia/wine/
+cp -a *.dll %{buildroot}%{_libdir}/nvidia/wine/
+
+%endif
+
+%ifarch x86_64 aarch64
+
+# alternate-install-present file triggers runfile warning
+install -m 0755 -d %{buildroot}/usr/lib/nvidia/
+install -p -m 0644 %{SOURCE13} %{buildroot}/usr/lib/nvidia/
+
+# Empty?
+mkdir -p %{buildroot}%{_sysconfdir}/nvidia/
+
+# OpenCL config
+install -p -m 0755 -D nvidia.icd %{buildroot}%{_sysconfdir}/OpenCL/vendors/nvidia.icd
+
+# Binaries
+mkdir -p %{buildroot}%{_bindir}
+install -p -m 0755 nvidia-{debugdump,smi,cuda-mps-control,cuda-mps-server,bug-report.sh,ngx-updater,powerd} %{buildroot}%{_bindir}
+
+# Man pages
+mkdir -p %{buildroot}%{_mandir}/man1/
+install -p -m 0644 nvidia-{smi,cuda-mps-control}*.gz %{buildroot}%{_mandir}/man1/
+
+%if 0%{?fedora} || 0%{?rhel} < 10
+# X stuff
+install -p -m 0644 -D %{SOURCE10} %{buildroot}%{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
+install -p -m 0755 -D nvidia_drv.so %{buildroot}%{_libdir}/xorg/modules/drivers/nvidia_drv.so
+install -p -m 0755 -D libglxserver_nvidia.so.%{version} %{buildroot}%{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
+%endif
+
+# NVIDIA specific configuration files
+mkdir -p %{buildroot}%{_datadir}/nvidia/
+install -p -m 0644 nvidia-application-profiles-%{version}-key-documentation \
+    %{buildroot}%{_datadir}/nvidia/
+install -p -m 0644 nvidia-application-profiles-%{version}-rc \
+    %{buildroot}%{_datadir}/nvidia/
+
+# OptiX
+install -p -m 0644 nvoptix.bin %{buildroot}%{_datadir}/nvidia/
+
+# Systemd units and script for suspending/resuming
+mkdir -p %{buildroot}%{_systemd_util_dir}/system-preset/
+install -p -m 0644 %{SOURCE8} %{SOURCE9} %{buildroot}%{_systemd_util_dir}/system-preset/
+mkdir -p %{buildroot}%{_unitdir}/
+install -p -m 0644 systemd/system/*.service %{buildroot}%{_unitdir}/
+install -p -m 0755 systemd/nvidia-sleep.sh %{buildroot}%{_bindir}/
+install -p -m 0755 -D systemd/system-sleep/nvidia %{buildroot}%{_systemd_util_dir}/system-sleep/nvidia
+install -p -m 0644 -D nvidia-dbus.conf %{buildroot}%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
+
+# Ignore powerd binary exiting if hardware is not present
+# We should check for information in the DMI table
+sed -i -e 's/ExecStart=/ExecStart=-/g' %{buildroot}%{_unitdir}/nvidia-powerd.service
+
+# Vulkan layer
+install -p -m 0644 -D nvidia_layers.json %{buildroot}%{_datadir}/vulkan/implicit_layer.d/nvidia_layers.json
+
+# Install AppData and add modalias provides, do not use appstream-util add-provide as it mangles the xml
+install -p -m 0644 -D %{SOURCE40} %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
+%{SOURCE41} supported-gpus/supported-gpus.json %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
+mkdir -p %{buildroot}%{_datadir}/pixmaps/
+cp %{SOURCE42} %{buildroot}%{_datadir}/pixmaps/
+
+# nvsandboxutils configuration
+install -p -m 0644 -D sandboxutils-filelist.json %{buildroot}%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
+
+# dnf needs-restarting plugin
+# dnf4 only for the moment: https://github.com/rpm-software-management/dnf5/issues/1815
+%if 0%{?fedora} < 42 || 0%{?rhel}
+mkdir -p %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d
+echo %{name} > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+echo %{name}-cuda > %{buildroot}%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%endif
+
+%check
+# Using appstreamcli: appstreamcli validate --strict
+# Icon type local is not supported by appstreamcli for drivers
+appstream-util validate --nonet %{buildroot}%{_metainfodir}/com.nvidia.driver.metainfo.xml
+
+%endif
+
+%ifarch x86_64 aarch64
+
+%post
+%systemd_post nvidia-hibernate.service
+%systemd_post nvidia-powerd.service
+%systemd_post nvidia-resume.service
+%systemd_post nvidia-suspend.service
+%systemd_post nvidia-suspend-then-hibernate.service
+
+%preun
+%systemd_preun nvidia-hibernate.service
+%systemd_preun nvidia-powerd.service
+%systemd_preun nvidia-resume.service
+%systemd_preun nvidia-suspend.service
+%systemd_preun nvidia-suspend-then-hibernate.service
+
+%postun
+%systemd_postun nvidia-hibernate.service
+%systemd_postun nvidia-powerd.service
+%systemd_postun nvidia-resume.service
+%systemd_postun nvidia-suspend.service
+%systemd_postun nvidia-suspend-then-hibernate.service
+
+%endif
+
+%ifarch x86_64 aarch64
+
+%files
+%license LICENSE
+%doc NVIDIA_Changelog README.txt html supported-gpus/supported-gpus.json
+%dir %{_sysconfdir}/nvidia
+%{_bindir}/nvidia-bug-report.sh
+%{_bindir}/nvidia-ngx-updater
+%ifarch x86_64
+%{_bindir}/nvidia-pcc
+%endif
+%{_bindir}/nvidia-powerd
+%{_bindir}/nvidia-sleep.sh
+%{_metainfodir}/com.nvidia.driver.metainfo.xml
+%{_datadir}/dbus-1/system.d/nvidia-dbus.conf
+%{_datadir}/nvidia/nvidia-application-profiles*
+%{_datadir}/pixmaps/com.nvidia.driver.png
+%{_systemd_util_dir}/system-preset/70-nvidia-driver.preset
+%{_systemd_util_dir}/system-sleep/nvidia
+%{_unitdir}/nvidia-hibernate.service
+%{_unitdir}/nvidia-powerd.service
+%{_unitdir}/nvidia-resume.service
+%{_unitdir}/nvidia-suspend.service
+%{_unitdir}/nvidia-suspend-then-hibernate.service
+%if 0%{?fedora} < 42 || 0%{?rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}.conf
+%endif
+
+%if 0%{?fedora} || 0%{?rhel} < 10
+%files -n xorg-x11-nvidia
+%config(noreplace) %{_sysconfdir}/X11/xorg.conf.d/10-nvidia.conf
+%{_libdir}/xorg/modules/extensions/libglxserver_nvidia.so
+%{_libdir}/xorg/modules/drivers/nvidia_drv.so
+%endif
+
+%files -n libnvidia-cfg
+%{_libdir}/libnvidia-cfg.so.1
+%{_libdir}/libnvidia-cfg.so.%{version}
+
+%files cuda
+%{_sysconfdir}/OpenCL/vendors/*
+%{_bindir}/nvidia-cuda-mps-control
+%{_bindir}/nvidia-cuda-mps-server
+%{_bindir}/nvidia-debugdump
+%{_bindir}/nvidia-smi
+%{_datadir}/nvidia/files.d/sandboxutils-filelist.json
+%{_mandir}/man1/nvidia-cuda-mps-control.1.*
+%{_mandir}/man1/nvidia-smi.*
+%{_prefix}/lib/nvidia/alternate-install-present
+%{_systemd_util_dir}/system-preset/70-nvidia-driver-cuda.preset
+%if 0%{?fedora} < 42 || 0%{?rhel}
+%{_sysconfdir}/dnf/plugins/needs-restarting.d/%{name}-cuda.conf
+%endif
+
+%endif
+
+%files libs
+%{_datadir}/glvnd/egl_vendor.d/10_nvidia.json
+%{_datadir}/vulkan/icd.d/nvidia_icd.%{_target_cpu}.json
+%if 0%{?fedora} || 0%{?rhel} >= 9
+%dir %{_libdir}/gbm
+%{_libdir}/gbm/nvidia-drm_gbm.so
+%endif
+%{_libdir}/libEGL_nvidia.so.0
+%{_libdir}/libEGL_nvidia.so.%{version}
+%{_libdir}/libGLESv1_CM_nvidia.so.1
+%{_libdir}/libGLESv1_CM_nvidia.so.%{version}
+%{_libdir}/libGLESv2_nvidia.so.2
+%{_libdir}/libGLESv2_nvidia.so.%{version}
+%{_libdir}/libGLX_nvidia.so.0
+%{_libdir}/libGLX_nvidia.so.%{version}
+%{_libdir}/libnvidia-allocator.so.1
+%{_libdir}/libnvidia-allocator.so.%{version}
+%{_libdir}/libnvidia-eglcore.so.%{version}
+%{_libdir}/libnvidia-glcore.so.%{version}
+%{_libdir}/libnvidia-glsi.so.%{version}
+%{_libdir}/libnvidia-glvkspirv.so.%{version}
+%{_libdir}/libnvidia-gpucomp.so.%{version}
+%{_libdir}/libnvidia-tls.so.%{version}
+%{_libdir}/vdpau/libvdpau_nvidia.so.1
+%{_libdir}/vdpau/libvdpau_nvidia.so.%{version}
+%ifarch x86_64 aarch64
+%{_datadir}/nvidia/nvoptix.bin
+%{_datadir}/vulkan/implicit_layer.d/nvidia_layers.json
+%{_libdir}/libnvidia-api.so.1
+%{_libdir}/libnvidia-ngx.so.1
+%{_libdir}/libnvidia-ngx.so.%{version}
+%{_libdir}/libnvidia-rtcore.so.%{version}
+%{_libdir}/libnvoptix.so.1
+%{_libdir}/libnvoptix.so.%{version}
+%endif
+%ifarch x86_64
+%{_datadir}/vulkansc/icd.d/nvidia_icd.%{_target_cpu}.json
+%{_libdir}/libnvidia-vksc-core.so.1
+%{_libdir}/libnvidia-vksc-core.so.%{version}
+%dir %{_libdir}/nvidia
+%dir %{_libdir}/nvidia/wine
+%{_libdir}/nvidia/wine/_nvngx.dll
+%{_libdir}/nvidia/wine/nvngx.dll
+%{_libdir}/nvidia/wine/nvngx_dlssg.dll
+%endif
+
+%files cuda-libs
+%{_libdir}/libcuda.so
+%{_libdir}/libcuda.so.1
+%{_libdir}/libcuda.so.%{version}
+%{_libdir}/libnvcuvid.so
+%{_libdir}/libnvcuvid.so.1
+%{_libdir}/libnvcuvid.so.%{version}
+%{_libdir}/libnvidia-encode.so
+%{_libdir}/libnvidia-encode.so.1
+%{_libdir}/libnvidia-encode.so.%{version}
+%{_libdir}/libnvidia-nvvm.so.4
+%{_libdir}/libnvidia-nvvm.so.%{version}
+%{_libdir}/libnvidia-opencl.so.1
+%{_libdir}/libnvidia-opencl.so.%{version}
+%{_libdir}/libnvidia-opticalflow.so.1
+%{_libdir}/libnvidia-opticalflow.so.%{version}
+%{_libdir}/libnvidia-ptxjitcompiler.so.1
+%{_libdir}/libnvidia-ptxjitcompiler.so.%{version}
+%ifarch x86_64 aarch64
+%{_libdir}/libcudadebugger.so.1
+%{_libdir}/libcudadebugger.so.%{version}
+%endif
+%ifarch x86_64
+%if 0%{?rhel} == 8
+%{_libdir}/libnvidia-pkcs11.so.%{version}
+%else
+%{_libdir}/libnvidia-pkcs11-openssl3.so.%{version}
+%endif
+%{_libdir}/libnvidia-sandboxutils.so.1
+%{_libdir}/libnvidia-sandboxutils.so.%{version}
+%endif
+
+%files -n libnvidia-fbc
+%{_libdir}/libnvidia-fbc.so.1
+%{_libdir}/libnvidia-fbc.so.%{version}
+
+%files -n libnvidia-ml
+%{_libdir}/libnvidia-ml.so.1
+%{_libdir}/libnvidia-ml.so.%{version}
+
+%changelog
+* Thu Mar 13 2025 Simone Caronni <negativo17@gmail.com> - 3:570.124.04-3
+- Remove workaround for system sleep on systemd 256+.
+
+* Wed Mar 12 2025 Simone Caronni <negativo17@gmail.com> - 3:570.124.04-2
+- Add DNF4 needs-restarting plugin support.
+
+* Fri Feb 28 2025 Simone Caronni <negativo17@gmail.com> - 3:570.124.04-1
+- Update to 570.124.04.
+
+* Sat Feb 08 2025 Simone Caronni <negativo17@gmail.com> - 3:570.86.16-2
+- Do not build X components for el10+.
+
+* Fri Jan 31 2025 Simone Caronni <negativo17@gmail.com> - 3:570.86.16-1
+- Update to 570.86.16.
+
+* Mon Jan 27 2025 Simone Caronni <negativo17@gmail.com> - 3:570.86.15-1
+- Update to 570.86.15.
+
+* Mon Jan 20 2025 Simone Caronni <negativo17@gmail.com> - 3:565.77-2
+- Allow using OpenCL-ICD-Loader in place of ocl-icd.
+
+* Thu Dec 05 2024 Simone Caronni <negativo17@gmail.com> - 3:565.77-1
+- Update to 565.77.
+
+* Mon Nov 25 2024 Simone Caronni <negativo17@gmail.com> - 3:565.57.01-5
+- Switch back to local icon.
+
+* Fri Nov 15 2024 Simone Caronni <negativo17@gmail.com> - 3:565.57.01-4
+- Do not manipulate appstream metadata using libappstream-glib.
+
+* Sat Nov 09 2024 Simone Caronni <negativo17@gmail.com> - 3:565.57.01-3
+- Switch to remote icon for Appstream metadata. "appstremcli validate", instead
+  of "appstream-util validate", prints out that local is not a valid icon type,
+  even if the documentation says so.
+
+* Sun Oct 27 2024 Simone Caronni <negativo17@gmail.com> - 3:565.57.01-2
+- Add workaround for system sleep on systemd 256+.
+
+* Wed Oct 23 2024 Simone Caronni <negativo17@gmail.com> - 3:565.57.01-1
+- Update to 565.57.01.
+
+* Thu Oct 10 2024 Simone Caronni <negativo17@gmail.com> - 3:560.35.03-4
+- Enable nvidia-persistenced by default if installed through a systemd preset.
+
+* Wed Sep 04 2024 Simone Caronni <negativo17@gmail.com> - 3:560.35.03-3
+- Unbundle nvidia-egl-platform-base.
+
+* Fri Aug 30 2024 Simone Caronni <negativo17@gmail.com> - 3:560.35.03-2
+- Split out X.org components.
+
+* Wed Aug 21 2024 Simone Caronni <negativo17@gmail.com> - 3:560.35.03-1
+- Update to 560.35.03.
+
+* Tue Aug 06 2024 Simone Caronni <negativo17@gmail.com> - 3:560.31.02-1
+- Update to 560.31.02.
+- Update EGL requirements.
+
+* Mon Aug 05 2024 Simone Caronni <negativo17@gmail.com> - 3:560.28.03-1
+- Update to 560.28.03.
+- Add Vulkan Safety Critical library and offline Pipeline Cache Compiler.
+- Temporarily add new EGL libraries.
+
+* Mon Jul 15 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58.02-3
+- Provider of cuda-nvml still needs _isa.
+
+* Sat Jul 13 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58.02-2
+- Remove isa Provides/Requires.
+
+* Tue Jul 02 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58.02-1
+- Update to 555.58.02.
+- Reorganize some libraries that get dynamically opened by other components.
+
+* Sat Jun 29 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58-4
+- Adjust Appstream icon path.
+
+* Fri Jun 28 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58-3
+- Switch to local icon for Appstream metadata before madness takes over.
+
+* Fri Jun 28 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58-2
+- Make sure there are no redirects in the Appstream metadata URLs.
+
+* Thu Jun 27 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58-1
+- Update to 555.58.
+
+* Wed Jun 26 2024 Simone Caronni <negativo17@gmail.com> - 3:555.52.04-2
+- Update AppData metadata, add new custom key entry:
+  https://gitlab.gnome.org/GNOME/gnome-software/-/merge_requests/2034
+
+* Thu Jun 06 2024 Simone Caronni <negativo17@gmail.com>
+- Update to 555.52.04.
+
+* Fri May 31 2024 Simone Caronni <negativo17@gmail.com> - 3:555.42.02-3
+- Fix file format specification for Vulkan layers.
+
+* Mon May 27 2024 Simone Caronni <negativo17@gmail.com> - 3:555.42.02-2
+- Add GBM loader library symlink also for i686 libraries (#156).
+- Also own the %%_libdir/gbm directory.
+
+* Wed May 22 2024 Simone Caronni <negativo17@gmail.com> - 3:555.42.02-1
+- Update to 555.42.02.
+
+* Fri Apr 26 2024 Simone Caronni <negativo17@gmail.com> - 3:550.78-1
+- Update to 550.78.
+
+* Fri Apr 26 2024 Simone Caronni <negativo17@gmail.com> - 3:550.76-2
+- Install Vulkan loader in a more similar way to Mesa packages.
+
+* Thu Apr 18 2024 Simone Caronni <negativo17@gmail.com> - 3:550.76-1
+- Update to 550.76.
+
+* Mon Apr 15 2024 Simone Caronni <negativo17@gmail.com> - 3:550.67-2
+- Fix egl requirements.
+
+* Sun Mar 24 2024 Simone Caronni <negativo17@gmail.com> - 3:550.67-1
+- Update to 550.67.
+
+* Thu Mar 14 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-3
+- Clean up SPEC file.
+
+* Fri Mar 08 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-2
+- Add support for aarch64.
+- Clean up SPEC file.
+
+* Sun Mar 03 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-1
+- Update to 550.54.14.
+
+* Thu Feb 22 2024 Simone Caronni <negativo17@gmail.com> - 3:550.40.07-1
+- Update to 550.40.07.
+
+* Fri Feb 16 2024 Simone Caronni <negativo17@gmail.com> - 3:545.29.06-3
+- Re-add explicit egl-wayland dependency (reverts
+  cd6f2b9044d90f71f94fa91be1cc0cad343a1560).
