@@ -1,4 +1,4 @@
-Generated: 2025-03-15 19:37:36.358721
+Generated: 2025-03-18 17:27:21.098887
 Package Build Status:
 ------------------------------
 Package: alsa-lib
@@ -148,6 +148,12 @@ Package: dhcpcd
 Package: diffutils
     - Spec file: Found
     - Tarballs: diffutils-3.9.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: dkms
+    - Spec file: Found
+    - Tarballs: dkms-3.1.6.tar.gz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -553,9 +559,21 @@ Package: nymph-accessibility
     - SRPMs: None
     - RPMs: None
 ----------
+Package: nymph-cuda
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: nymph-keybindings
     - Spec file: Found
     - Tarballs: nymph-keybindings-1.0.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-nvidia
+    - Spec file: Missing
+    - Tarballs: None
     - SRPMs: None
     - RPMs: None
 ----------
@@ -831,5 +849,5 @@ Package: zlib
 ----------
 
 Summary:
-Total Packages: 138
-Packages with Missing Spec Files: 0
+Total Packages: 141
+Packages with Missing Spec Files: 2
