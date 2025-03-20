@@ -1,0 +1,4 @@
+nymph-apps.vala
+nymph-apps.desktop
+makefile
+nymph-apps.spec

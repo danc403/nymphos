@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Application Launcher
+Comment=Launch applications from a graphical interface
+Exec=nymph-apps
+Icon=application-x-executable # Or a more appropriate icon if available
+Terminal=false
+Type=Application
+Categories=Utility;GNOME;GTK;
+StartupNotify=true

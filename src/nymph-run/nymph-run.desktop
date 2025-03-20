@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Nymph Run
+Comment=Run the Nymph application
+Exec=nymph-run
+Icon=application-x-executable
+Terminal=false
+Categories=Utilities;System

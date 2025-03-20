@@ -50,8 +50,9 @@ public class RunDialog : Dialog {
         this.response.connect((response_id) => {
             switch (response_id) {
                 case ResponseType.OK:
-                    run_command(command_entry.get_text());
-                    this.close();
+                    string command = command_entry.get_text();
+                    run_command(command);
+                    this.close(); // Close after running, crucial for single command and exit.
                     break;
                 case ResponseType.CANCEL:
                     this.close();
@@ -77,7 +78,7 @@ public class RunDialog : Dialog {
         try {
             // Execute the command using GLib.spawn_command_line_async
             string[] argv = { "/bin/sh", "-c", command };
-            bool success = GLib.spawn_async(null, argv, null, SpawnFlags.SEARCH_PATH, null, out int pid);
+            bool success = GLib.spawn_async(null, argv, null, SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD, null, out int pid);  //Crucial Change: DO_NOT_REAP_CHILD
 
             if (!success) {
                 print("Failed to execute command: %s\n", command);
@@ -107,25 +108,12 @@ public class Application : Gtk.Application {
         Object(application_id: "org.example.rundialog");
         this.register_for_all();
         this.activate.connect(() => {
-           if(main_window == null){
-                main_window = new Window(Gtk.ApplicationWindowType.TOPLEVEL);
-                main_window.set_title("Run Dialog Example");
-                main_window.set_default_size(400, 200);
-                main_window.destroy.connect(() => {
-                    main_window = null;
-                });
-
-                var button = new Button.with_label("Open Run Dialog");
-                button.clicked.connect(() => {
-                    var dialog = new RunDialog(main_window);
-                    dialog.show();
-                    dialog.run();
-                    dialog.destroy();
-                });
-                main_window.set_child(button);
-           }
-
-            main_window.present();
+            // Open Run Dialog directly on activation.  No main window needed.
+            var dialog = new RunDialog(null);
+            dialog.show();
+            dialog.run(); // This will block until the dialog is closed (response is received).
+            dialog.destroy();
+            quit(); // Quit the application after the dialog is closed.
 
         });
     }

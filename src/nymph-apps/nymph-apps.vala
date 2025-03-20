@@ -264,17 +264,78 @@ public class ApplicationWindow : Gtk.Window {
     }
 
     private Gdk.Pixbuf get_icon_for_desktop_entry(DesktopAppInfo desktop_entry) {
-        string icon_name = desktop_entry.get_icon_name();
-        if (icon_name == null) {
-            return new Gdk.Pixbuf.from_resource("/path/to/default/icon.png"); // Use a default icon
+        string? icon_name = desktop_entry.get_icon_name();
+
+        if (icon_name == null || icon_name == "") {
+            return get_default_icon();
         }
+        
+        Gdk.Pixbuf? icon = null;
+
+        // Try to load icon from user's home directory first
+        string user_icon_path = Path.build_filename(Environment.get_home_dir(), ".icons", icon_name + ".png");
+        if (File.test(user_icon_path, FileTest.EXISTS)) {
+            try {
+                icon = new Gdk.Pixbuf.from_file_at_size(user_icon_path, 24, 24);
+                return icon;
+            } catch (Error e) {
+                stderr.printf("Error loading user icon %s: %s\n", user_icon_path, e.message);
+            }
+        }
+
+        user_icon_path = Path.build_filename(Environment.get_home_dir(), ".icons", icon_name + ".svg");
+        if (File.test(user_icon_path, FileTest.EXISTS)) {
+            try {
+                icon = new Gdk.Pixbuf.from_file_at_size(user_icon_path, 24, 24);
+                return icon;
+            } catch (Error e) {
+                stderr.printf("Error loading user icon %s: %s\n", user_icon_path, e.message);
+            }
+        }
+
+
+        // Fallback to system icon theme
         try {
-            return IconTheme.get_default().load_icon(icon_name, 24, IconLookupFlags.FORCE_SIZE);
+            icon = IconTheme.get_default().load_icon(icon_name, 24, IconLookupFlags.FORCE_SIZE);
+            if (icon != null) {
+                return icon;
+            }
         } catch (Error e) {
-            stderr.printf("Error loading icon %s: %s\n", icon_name, e.message);
-            return new Gdk.Pixbuf.from_resource("/path/to/default/icon.png"); // Use a default icon
+            stderr.printf("Error loading icon %s from theme: %s\n", icon_name, e.message);
         }
+        
+        //If all else fails, return a default icon
+        return get_default_icon();
     }
+
+
+    private Gdk.Pixbuf get_default_icon() {
+          try {
+            // Attempt to load the "application-x-executable" icon from the system theme.
+            Gdk.Pixbuf? icon = IconTheme.get_default().load_icon("application-x-executable", 24, IconLookupFlags.FORCE_SIZE);
+            if (icon != null) {
+                return icon;
+            }
+          } catch (Error e) {
+             stderr.printf("Error loading default icon from theme: %s\n", e.message);
+             // Fallback to a hardcoded path only as a last resort, as this may not exist on all systems
+             try {
+               return new Gdk.Pixbuf.from_file("/usr/share/icons/gnome/24x24/apps/application-default-icon.png");  //fallback to standard icon, might not work on all systems.
+            } catch (Error e2) {
+                 stderr.printf("Error loading fallback icon: %s\n", e2.message);
+                 // Return a tiny transparent pixbuf as a last resort to avoid crashing
+                  return new Gdk.Pixbuf(Colorspace.RGB, true, 8, 1, 1).fill(0x00000000);
+             }
+
+
+          }
+
+         // If the icon isn't found and no exception occurred, create a tiny transparent pixbuf
+        return new Gdk.Pixbuf(Colorspace.RGB, true, 8, 1, 1).fill(0x00000000);
+
+     }
+
+
 
     private void launch_application(string desktop_file_path) {
         try {
