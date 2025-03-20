@@ -1,4 +1,4 @@
-Generated: 2025-03-19 22:58:32.408335
+Generated: 2025-03-20 16:53:51.722723
 Package Build Status:
 ------------------------------
 Package: fbpanel
@@ -9,7 +9,7 @@ Package: fbpanel
 ----------
 Package: nymph-apps
     - Spec file: Missing
-    - Tarballs: None
+    - Tarballs: nymph-apps-1.0.tar.xz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -79,6 +79,12 @@ Package: nymph-wallpaper-switcher
     - SRPMs: None
     - RPMs: None
 ----------
+Package: stallman
+    - Spec file: Missing
+    - Tarballs: stallman-1.0.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: vala
     - Spec file: Missing
     - Tarballs: vala-0.56.17.tar.gz
@@ -87,5 +93,5 @@ Package: vala
 ----------
 
 Summary:
-Total Packages: 14
-Packages with Missing Spec Files: 14
+Total Packages: 15
+Packages with Missing Spec Files: 15
