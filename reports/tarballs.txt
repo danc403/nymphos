@@ -1,4 +1,4 @@
-Generated: 2025-03-20 12:40:29.095256
+Generated: 2025-03-20 13:01:17.726534
 Package Build Status:
 ------------------------------
 Package: alsa-lib
@@ -757,6 +757,12 @@ Package: speech-dispatcher
     - SRPMs: None
     - RPMs: None
 ----------
+Package: stallman
+    - Spec file: Found
+    - Tarballs: stallman-1.0.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: sudo
     - Spec file: Found
     - Tarballs: sudo-1.9.15.tar.gz
@@ -867,5 +873,5 @@ Package: zlib
 ----------
 
 Summary:
-Total Packages: 144
+Total Packages: 145
 Packages with Missing Spec Files: 2
