@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Nymph Boot Config
+Comment=Configure your boot entries
+Exec=NymphBootConfig
+Icon=preferences-system
+Terminal=false
+Type=Application
+Categories=System;Settings;
+StartupNotify=true
+Keywords=boot;config;efi;extlinux;nymph;

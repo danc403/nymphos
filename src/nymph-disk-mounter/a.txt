@@ -1,0 +1,10 @@
+Write a nymph-disk-mounter.spec for this vala program. use a system default icon.
+It should build the rpm and srpm for distribution.
+If we need to use meson then wrrite meson.build also and include int he file list otherwise leave it out.
+
+We have the files:
+readme.md
+meson.build
+nymph-disk-mounter.vala
+nymph-disk-mounter.desktop
+nymph-disk-mounter.spec

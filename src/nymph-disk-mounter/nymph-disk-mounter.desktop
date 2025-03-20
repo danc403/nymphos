@@ -1,0 +1,61 @@
+project('nymph-disk-mounter', 'vala',
+  version: '0.1', #keep this consistent with spec file
+  license: 'GPL-3.0-or-later',
+  default_options: ['prefix=/usr']
+)
+
+vala_version = meson.get_compiler('vala').version()
+
+if vala_version.version_compare('<0.54.0')
+    subdir('po')
+else
+    i18n = import('i18n')
+endif
+
+glib_dep = dependency('glib-2.0', version: '>=2.56')
+gtk3_dep = dependency('gtk+-3.0', version: '>=3.22')
+gee_dep = dependency('gee-0.8')
+
+executable('nymph-disk-mounter',
+  'nymph-disk-mounter.vala',
+  dependencies: [glib_dep, gtk3_dep, gee_dep],
+  install: true,
+)
+
+desktop_file = i18n.merge_file(
+  input: 'nymph-disk-mounter.desktop',
+  output: 'nymph-disk-mounter.desktop.in',
+  type: 'desktop',
+  install: true,
+  install_dir: get_option('datadir') / 'applications'
+)
+
+# Install GSettings schema
+gschema_compile = find_program('glib-compile-schemas', required: false)
+if gschema_compile.found()
+    install_data('com.example.nymph-disk-mounter.gschema.xml',
+                 install_dir: get_option('datadir') / 'glib-2.0' / 'schemas')
+    meson.post_install_script(
+        find_program('glib-compile-schemas'),
+        '--targetdir', get_option('datadir') / 'glib-2.0' / 'schemas',
+        get_option('datadir') / 'glib-2.0' / 'schemas'
+    )
+endif
+
+if vala_version.version_compare('>=0.54.0')
+  i18n.gettext(meson.project_name(),
+               args : ['--omit-header', '--copyright-holder="Your Name"', '--package-name="nymph-disk-mounter"'])
+endif
+```
+
+**nymph-disk-mounter.desktop**
+
+```desktop
+[Desktop Entry]
+Name=Nymph Disk Mounter
+Comment=Mount and manage disks
+Exec=nymph-disk-mounter
+Icon=drive-removable-media # Uses a standard system icon
+Terminal=false
+Type=Application
+Categories=Utility;GTK;

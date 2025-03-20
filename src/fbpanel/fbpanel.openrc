@@ -1,0 +1,47 @@
+#!/sbin/openrc-run
+
+name="fbpanel"
+command="/usr/bin/fbpanel"
+pidfile="/run/fbpanel.pid"
+
+# Configuration file paths
+DEFAULT_CONFIG="/etc/fbpanel/default.config"  # System-wide default
+USER_CONFIG="$HOME/.fbpanel/config"       # User-specific config
+
+depend() {
+    use net
+    need xorg
+    after desktop
+}
+
+start() {
+    ebegin "Starting $name"
+
+    # Determine the config file to use
+    if [ -f "$USER_CONFIG" ]; then
+        CONFIG_FILE="$USER_CONFIG"
+        einfo "Using user config: $CONFIG_FILE"
+    elif [ -f "$DEFAULT_CONFIG" ]; then
+        CONFIG_FILE="$DEFAULT_CONFIG"
+        einfo "Using default config: $CONFIG_FILE"
+    else
+        CONFIG_FILE="" # No config file found; fbpanel will use its defaults
+        ewarn "No config file found.  Using fbpanel's built-in defaults."
+    fi
+
+    # Construct the command arguments
+    if [ -n "$CONFIG_FILE" ]; then
+        command_args="-c \"$CONFIG_FILE\"" # Quote in case the path contains spaces
+    else
+        command_args="" # No config argument needed
+    fi
+
+    start-stop-daemon --start --quiet --pidfile "$pidfile" --exec "$command" -- $command_args
+    eend $?
+}
+
+stop() {
+    ebegin "Stopping $name"
+    start-stop-daemon --stop --quiet --pidfile "$pidfile"
+    eend $?
+}
