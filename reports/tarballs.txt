@@ -1,4 +1,4 @@
-Generated: 2025-03-19 06:44:50.481340
+Generated: 2025-03-20 12:40:29.095256
 Package Build Status:
 ------------------------------
 Package: alsa-lib
@@ -559,6 +559,12 @@ Package: nymph-accessibility
     - SRPMs: None
     - RPMs: None
 ----------
+Package: nymph-apps
+    - Spec file: Found
+    - Tarballs: nymph-apps-1.0.tar.xz
+    - SRPMs: None
+    - RPMs: None
+----------
 Package: nymph-boot-config
     - Spec file: Found
     - Tarballs: nymph-boot-config-1.0.tar.xz
@@ -861,5 +867,5 @@ Package: zlib
 ----------
 
 Summary:
-Total Packages: 143
+Total Packages: 144
 Packages with Missing Spec Files: 2
