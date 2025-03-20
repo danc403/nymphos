@@ -1,9 +1,21 @@
-Generated: 2025-03-18 18:15:28.218580
+Generated: 2025-03-19 22:58:32.408335
 Package Build Status:
 ------------------------------
-Package: nymph-boot
+Package: fbpanel
     - Spec file: Missing
     - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-apps
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-boot-config
+    - Spec file: Missing
+    - Tarballs: nymph-boot-config-1.0.tar.xz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -13,9 +25,9 @@ Package: nymph-cuda
     - SRPMs: None
     - RPMs: None
 ----------
-Package: nymph-disks
+Package: nymph-disk-mounter
     - Spec file: Missing
-    - Tarballs: None
+    - Tarballs: nymph-disk-mounter-0.1.tar.xz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -27,13 +39,7 @@ Package: nymph-keybindings
 ----------
 Package: nymph-media-control
     - Spec file: Missing
-    - Tarballs: None
-    - SRPMs: None
-    - RPMs: None
-----------
-Package: nymph-menu
-    - Spec file: Missing
-    - Tarballs: None
+    - Tarballs: nymph-media-control-0.1.tar.xz
     - SRPMs: None
     - RPMs: None
 ----------
@@ -50,6 +56,12 @@ Package: nymph-plank
     - RPMs: None
 ----------
 Package: nymph-power-menu
+    - Spec file: Missing
+    - Tarballs: None
+    - SRPMs: None
+    - RPMs: None
+----------
+Package: nymph-run
     - Spec file: Missing
     - Tarballs: None
     - SRPMs: None
@@ -75,5 +87,5 @@ Package: vala
 ----------
 
 Summary:
-Total Packages: 12
-Packages with Missing Spec Files: 12
+Total Packages: 14
+Packages with Missing Spec Files: 14
