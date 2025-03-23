@@ -29,9 +29,7 @@ def extract_item_info(item, namespaces):
     title = item.find('title').text if item.find('title') is not None else ''
     link = item.find('link').text if item.find('link') is not None else ''
     description = item.find('description').text if item.find('description') is not None else ''
-    # Convert HTML description to plain text
-    soup = BeautifulSoup(description, 'html.parser')
-    description = soup.get_text()
+
     creator = item.find('dc:creator', namespaces).text if item.find('dc:creator', namespaces) is not None else ''
     encoded_content = item.find('content:encoded', namespaces).text if item.find('content:encoded', namespaces) is not None else '' # Get full content
     return {
@@ -43,8 +41,16 @@ def extract_item_info(item, namespaces):
     }
 
 def strip_tags(html):
-    """Strip HTML tags from a string."""
-    return re.sub('<[^<]+?>', '', html)
+    """Strip HTML tags from a string, but preserve links."""
+    soup = BeautifulSoup(html, 'html.parser')
+    output = ''
+    for element in soup.recursiveChildGenerator():
+        if isinstance(element, str):
+            output += element
+        elif element.name == 'a':
+            output += f"{element.text} ({element['href']}) "  # Display link text and URL
+
+    return output
 
 def fetch_and_extract_article(url):
     """Fetches the article from the URL and extracts the text content."""
@@ -68,13 +74,22 @@ def fetch_and_extract_article(url):
         return f"Error processing article: {e}"
 
 
+def extract_links_from_description(description):
+    """Extracts and numbers links from the description."""
+    soup = BeautifulSoup(description, 'html.parser')
+    links = []
+    for a_tag in soup.find_all('a', href=True):
+        links.append(a_tag['href'])
+    return links
+
 def display_item_list(items, read_items):
     """Displays the list of item titles with numbers for selection, marking read items."""
     print("\nAvailable Articles:")
     for i, item in enumerate(items):
         read_marker = "[READ]" if i in read_items else ""
         print(f"{i+1}. {item['title']} {read_marker}")
-    print("0. Exit")
+    print("m. Main Menu")
+    print("q. Exit")
 
 def display_article_text(text):
     """Displays the extracted article text."""
@@ -83,42 +98,57 @@ def display_article_text(text):
     print("\n--- End of Article ---")
 
 
-def display_item_details(item, item_index, items, read_items):
+def display_item_details(item, item_index, items, read_items, last_location):
     """Displays the details of a selected item and provides options to read the linked article."""
+    links_in_description = extract_links_from_description(item['description'])
+    link_count = len(links_in_description) #Count of the links in the description.
     while True:
         print("--------------------------------------")
         for key, value in item.items():
-            print(f"{key}: {strip_tags(str(value))}")  # Strip HTML tags for cleaner display
-        print("--------------------------------------")
-        print("1. Read linked article")
-        print("2. Back to article list")
-        print("0. Exit")
-
-        choice = input("Enter your choice: ")
-
-        if choice == '1':
-            if item['link']:
-                article_text = fetch_and_extract_article(item['link'])
-                display_article_text(article_text)
-
-                while True:
-                    back_choice = input("Enter 'b' to go back to the article details, 'm' for main menu, or '0' to exit: ").lower()
-                    if back_choice == 'b':
-                        break
-                    elif back_choice == 'm':
-                        return True  # Signal to return to the main menu
-                    elif back_choice in ('0', 'q'):
-                        print("Exiting...")
-                        sys.exit(0)  # Exit the script
-                    else:
-                        print("Invalid choice.")
-
-
+            if key == 'description' or key == 'content':
+                print(f"{key}: {strip_tags(str(value))}")  # Strip HTML tags for cleaner display, preserving links
             else:
-                print("This article has no link.")
-        elif choice == '2':
-            return True # Signal to return to the main menu.
-        elif choice in ('0', 'q'):
+                print(f"{key}: {str(value)}")
+        print("--------------------------------------")
+
+        if links_in_description:
+            print("\nLinks in Description:")
+            for i, link in enumerate(links_in_description):
+                print(f"{i + 1}. {link}")
+
+        print("\nOptions:")
+        if links_in_description:
+            print(f"Enter 1-{link_count} to read the corresponding linked page.")
+        print("b. Back")
+        print("m. Main Menu")
+        print("q. Exit")
+
+        choice = input("Enter your choice: ").lower()
+
+        if links_in_description and choice.isdigit() and 1 <= int(choice) <= len(links_in_description):
+            link_index = int(choice) - 1
+            article_text = fetch_and_extract_article(links_in_description[link_index])
+            display_article_text(article_text)
+
+            while True:
+                back_choice = input("Enter 'b' to go back to the article details, 'm' for main menu, or 'q' to exit: ").lower()
+                if back_choice == 'b':
+                    break  # Back to item details
+                elif back_choice == 'm':
+                    return 'main_menu'  # Signal to return to the main menu
+                elif back_choice == 'q':
+                    print("Exiting...")
+                    sys.exit(0)
+                else:
+                    print("Invalid choice.")
+
+
+
+        elif choice == 'b':
+            return last_location  #Signal to go back to last location.
+        elif choice == 'm':
+            return 'main_menu'  # Signal to return to the main menu
+        elif choice == 'q':
             print("Exiting...")
             sys.exit(0)
         else:
@@ -133,29 +163,41 @@ def main():
     items_elements = root.findall('.//item')
     items = [extract_item_info(item, namespaces) for item in items_elements]  # Extract and store item data
     read_items = set() # Keep track of read item indices
+    last_location = 'main_menu' #Start on the main menu.
 
 
     while True:
-        display_item_list(items, read_items)
+        if last_location == 'main_menu':
+            display_item_list(items, read_items)
+            choice = input("Enter the number of the article to view (m for Main Menu, q to exit): ").lower()
+        else:
+             choice = last_location
 
-        choice = input("Enter the number of the article to view (or 0/q to exit): ")
 
-        if choice in ('0', 'q'):
+        if choice == 'q':
             print("Exiting...")
             break
+        elif choice == 'm':
+            last_location = 'main_menu' # Return to main menu (do nothing, loop restarts)
+            continue
+
 
         try:
-            choice_index = int(choice) - 1
-            if 0 <= choice_index < len(items):
-                #Display Item Details
-                if display_item_details(items[choice_index], choice_index, items, read_items):
+            if choice != 'main_menu':
+                choice_index = int(choice) - 1
+                if 0 <= choice_index < len(items):
+                    #Display Item Details
+                    result = display_item_details(items[choice_index], choice_index, items, read_items, last_location)
+                    if result == 'main_menu':
+                         last_location = 'main_menu'
+                    else:
+                        last_location = result #Update to last location
+
                     read_items.add(choice_index)  # Mark as read if user viewed or linked page.
                 else:
-                    read_items.add(choice_index)
-                    break #Exit
-                read_items.add(choice_index)  # Mark as read
+                    print("Invalid choice. Please enter a number from the list.")
             else:
-                print("Invalid choice. Please enter a number from the list.")
+                last_location = 'main_menu'
         except ValueError:
             print("Invalid input. Please enter a number.")
 
